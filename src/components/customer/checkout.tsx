@@ -41,7 +41,7 @@ export function CheckoutFlow({
   const current = steps[step];
 
   function pay(simulateFail = false) {
-    if (!agree) return toast.error("Please accept the terms");
+    if (!agree) { toast.error("Please accept the terms"); return; }
     const r = method === "CASH" ? "PENDING" : simulateFail ? "FAILED" : "PAID";
     setResult(r);
     if (r === "PAID") toast.success("Payment successful");
