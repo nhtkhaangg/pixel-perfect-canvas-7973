@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
 
 export const Route = createFileRoute("/_public/reviews")({
-  head: () => seo("Member reviews", "Read honest reviews from GymFit members across our Downtown, Riverside, Northgate and Eastside branches."),
+  head: () => seo("Đánh giá của hội viên", "Đọc những đánh giá chân thực từ hội viên GymFit về trải nghiệm tập luyện."),
   component: ReviewsPage,
 });
 
@@ -25,12 +25,12 @@ function ReviewsPage() {
 
   return (
     <>
-      <PageHero eyebrow="Reviews" title="Rated 4.8 by our members" description="Unfiltered feedback from people who train with us every week." />
+      <PageHero eyebrow="Đánh giá" title="Được đánh giá 4.8 sao bởi hội viên" description="Phản hồi chân thực từ những người tập luyện tại đây mỗi tuần." />
       <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 lg:grid-cols-[280px_1fr] lg:px-6">
         <aside className="h-fit rounded-lg border border-border bg-card p-6">
           <p className="text-5xl font-semibold tracking-tight">{avg.toFixed(1)}</p>
           <Stars rating={avg} className="mt-2" />
-          <p className="mt-1 text-sm text-muted-foreground">{reviews.length} reviews shown</p>
+          <p className="mt-1 text-sm text-muted-foreground">{reviews.length} đánh giá được hiển thị</p>
           <div className="mt-6 space-y-2">
             {[5, 4, 3, 2, 1].map((n) => {
               const count = reviews.filter((r) => r.rating === n).length;
@@ -48,7 +48,7 @@ function ReviewsPage() {
               );
             })}
           </div>
-          <Button className="mt-6 w-full" onClick={() => setOpen(true)}>Write a review</Button>
+          <Button className="mt-6 w-full" onClick={() => setOpen(true)}>Viết đánh giá</Button>
         </aside>
         <div>
           {list.length ? (
@@ -56,7 +56,7 @@ function ReviewsPage() {
               {list.map((r) => <ReviewCard key={r.id} review={r} />)}
             </div>
           ) : (
-            <EmptyState title={`No ${stars}-star reviews yet`} />
+            <EmptyState title={`Chưa có đánh giá ${stars} sao`} />
           )}
         </div>
       </section>
@@ -70,21 +70,21 @@ function ReviewModal({ open, onOpenChange }: { open: boolean; onOpenChange: (o: 
     <FormModal
       open={open}
       onOpenChange={onOpenChange}
-      title="Write a review"
-      description="Only verified members can publish reviews. Log in after submitting to confirm."
+      title="Viết đánh giá"
+      description="Chỉ hội viên đã xác minh mới có thể đăng đánh giá. Hãy đăng nhập sau khi gửi để xác nhận."
       footer={
         <Button
           onClick={() => {
-            toast.success("Thanks! Your review is pending moderation.");
+            toast.success("Cảm ơn bạn! Đánh giá của bạn đang chờ duyệt.");
             onOpenChange(false);
           }}
         >
-          Submit review
+          Gửi đánh giá
         </Button>
       }
     >
-      <FormField label="Title" required>{(p) => <Input {...p} placeholder="Summarise your experience" />}</FormField>
-      <FormField label="Review" required>{(p) => <Textarea {...p} rows={4} placeholder="What did you like?" />}</FormField>
+      <FormField label="Tiêu đề" required>{(p) => <Input {...p} placeholder="Tóm tắt trải nghiệm của bạn" />}</FormField>
+      <FormField label="Nội dung đánh giá" required>{(p) => <Textarea {...p} rows={4} placeholder="Bạn thích điều gì?" />}</FormField>
     </FormModal>
   );
 }

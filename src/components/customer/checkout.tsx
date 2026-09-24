@@ -11,9 +11,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
 
 const methods: { key: PaymentMethod; label: string; desc: string; icon: typeof CreditCard }[] = [
-  { key: "VNPAY", label: "VNPAY", desc: "Card or banking app via VNPAY gateway", icon: CreditCard },
-  { key: "PAYOS", label: "PayOS", desc: "Scan a bank-transfer QR with PayOS", icon: QrCode },
-  { key: "CASH", label: "Cash at front desk", desc: "Package stays PENDING until staff confirm payment", icon: Banknote },
+  { key: "VNPAY", label: "VNPAY", desc: "Thẻ hoặc ứng dụng ngân hàng qua cổng VNPAY", icon: CreditCard },
+  { key: "PAYOS", label: "PayOS", desc: "Quét mã QR chuyển khoản qua PayOS", icon: QrCode },
+  { key: "CASH", label: "Tiền mặt tại quầy", desc: "Gói giữ trạng thái CHỜ XỬ LÝ đến khi lễ tân xác nhận thanh toán", icon: Banknote },
 ];
 
 /** Multi-step purchase flow shared by membership and PT booking. */
@@ -36,15 +36,15 @@ export function CheckoutFlow({
   const [step, setStep] = useState(0);
   const [result, setResult] = useState<"PAID" | "FAILED" | "PENDING" | null>(null);
   const pkg = list.find((p) => p.id === pkgId)!;
-  const steps = ["Package", ...(extraStep ? [extraStep.label] : []), "Payment", "Confirm"];
+  const steps = ["Gói tập", ...(extraStep ? [extraStep.label] : []), "Thanh toán", "Xác nhận"];
   const last = steps.length - 1;
   const current = steps[step];
 
   function pay(simulateFail = false) {
-    if (!agree) { toast.error("Please accept the terms"); return; }
+    if (!agree) { toast.error("Vui lòng đồng ý với điều khoản"); return; }
     const r = method === "CASH" ? "PENDING" : simulateFail ? "FAILED" : "PAID";
     setResult(r);
-    if (r === "PAID") toast.success("Payment successful");
+    if (r === "PAID") toast.success("Thanh toán thành công");
   }
 
   if (result)
@@ -54,20 +54,20 @@ export function CheckoutFlow({
         <div className="mx-auto max-w-lg rounded-lg border border-border bg-card p-8 text-center">
           {result === "FAILED" ? <XCircle className="mx-auto size-12 text-destructive" /> : <CheckCircle2 className="mx-auto size-12 text-primary" />}
           <p className="mt-4 text-xl font-semibold">
-            {result === "PAID" ? "You're all set!" : result === "PENDING" ? "Reserved — pay at the desk" : "Payment failed"}
+            {result === "PAID" ? "Hoàn tất!" : result === "PENDING" ? "Đã giữ chỗ — thanh toán tại quầy" : "Thanh toán thất bại"}
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            {result === "PAID" && `${pkg.name} is now ACTIVE. A receipt was sent to your email.`}
-            {result === "PENDING" && `Show your QR code at the front desk and pay ${formatCurrency(pkg.price)} in cash within 48 hours.`}
-            {result === "FAILED" && `${method} declined the transaction. No money was taken.`}
+            {result === "PAID" && `${pkg.name} hiện đã ACTIVE. Hóa đơn đã được gửi vào email của bạn.`}
+            {result === "PENDING" && `Xuất trình mã QR tại quầy lễ tân và thanh toán ${formatCurrency(pkg.price)} tiền mặt trong vòng 48 giờ.`}
+            {result === "FAILED" && `${method} đã từ chối giao dịch. Không có khoản tiền nào bị trừ.`}
           </p>
           <div className="mt-4 flex justify-center gap-2">
-            <StatusBadge status={result === "PAID" ? "paid" : result === "FAILED" ? "failed" : "pending"} label={result} />
+            <StatusBadge status={result === "PAID" ? "paid" : result === "FAILED" ? "failed" : "pending"} />
             <StatusBadge status="neutral" label={method} />
           </div>
           <div className="mt-6 flex justify-center gap-2">
-            {result === "FAILED" ? <Button onClick={() => setResult(null)}>Try again</Button> : <Button asChild><Link to="/customer/packages">View my packages</Link></Button>}
-            <Button variant="outline" asChild><Link to="/customer">Dashboard</Link></Button>
+            {result === "FAILED" ? <Button onClick={() => setResult(null)}>Thử lại</Button> : <Button asChild><Link to="/customer/packages">Xem gói của tôi</Link></Button>}
+            <Button variant="outline" asChild><Link to="/customer">Trang tổng quan</Link></Button>
           </div>
         </div>
       </>
@@ -86,19 +86,19 @@ export function CheckoutFlow({
       </ol>
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
         <div className="rounded-lg border border-border bg-card p-6">
-          {current === "Package" && (
+          {current === "Gói tập" && (
             <div className="grid gap-3 md:grid-cols-2">
               {list.map((p) => (
                 <button key={p.id} type="button" onClick={() => setPkgId(p.id)} className={cn("rounded-lg border p-4 text-left transition-colors", p.id === pkgId ? "border-primary ring-1 ring-primary" : "border-border hover:border-primary/50")}>
-                  <div className="flex items-center justify-between"><p className="font-semibold">{p.name}</p>{p.featured ? <span className="text-xs text-primary">Popular</span> : null}</div>
+                  <div className="flex items-center justify-between"><p className="font-semibold">{p.name}</p>{p.featured ? <span className="text-xs text-primary">Phổ biến</span> : null}</div>
                   <p className="mt-1 text-sm text-muted-foreground">{p.description}</p>
-                  <p className="mt-3 text-xl font-semibold">{formatCurrency(p.price)} <span className="text-sm font-normal text-muted-foreground">/ {p.durationDays} days{p.totalSessions ? ` · ${p.totalSessions} sessions` : ""}</span></p>
+                  <p className="mt-3 text-xl font-semibold">{formatCurrency(p.price)} <span className="text-sm font-normal text-muted-foreground">/ {p.durationDays} ngày{p.totalSessions ? ` · ${p.totalSessions} buổi` : ""}</span></p>
                 </button>
               ))}
             </div>
           )}
           {extraStep && current === extraStep.label && extraStep.render()}
-          {current === "Payment" && (
+          {current === "Thanh toán" && (
             <div className="space-y-3">
               {methods.map((m) => (
                 <button key={m.key} type="button" onClick={() => setMethod(m.key)} className={cn("flex w-full items-center gap-4 rounded-lg border p-4 text-left", method === m.key ? "border-primary ring-1 ring-primary" : "border-border")}>
@@ -109,38 +109,38 @@ export function CheckoutFlow({
               ))}
             </div>
           )}
-          {current === "Confirm" && (
+          {current === "Xác nhận" && (
             <div className="space-y-4">
-              <p className="font-semibold">Review your order</p>
+              <p className="font-semibold">Xem lại đơn hàng</p>
               <dl className="divide-y divide-border rounded-md border border-border text-sm">
-                <div className="flex justify-between p-3"><dt className="text-muted-foreground">Package</dt><dd>{pkg.name}</dd></div>
+                <div className="flex justify-between p-3"><dt className="text-muted-foreground">Gói tập</dt><dd>{pkg.name}</dd></div>
                 {extraStep ? <div className="flex justify-between p-3"><dt className="text-muted-foreground">{extraStep.label}</dt><dd>{extraStep.summary}</dd></div> : null}
-                <div className="flex justify-between p-3"><dt className="text-muted-foreground">Valid for</dt><dd>{pkg.durationDays} days</dd></div>
-                <div className="flex justify-between p-3"><dt className="text-muted-foreground">Payment</dt><dd>{method}</dd></div>
+                <div className="flex justify-between p-3"><dt className="text-muted-foreground">Thời hạn</dt><dd>{pkg.durationDays} ngày</dd></div>
+                <div className="flex justify-between p-3"><dt className="text-muted-foreground">Thanh toán</dt><dd>{method}</dd></div>
               </dl>
-              <label className="flex items-start gap-2 text-sm"><Checkbox checked={agree} onCheckedChange={(v) => setAgree(v === true)} className="mt-0.5" /> I agree to the package terms and refund policy.</label>
+              <label className="flex items-start gap-2 text-sm"><Checkbox checked={agree} onCheckedChange={(v) => setAgree(v === true)} className="mt-0.5" /> Tôi đồng ý với điều khoản gói tập và chính sách hoàn tiền.</label>
             </div>
           )}
           <div className="mt-6 flex justify-between border-t border-border pt-5">
-            <Button variant="outline" disabled={step === 0} onClick={() => setStep(step - 1)}>Back</Button>
+            <Button variant="outline" disabled={step === 0} onClick={() => setStep(step - 1)}>Quay lại</Button>
             {step < last ? (
-              <Button disabled={!!extraStep && current === extraStep.label && !extraStep.valid} onClick={() => setStep(step + 1)}>Continue</Button>
+              <Button disabled={!!extraStep && current === extraStep.label && !extraStep.valid} onClick={() => setStep(step + 1)}>Tiếp tục</Button>
             ) : (
               <div className="flex gap-2">
-                {method !== "CASH" ? <Button variant="ghost" onClick={() => pay(true)}>Simulate failure</Button> : null}
-                <Button onClick={() => pay()}>{method === "CASH" ? "Reserve package" : `Pay ${formatCurrency(pkg.price)}`}</Button>
+                {method !== "CASH" ? <Button variant="ghost" onClick={() => pay(true)}>Giả lập thất bại</Button> : null}
+                <Button onClick={() => pay()}>{method === "CASH" ? "Giữ chỗ gói tập" : `Thanh toán ${formatCurrency(pkg.price)}`}</Button>
               </div>
             )}
           </div>
         </div>
         <aside className="h-fit rounded-lg bg-surface p-6 text-surface-foreground">
-          <p className="text-xs tracking-wider text-surface-foreground/60 uppercase">Order summary</p>
+          <p className="text-xs tracking-wider text-surface-foreground/60 uppercase">Tóm tắt đơn hàng</p>
           <p className="mt-3 font-semibold">{pkg.name}</p>
           <ul className="mt-3 space-y-1.5 text-sm text-surface-foreground/70">
             {pkg.perks.map((p) => <li key={p} className="flex gap-2"><Check className="size-4 text-primary" /> {p}</li>)}
           </ul>
           <div className="mt-5 flex items-end justify-between border-t border-surface-foreground/10 pt-4">
-            <span className="text-sm text-surface-foreground/60">Total</span>
+            <span className="text-sm text-surface-foreground/60">Tổng cộng</span>
             <span className="text-2xl font-semibold">{formatCurrency(pkg.price)}</span>
           </div>
         </aside>

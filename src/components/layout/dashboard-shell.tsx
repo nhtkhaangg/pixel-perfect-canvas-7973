@@ -52,7 +52,7 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
         </div>
         <div className="px-4 py-4">
           <p className="text-[11px] font-semibold tracking-wider text-sidebar-foreground/50 uppercase">
-            {area.name} area
+            {area.name}
           </p>
         </div>
         <div className="flex-1 overflow-y-auto px-3 pb-4">{nav}</div>
@@ -61,7 +61,7 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
             to="/hub"
             className="block rounded-md px-3 py-2 text-xs text-sidebar-foreground/60 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
           >
-            ← Back to role hub
+            ← Về trang điều hướng
           </Link>
         </div>
       </aside>
@@ -69,7 +69,7 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
       {mobileOpen ? (
         <div className="fixed inset-0 z-50 lg:hidden">
           <button
-            aria-label="Close navigation"
+            aria-label="Đóng điều hướng"
             className="absolute inset-0 bg-foreground/40"
             onClick={() => setMobileOpen(false)}
           />
@@ -101,11 +101,11 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
           <div className="ml-auto flex items-center gap-2">
             <div className="relative hidden w-56 md:block">
               <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
-              <Input placeholder="Search" className="h-9 pl-9" />
+              <Input placeholder="Tìm kiếm" className="h-9 pl-9" />
             </div>
             {role === "customer" || role === "trainer" ? (
               <Button variant="ghost" size="icon" asChild className="relative">
-                <Link to={role === "customer" ? "/customer/notifications" : "/trainer/notifications"} aria-label="Notifications">
+                <Link to={role === "customer" ? "/customer/notifications" : "/trainer/notifications"} aria-label="Thông báo">
                   <Bell className="size-4" />
                   <span className="absolute top-2 right-2 size-2 rounded-full bg-primary" />
                 </Link>
@@ -118,11 +118,11 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
             <div className="flex items-center gap-2 border-l border-border pl-2">
               <Avatar className="size-8">
                 <AvatarFallback className="bg-muted text-xs font-semibold">
-                  {role === "customer" ? "AM" : role === "trainer" ? "MN" : area.name.slice(0, 2).toUpperCase()}
+                  {role === "customer" ? "TA" : role === "trainer" ? "MN" : area.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="hidden text-xs leading-tight sm:block">
-                <p className="font-medium text-foreground">{role === "customer" ? "Alex Morgan" : role === "trainer" ? "Maya Nguyen" : `Demo ${area.name}`}</p>
+                <p className="font-medium text-foreground">{role === "customer" ? "Trần An" : role === "trainer" ? "Minh Nguyên" : `${area.name} (demo)`}</p>
                 <p className="text-muted-foreground">{area.key}@gymfit.dev</p>
               </div>
             </div>

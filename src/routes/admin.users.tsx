@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/admin/users")({
   head: () => ({
     meta: [
-      { title: "Users — Admin — GymFit" },
-      { name: "description", content: "All platform accounts across every branch." },
-      { property: "og:title", content: "Users — Admin — GymFit" },
-      { property: "og:description", content: "All platform accounts across every branch." },
+      { title: "Người dùng — Quản trị viên — GymFit" },
+      { name: "description", content: "Toàn bộ tài khoản người dùng trong hệ thống." },
+      { property: "og:title", content: "Người dùng — Quản trị viên — GymFit" },
+      { property: "og:description", content: "Toàn bộ tài khoản người dùng trong hệ thống." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/admin/users")({
 });
 
 function AdminUsersPage() {
-  return <ScaffoldPage title="Users" description="All platform accounts across every branch." />;
+  return <ScaffoldPage title="Người dùng" description="Toàn bộ tài khoản người dùng trong hệ thống." />;
 }

@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/manager/staff")({
   head: () => ({
     meta: [
-      { title: "Staff — Manager — GymFit" },
-      { name: "description", content: "Staff and trainer records, shifts and approvals." },
-      { property: "og:title", content: "Staff — Manager — GymFit" },
-      { property: "og:description", content: "Staff and trainer records, shifts and approvals." },
+      { title: "Nhân viên — Quản lý — GymFit" },
+      { name: "description", content: "Hồ sơ nhân viên, huấn luyện viên, ca làm và phê duyệt." },
+      { property: "og:title", content: "Nhân viên — Quản lý — GymFit" },
+      { property: "og:description", content: "Hồ sơ nhân viên, huấn luyện viên, ca làm và phê duyệt." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/manager/staff")({
 });
 
 function ManagerStaffPage() {
-  return <ScaffoldPage title="Staff" description="Staff and trainer records, shifts and approvals." />;
+  return <ScaffoldPage title="Nhân viên" description="Hồ sơ nhân viên, huấn luyện viên, ca làm và phê duyệt." />;
 }

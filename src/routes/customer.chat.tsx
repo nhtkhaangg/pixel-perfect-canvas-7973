@@ -9,14 +9,14 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/customer/chat")({
-  head: () => seo("Chat with your trainer", "Message your GymFit coach in real time."),
+  head: () => seo("Trò chuyện với huấn luyện viên", "Nhắn tin trực tiếp với huấn luyện viên của bạn tại GymFit."),
   component: Chat,
 });
 
-const replies = ["Got it 👍", "Nice work — keep logging your RPE.", "Let's review that on Friday.", "Make sure you get 8 hours tonight!"];
+const replies = ["Nhận được rồi 👍", "Buổi tập tốt lắm — nhớ ghi lại RPE nhé.", "Mình sẽ xem lại vào thứ Sáu.", "Nhớ ngủ đủ 8 tiếng tối nay!"];
 const contacts = [
-  { name: me.trainerName, last: "Send a reschedule request…", online: true },
-  { name: "Front desk · Downtown", last: "Your locker is renewed.", online: false },
+  { name: me.trainerName, last: "Gửi yêu cầu đổi lịch…", online: true },
+  { name: "Lễ tân · Phòng gym", last: "Tủ đồ của bạn đã được gia hạn.", online: false },
 ];
 
 function Chat() {
@@ -42,7 +42,7 @@ function Chat() {
   return (
     <div className="grid h-[calc(100vh-9rem)] overflow-hidden rounded-lg border border-border bg-card md:grid-cols-[260px_1fr]">
       <aside className="hidden border-r border-border md:block">
-        <p className="border-b border-border px-4 py-3 text-sm font-semibold">Messages</p>
+        <p className="border-b border-border px-4 py-3 text-sm font-semibold">Tin nhắn</p>
         {contacts.map((c, i) => (
           <div key={c.name} className={cn("flex items-center gap-3 px-4 py-3", i === 0 && "bg-muted")}>
             <div className="relative"><Avatar name={c.name} />{c.online ? <span className="absolute right-0 bottom-0 size-2.5 rounded-full border-2 border-card bg-primary" /> : null}</div>
@@ -53,7 +53,7 @@ function Chat() {
       <div className="flex min-h-0 flex-col">
         <div className="flex items-center gap-3 border-b border-border px-4 py-3">
           <Avatar name={me.trainerName} />
-          <div><p className="text-sm font-semibold">{me.trainerName}</p><p className="text-xs text-primary">Online</p></div>
+          <div><p className="text-sm font-semibold">{me.trainerName}</p><p className="text-xs text-primary">Đang hoạt động</p></div>
         </div>
         <div className="flex-1 space-y-3 overflow-y-auto p-4">
           {msgs.map((m) => (
@@ -64,13 +64,13 @@ function Chat() {
               </div>
             </div>
           ))}
-          {typing ? <p className="text-xs text-muted-foreground">Maya is typing…</p> : null}
+          {typing ? <p className="text-xs text-muted-foreground">{me.trainerName.split(" ").slice(-1)[0]} đang soạn tin…</p> : null}
           <div ref={end} />
         </div>
         <form onSubmit={send} className="flex gap-2 border-t border-border p-3">
-          <Button type="button" variant="ghost" size="icon" aria-label="Attach"><Paperclip className="size-4" /></Button>
-          <Input value={text} onChange={(e) => setText(e.target.value)} placeholder="Write a message…" />
-          <Button type="submit" size="icon" aria-label="Send"><Send className="size-4" /></Button>
+          <Button type="button" variant="ghost" size="icon" aria-label="Đính kèm"><Paperclip className="size-4" /></Button>
+          <Input value={text} onChange={(e) => setText(e.target.value)} placeholder="Nhập tin nhắn…" />
+          <Button type="submit" size="icon" aria-label="Gửi"><Send className="size-4" /></Button>
         </form>
       </div>
     </div>

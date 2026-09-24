@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/admin/roles")({
   head: () => ({
     meta: [
-      { title: "Roles — Admin — GymFit" },
-      { name: "description", content: "Role definitions and permission sets." },
-      { property: "og:title", content: "Roles — Admin — GymFit" },
-      { property: "og:description", content: "Role definitions and permission sets." },
+      { title: "Vai trò — Quản trị viên — GymFit" },
+      { name: "description", content: "Định nghĩa vai trò và tập quyền hạn." },
+      { property: "og:title", content: "Vai trò — Quản trị viên — GymFit" },
+      { property: "og:description", content: "Định nghĩa vai trò và tập quyền hạn." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/admin/roles")({
 });
 
 function AdminRolesPage() {
-  return <ScaffoldPage title="Roles" description="Role definitions and permission sets." />;
+  return <ScaffoldPage title="Vai trò" description="Định nghĩa vai trò và tập quyền hạn." />;
 }

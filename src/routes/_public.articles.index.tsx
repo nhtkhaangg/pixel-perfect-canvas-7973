@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { articles, type Article } from "@/lib/mock/public";
+import { articles, articleCategoryLabels, type Article } from "@/lib/mock/public";
 import { seo } from "@/lib/seo";
 import { ArticleCard, PageHero } from "@/components/public/cards";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_public/articles/")({
-  head: () => seo("Articles", "Training, nutrition and recovery advice from GymFit coaches, plus community news."),
+  head: () => seo("Bài viết", "Kiến thức tập luyện, dinh dưỡng và phục hồi từ huấn luyện viên GymFit, cùng tin tức cộng đồng."),
   component: ArticlesPage,
 });
 
@@ -17,12 +17,12 @@ function ArticlesPage() {
   const list = articles.filter((a) => cat === "All" || a.category === cat);
   return (
     <>
-      <PageHero eyebrow="Journal" title="Advice from the gym floor" description="Practical, evidence-based articles written by our coaches." />
+      <PageHero eyebrow="Bài viết" title="Kiến thức từ sàn tập" description="Bài viết thực tế, dựa trên khoa học, được viết bởi huấn luyện viên của chúng tôi." />
       <section className="mx-auto w-full max-w-6xl px-4 py-10 lg:px-6">
         <div className="mb-6 flex flex-wrap gap-2">
           {categories.map((c) => (
             <Button key={c} size="sm" variant={c === cat ? "default" : "outline"} onClick={() => setCat(c)}>
-              {c}
+              {c === "All" ? "Tất cả" : articleCategoryLabels[c]}
             </Button>
           ))}
         </div>

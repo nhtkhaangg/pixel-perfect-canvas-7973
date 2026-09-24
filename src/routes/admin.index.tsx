@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/admin/")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Admin — GymFit" },
-      { name: "description", content: "System-wide health, usage and recent administrative activity." },
-      { property: "og:title", content: "Dashboard — Admin — GymFit" },
-      { property: "og:description", content: "System-wide health, usage and recent administrative activity." },
+      { title: "Tổng quan — Quản trị viên — GymFit" },
+      { name: "description", content: "Tình trạng hệ thống, mức sử dụng và hoạt động quản trị gần đây." },
+      { property: "og:title", content: "Tổng quan — Quản trị viên — GymFit" },
+      { property: "og:description", content: "Tình trạng hệ thống, mức sử dụng và hoạt động quản trị gần đây." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/admin/")({
 });
 
 function AdminIndexPage() {
-  return <ScaffoldPage title="Dashboard" description="System-wide health, usage and recent administrative activity." />;
+  return <ScaffoldPage title="Tổng quan" description="Tình trạng hệ thống, mức sử dụng và hoạt động quản trị gần đây." />;
 }

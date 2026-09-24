@@ -1,17 +1,17 @@
 export const me = {
-  id: "cus_1042",
-  name: "Alex Morgan",
-  email: "alex.morgan@example.com",
-  phone: "+1 415 555 0187",
+  id: "hv_1042",
+  name: "Nguyễn Minh Anh",
+  email: "minhanh.nguyen@example.com",
+  phone: "0903 123 456",
   dob: "1994-03-12",
-  gender: "Male",
-  address: "22 Oak St, San Francisco, CA",
-  homeBranch: "Downtown",
+  gender: "Nam",
+  address: "22 Đường Nguyễn Huệ, Quận 1, TP.HCM",
+  homeZone: "Khu tạ tự do",
   memberSince: "2025-02-10",
-  goal: "Lose 6 kg of fat and bench 100 kg",
-  emergencyContact: "Jamie Morgan · +1 415 555 0133",
+  goal: "Giảm 6 kg mỡ và đẩy ngực 100 kg",
+  emergencyContact: "Nguyễn Thu Hà · 0903 555 133",
   trainerId: "maya-nguyen",
-  trainerName: "Maya Nguyen",
+  trainerName: "Maya Nguyễn",
 };
 
 export type CustomerPackageStatus = "PENDING" | "ACTIVE" | "EXPIRED" | "CANCELLED";
@@ -30,12 +30,12 @@ export type CustomerPackage = {
 };
 
 export const customerPackages: CustomerPackage[] = [
-  { id: "cp_301", packageId: "standard-monthly", name: "Standard Monthly", type: "MEMBERSHIP", startDate: "2026-09-01", endDate: "2026-09-30", status: "ACTIVE", totalSessions: null, usedSessions: 14, price: 49 },
-  { id: "cp_298", packageId: "pt-transform-24", name: "PT Transform 24", type: "PT", startDate: "2026-07-15", endDate: "2026-10-13", status: "ACTIVE", totalSessions: 24, usedSessions: 17, trainer: "Maya Nguyen", price: 960 },
-  { id: "cp_305", packageId: "all-access-quarter", name: "All-Access Quarterly", type: "MEMBERSHIP", startDate: "2026-10-01", endDate: "2026-12-30", status: "PENDING", totalSessions: null, usedSessions: 0, price: 239 },
-  { id: "cp_244", packageId: "standard-monthly", name: "Standard Monthly", type: "MEMBERSHIP", startDate: "2026-08-01", endDate: "2026-08-31", status: "EXPIRED", totalSessions: null, usedSessions: 19, price: 49 },
-  { id: "cp_210", packageId: "pt-starter-8", name: "PT Starter 8", type: "PT", startDate: "2026-05-02", endDate: "2026-06-16", status: "EXPIRED", totalSessions: 8, usedSessions: 8, trainer: "Daniel Okafor", price: 360 },
-  { id: "cp_199", packageId: "flex-monthly", name: "Flex Monthly", type: "MEMBERSHIP", startDate: "2026-04-01", endDate: "2026-04-30", status: "CANCELLED", totalSessions: null, usedSessions: 3, price: 29 },
+  { id: "cp_301", packageId: "standard-monthly", name: "Gói Tiêu chuẩn hàng tháng", type: "MEMBERSHIP", startDate: "2026-09-01", endDate: "2026-09-30", status: "ACTIVE", totalSessions: null, usedSessions: 14, price: 499000 },
+  { id: "cp_298", packageId: "pt-transform-24", name: "PT Transform 24 buổi", type: "PT", startDate: "2026-07-15", endDate: "2026-10-13", status: "ACTIVE", totalSessions: 24, usedSessions: 17, trainer: "Maya Nguyễn", price: 9600000 },
+  { id: "cp_305", packageId: "all-access-quarter", name: "Gói Toàn quyền theo Quý", type: "MEMBERSHIP", startDate: "2026-10-01", endDate: "2026-12-30", status: "PENDING", totalSessions: null, usedSessions: 0, price: 2390000 },
+  { id: "cp_244", packageId: "standard-monthly", name: "Gói Tiêu chuẩn hàng tháng", type: "MEMBERSHIP", startDate: "2026-08-01", endDate: "2026-08-31", status: "EXPIRED", totalSessions: null, usedSessions: 19, price: 499000 },
+  { id: "cp_210", packageId: "pt-starter-8", name: "PT Starter 8 buổi", type: "PT", startDate: "2026-05-02", endDate: "2026-06-16", status: "EXPIRED", totalSessions: 8, usedSessions: 8, trainer: "Daniel Okafor", price: 3600000 },
+  { id: "cp_199", packageId: "flex-monthly", name: "Gói Linh hoạt hàng tháng", type: "MEMBERSHIP", startDate: "2026-04-01", endDate: "2026-04-30", status: "CANCELLED", totalSessions: null, usedSessions: 3, price: 299000 },
 ];
 
 export type PaymentMethod = "VNPAY" | "PAYOS" | "CASH";
@@ -52,13 +52,13 @@ export type PaymentTransaction = {
 };
 
 export const transactions: PaymentTransaction[] = [
-  { id: "tx_9012", customerPackageId: "cp_305", description: "All-Access Quarterly", amount: 239, method: "VNPAY", status: "PAID", date: "2026-09-21", reference: "VNP14829301" },
-  { id: "tx_9008", customerPackageId: "cp_305", description: "All-Access Quarterly", amount: 239, method: "PAYOS", status: "FAILED", date: "2026-09-21", reference: "PO-7781230" },
-  { id: "tx_8950", customerPackageId: "cp_301", description: "Standard Monthly", amount: 49, method: "PAYOS", status: "PAID", date: "2026-09-01", reference: "PO-7721004" },
-  { id: "tx_8702", customerPackageId: "cp_298", description: "PT Transform 24", amount: 960, method: "VNPAY", status: "PAID", date: "2026-07-15", reference: "VNP13900211" },
-  { id: "tx_8610", customerPackageId: "cp_244", description: "Standard Monthly", amount: 49, method: "CASH", status: "PAID", date: "2026-08-01", reference: "DESK-0488" },
-  { id: "tx_8200", customerPackageId: "cp_210", description: "PT Starter 8", amount: 360, method: "VNPAY", status: "PAID", date: "2026-05-02", reference: "VNP12555018" },
-  { id: "tx_8105", customerPackageId: "cp_199", description: "Flex Monthly (refund)", amount: 29, method: "CASH", status: "REFUNDED", date: "2026-04-05", reference: "DESK-0311" },
+  { id: "tx_9012", customerPackageId: "cp_305", description: "Gói Toàn quyền theo Quý", amount: 2390000, method: "VNPAY", status: "PAID", date: "2026-09-21", reference: "VNP14829301" },
+  { id: "tx_9008", customerPackageId: "cp_305", description: "Gói Toàn quyền theo Quý", amount: 2390000, method: "PAYOS", status: "FAILED", date: "2026-09-21", reference: "PO-7781230" },
+  { id: "tx_8950", customerPackageId: "cp_301", description: "Gói Tiêu chuẩn hàng tháng", amount: 499000, method: "PAYOS", status: "PAID", date: "2026-09-01", reference: "PO-7721004" },
+  { id: "tx_8702", customerPackageId: "cp_298", description: "PT Transform 24 buổi", amount: 9600000, method: "VNPAY", status: "PAID", date: "2026-07-15", reference: "VNP13900211" },
+  { id: "tx_8610", customerPackageId: "cp_244", description: "Gói Tiêu chuẩn hàng tháng", amount: 499000, method: "CASH", status: "PAID", date: "2026-08-01", reference: "DESK-0488" },
+  { id: "tx_8200", customerPackageId: "cp_210", description: "PT Starter 8 buổi", amount: 3600000, method: "VNPAY", status: "PAID", date: "2026-05-02", reference: "VNP12555018" },
+  { id: "tx_8105", customerPackageId: "cp_199", description: "Hoàn tiền gói Linh hoạt hàng tháng", amount: 299000, method: "CASH", status: "REFUNDED", date: "2026-04-05", reference: "DESK-0311" },
 ];
 
 export type SessionStatus = "UPCOMING" | "IN_PROGRESS" | "COMPLETED" | "MISSED" | "CANCELLED";
@@ -75,31 +75,31 @@ export type TrainingSession = {
 };
 
 export const sessions: TrainingSession[] = [
-  { id: "s_18", date: "2026-09-24", start: "18:00", end: "19:00", trainer: "Maya Nguyen", focus: "Upper body — bench focus", room: "Strength zone A", status: "IN_PROGRESS", exercises: [
-    { name: "Barbell bench press", sets: 5, reps: "5", weight: 85 },
-    { name: "Weighted pull-up", sets: 4, reps: "6", weight: 10 },
-    { name: "Incline DB press", sets: 3, reps: "10", weight: 26 },
-    { name: "Cable row", sets: 3, reps: "12", weight: 55 },
+  { id: "s_18", date: "2026-09-24", start: "18:00", end: "19:00", trainer: "Maya Nguyễn", focus: "Thân trên — trọng tâm đẩy ngực", room: "Khu tạ tự do A", status: "IN_PROGRESS", exercises: [
+    { name: "Đẩy ngực với tạ đòn", sets: 5, reps: "5", weight: 85 },
+    { name: "Hít xà có tạ", sets: 4, reps: "6", weight: 10 },
+    { name: "Đẩy ngực nghiêng tạ đơn", sets: 3, reps: "10", weight: 26 },
+    { name: "Kéo cáp ngồi", sets: 3, reps: "12", weight: 55 },
   ] },
-  { id: "s_19", date: "2026-09-26", start: "07:00", end: "08:00", trainer: "Maya Nguyen", focus: "Lower body — squat", room: "Strength zone A", status: "UPCOMING", exercises: [
-    { name: "Back squat", sets: 5, reps: "5", weight: 110 },
-    { name: "Romanian deadlift", sets: 3, reps: "8", weight: 90 },
-    { name: "Walking lunge", sets: 3, reps: "12", weight: 20 },
+  { id: "s_19", date: "2026-09-26", start: "07:00", end: "08:00", trainer: "Maya Nguyễn", focus: "Thân dưới — squat", room: "Khu tạ tự do A", status: "UPCOMING", exercises: [
+    { name: "Squat sau", sets: 5, reps: "5", weight: 110 },
+    { name: "Deadlift Romania", sets: 3, reps: "8", weight: 90 },
+    { name: "Lunge bước đi", sets: 3, reps: "12", weight: 20 },
   ] },
-  { id: "s_20", date: "2026-09-29", start: "18:00", end: "19:00", trainer: "Maya Nguyen", focus: "Conditioning & core", room: "Turf lane", status: "UPCOMING", exercises: [
-    { name: "Sled push", sets: 6, reps: "20 m", weight: 80 },
-    { name: "Kettlebell swing", sets: 4, reps: "15", weight: 24 },
+  { id: "s_20", date: "2026-09-29", start: "18:00", end: "19:00", trainer: "Maya Nguyễn", focus: "Sức bền & cơ core", room: "Đường chạy trong nhà", status: "UPCOMING", exercises: [
+    { name: "Đẩy xe kéo tạ", sets: 6, reps: "20 m", weight: 80 },
+    { name: "Đu tạ ấm (kettlebell swing)", sets: 4, reps: "15", weight: 24 },
   ] },
-  { id: "s_21", date: "2026-10-01", start: "18:00", end: "19:00", trainer: "Maya Nguyen", focus: "Upper body — volume", room: "Strength zone B", status: "UPCOMING", exercises: [
-    { name: "Bench press", sets: 4, reps: "8", weight: 75 },
+  { id: "s_21", date: "2026-10-01", start: "18:00", end: "19:00", trainer: "Maya Nguyễn", focus: "Thân trên — khối lượng", room: "Khu tạ tự do B", status: "UPCOMING", exercises: [
+    { name: "Đẩy ngực", sets: 4, reps: "8", weight: 75 },
   ] },
-  { id: "s_17", date: "2026-09-22", start: "18:00", end: "19:00", trainer: "Maya Nguyen", focus: "Lower body — deadlift", room: "Strength zone A", status: "COMPLETED", exercises: [
+  { id: "s_17", date: "2026-09-22", start: "18:00", end: "19:00", trainer: "Maya Nguyễn", focus: "Thân dưới — deadlift", room: "Khu tạ tự do A", status: "COMPLETED", exercises: [
     { name: "Deadlift", sets: 5, reps: "3", weight: 140 },
   ] },
-  { id: "s_16", date: "2026-09-19", start: "07:00", end: "08:00", trainer: "Maya Nguyen", focus: "Upper body — bench", room: "Strength zone A", status: "COMPLETED", exercises: [
-    { name: "Bench press", sets: 5, reps: "5", weight: 85 },
+  { id: "s_16", date: "2026-09-19", start: "07:00", end: "08:00", trainer: "Maya Nguyễn", focus: "Thân trên — đẩy ngực", room: "Khu tạ tự do A", status: "COMPLETED", exercises: [
+    { name: "Đẩy ngực", sets: 5, reps: "5", weight: 85 },
   ] },
-  { id: "s_15", date: "2026-09-17", start: "18:00", end: "19:00", trainer: "Maya Nguyen", focus: "Conditioning", room: "Turf lane", status: "MISSED", exercises: [] },
+  { id: "s_15", date: "2026-09-17", start: "18:00", end: "19:00", trainer: "Maya Nguyễn", focus: "Sức bền", room: "Đường chạy trong nhà", status: "MISSED", exercises: [] },
 ];
 
 export type RescheduleRequest = {
@@ -108,62 +108,62 @@ export type RescheduleRequest = {
   from: string;
   to: string;
   reason: string;
-  requestedBy: "You" | "Maya Nguyen";
+  requestedBy: "Bạn" | "Maya Nguyễn";
   status: "REQUESTED" | "CONFIRMED" | "REJECTED";
   createdAt: string;
 };
 
 export const reschedules: RescheduleRequest[] = [
-  { id: "rs_41", sessionId: "s_20", from: "2026-09-29 18:00", to: "2026-09-30 07:00", reason: "Coach attending a certification workshop on Monday evening.", requestedBy: "Maya Nguyen", status: "REQUESTED", createdAt: "2026-09-23" },
-  { id: "rs_40", sessionId: "s_19", from: "2026-09-26 07:00", to: "2026-09-26 18:00", reason: "Early work meeting on Friday.", requestedBy: "You", status: "REQUESTED", createdAt: "2026-09-22" },
-  { id: "rs_35", sessionId: "s_14", from: "2026-09-12 18:00", to: "2026-09-13 09:00", reason: "Travel delay.", requestedBy: "You", status: "CONFIRMED", createdAt: "2026-09-10" },
-  { id: "rs_31", sessionId: "s_11", from: "2026-09-03 07:00", to: "2026-09-03 12:00", reason: "Lunch slot preferred.", requestedBy: "You", status: "REJECTED", createdAt: "2026-09-01" },
+  { id: "rs_41", sessionId: "s_20", from: "29/09/2026 18:00", to: "30/09/2026 07:00", reason: "Huấn luyện viên tham dự khóa chứng chỉ vào tối thứ Hai.", requestedBy: "Maya Nguyễn", status: "REQUESTED", createdAt: "2026-09-23" },
+  { id: "rs_40", sessionId: "s_19", from: "26/09/2026 07:00", to: "26/09/2026 18:00", reason: "Có cuộc họp công việc sớm vào thứ Sáu.", requestedBy: "Bạn", status: "REQUESTED", createdAt: "2026-09-22" },
+  { id: "rs_35", sessionId: "s_14", from: "12/09/2026 18:00", to: "13/09/2026 09:00", reason: "Trễ chuyến đi công tác.", requestedBy: "Bạn", status: "CONFIRMED", createdAt: "2026-09-10" },
+  { id: "rs_31", sessionId: "s_11", from: "03/09/2026 07:00", to: "03/09/2026 12:00", reason: "Muốn tập vào khung giờ trưa.", requestedBy: "Bạn", status: "REJECTED", createdAt: "2026-09-01" },
 ];
 
 export const checkIns = [
-  { id: "ci_551", date: "2026-09-24", time: "17:52", branch: "Downtown", method: "QR", status: "CHECKED_IN" },
-  { id: "ci_548", date: "2026-09-22", time: "17:48", branch: "Downtown", method: "QR", status: "CHECKED_IN" },
-  { id: "ci_540", date: "2026-09-20", time: "10:15", branch: "Riverside", method: "QR", status: "CHECKED_IN" },
-  { id: "ci_536", date: "2026-09-19", time: "06:51", branch: "Downtown", method: "Front desk", status: "CHECKED_IN" },
-  { id: "ci_529", date: "2026-09-17", time: "12:30", branch: "Downtown", method: "QR", status: "CHECKED_IN" },
-  { id: "ci_520", date: "2026-09-15", time: "18:02", branch: "Downtown", method: "QR", status: "CHECKED_IN" },
-  { id: "ci_514", date: "2026-09-13", time: "09:05", branch: "Northgate", method: "QR", status: "FAILED" },
-  { id: "ci_511", date: "2026-09-12", time: "07:10", branch: "Downtown", method: "QR", status: "CHECKED_IN" },
-  { id: "ci_503", date: "2026-09-10", time: "17:40", branch: "Downtown", method: "QR", status: "CHECKED_IN" },
-  { id: "ci_498", date: "2026-09-08", time: "18:10", branch: "Downtown", method: "Front desk", status: "CHECKED_IN" },
+  { id: "ci_551", date: "2026-09-24", time: "17:52", zone: "Cổng chính", method: "QR", status: "CHECKED_IN" },
+  { id: "ci_548", date: "2026-09-22", time: "17:48", zone: "Cổng chính", method: "QR", status: "CHECKED_IN" },
+  { id: "ci_540", date: "2026-09-20", time: "10:15", zone: "Cổng phụ", method: "QR", status: "CHECKED_IN" },
+  { id: "ci_536", date: "2026-09-19", time: "06:51", zone: "Cổng chính", method: "Quầy lễ tân", status: "CHECKED_IN" },
+  { id: "ci_529", date: "2026-09-17", time: "12:30", zone: "Cổng chính", method: "QR", status: "CHECKED_IN" },
+  { id: "ci_520", date: "2026-09-15", time: "18:02", zone: "Cổng chính", method: "QR", status: "CHECKED_IN" },
+  { id: "ci_514", date: "2026-09-13", time: "09:05", zone: "Cổng phụ", method: "QR", status: "FAILED" },
+  { id: "ci_511", date: "2026-09-12", time: "07:10", zone: "Cổng chính", method: "QR", status: "CHECKED_IN" },
+  { id: "ci_503", date: "2026-09-10", time: "17:40", zone: "Cổng chính", method: "QR", status: "CHECKED_IN" },
+  { id: "ci_498", date: "2026-09-08", time: "18:10", zone: "Cổng chính", method: "Quầy lễ tân", status: "CHECKED_IN" },
 ];
 
 export const bodyMetrics = [
-  { date: "Jun 01", weight: 84.2, bodyFat: 24.1, muscle: 35.2, waist: 92 },
-  { date: "Jun 15", weight: 83.5, bodyFat: 23.6, muscle: 35.4, waist: 91 },
-  { date: "Jul 01", weight: 82.6, bodyFat: 23.0, muscle: 35.7, waist: 90 },
-  { date: "Jul 15", weight: 81.9, bodyFat: 22.3, muscle: 35.9, waist: 89 },
-  { date: "Aug 01", weight: 81.0, bodyFat: 21.6, muscle: 36.2, waist: 88 },
-  { date: "Aug 15", weight: 80.4, bodyFat: 21.0, muscle: 36.4, waist: 87 },
-  { date: "Sep 01", weight: 80.1, bodyFat: 20.8, muscle: 36.5, waist: 87 },
-  { date: "Sep 15", weight: 80.0, bodyFat: 20.7, muscle: 36.5, waist: 86.5 },
+  { date: "01/06", weight: 84.2, bodyFat: 24.1, muscle: 35.2, waist: 92 },
+  { date: "15/06", weight: 83.5, bodyFat: 23.6, muscle: 35.4, waist: 91 },
+  { date: "01/07", weight: 82.6, bodyFat: 23.0, muscle: 35.7, waist: 90 },
+  { date: "15/07", weight: 81.9, bodyFat: 22.3, muscle: 35.9, waist: 89 },
+  { date: "01/08", weight: 81.0, bodyFat: 21.6, muscle: 36.2, waist: 88 },
+  { date: "15/08", weight: 80.4, bodyFat: 21.0, muscle: 36.4, waist: 87 },
+  { date: "01/09", weight: 80.1, bodyFat: 20.8, muscle: 36.5, waist: 87 },
+  { date: "15/09", weight: 80.0, bodyFat: 20.7, muscle: 36.5, waist: 86.5 },
 ];
 
 export const strengthProgress = [
-  { week: "W1", bench: 70, squat: 90, deadlift: 110 },
-  { week: "W2", bench: 72.5, squat: 95, deadlift: 115 },
-  { week: "W3", bench: 75, squat: 97.5, deadlift: 120 },
-  { week: "W4", bench: 77.5, squat: 100, deadlift: 125 },
-  { week: "W5", bench: 80, squat: 102.5, deadlift: 130 },
-  { week: "W6", bench: 82.5, squat: 105, deadlift: 132.5 },
-  { week: "W7", bench: 85, squat: 107.5, deadlift: 135 },
-  { week: "W8", bench: 85, squat: 110, deadlift: 137.5 },
-  { week: "W9", bench: 85, squat: 110, deadlift: 140 },
-  { week: "W10", bench: 85, squat: 112.5, deadlift: 140 },
+  { week: "Tuần 1", bench: 70, squat: 90, deadlift: 110 },
+  { week: "Tuần 2", bench: 72.5, squat: 95, deadlift: 115 },
+  { week: "Tuần 3", bench: 75, squat: 97.5, deadlift: 120 },
+  { week: "Tuần 4", bench: 77.5, squat: 100, deadlift: 125 },
+  { week: "Tuần 5", bench: 80, squat: 102.5, deadlift: 130 },
+  { week: "Tuần 6", bench: 82.5, squat: 105, deadlift: 132.5 },
+  { week: "Tuần 7", bench: 85, squat: 107.5, deadlift: 135 },
+  { week: "Tuần 8", bench: 85, squat: 110, deadlift: 137.5 },
+  { week: "Tuần 9", bench: 85, squat: 110, deadlift: 140 },
+  { week: "Tuần 10", bench: 85, squat: 112.5, deadlift: 140 },
 ];
 
 export const weeklyVolume = [
-  { week: "W5", sessions: 3, volume: 18.2 },
-  { week: "W6", sessions: 4, volume: 21.5 },
-  { week: "W7", sessions: 3, volume: 19.8 },
-  { week: "W8", sessions: 4, volume: 23.1 },
-  { week: "W9", sessions: 3, volume: 20.4 },
-  { week: "W10", sessions: 4, volume: 22.7 },
+  { week: "Tuần 5", sessions: 3, volume: 18.2 },
+  { week: "Tuần 6", sessions: 4, volume: 21.5 },
+  { week: "Tuần 7", sessions: 3, volume: 19.8 },
+  { week: "Tuần 8", sessions: 4, volume: 23.1 },
+  { week: "Tuần 9", sessions: 3, volume: 20.4 },
+  { week: "Tuần 10", sessions: 4, volume: 22.7 },
 ];
 
 export type Notification = {
@@ -177,59 +177,59 @@ export type Notification = {
 };
 
 export const notifications: Notification[] = [
-  { id: "n1", title: "Your Standard Monthly expires in 6 days", body: "Renew now to keep uninterrupted access.", detail: "Your Standard Monthly membership (cp_301) ends on Sep 30, 2026. Your All-Access Quarterly package will activate on Oct 1 once payment is confirmed. If you'd rather keep Standard, renew from My packages.", type: "package", date: "2026-09-24 09:00", read: false },
-  { id: "n2", title: "Reschedule request from Maya Nguyen", body: "Monday 18:00 → Tuesday 07:00", detail: "Maya asked to move your 'Conditioning & core' session from Mon Sep 29 18:00 to Tue Sep 30 07:00 because she is attending a certification workshop. Confirm or decline from the Reschedules page.", type: "session", date: "2026-09-23 15:12", read: false },
-  { id: "n3", title: "Payment received — $239", body: "All-Access Quarterly via VNPAY.", detail: "We received your VNPAY payment of $239 (ref VNP14829301) for All-Access Quarterly. The package is pending and starts Oct 1, 2026.", type: "payment", date: "2026-09-21 20:41", read: true },
-  { id: "n4", title: "Payment failed", body: "PAYOS transaction PO-7781230 was declined.", detail: "Your PAYOS payment attempt of $239 was declined by the provider. No money was taken. You completed the purchase with VNPAY afterwards.", type: "payment", date: "2026-09-21 20:35", read: true },
-  { id: "n5", title: "New message from Maya", body: "Great session today — log your RPE please!", detail: "Maya sent you a message in chat: 'Great session today — log your RPE please! We'll push bench to 87.5 next week.'", type: "chat", date: "2026-09-22 19:10", read: true },
-  { id: "n6", title: "Plateau detected on bench press", body: "No increase in 4 weeks.", detail: "Your bench press top set has stayed at 85 kg for four consecutive weeks. Your coach has been notified and may adjust your programme with a deload or variation block.", type: "system", date: "2026-09-20 08:00", read: true },
+  { id: "n1", title: "Gói Tiêu chuẩn hàng tháng sắp hết hạn sau 6 ngày", body: "Gia hạn ngay để không bị gián đoạn quyền lợi.", detail: "Gói Tiêu chuẩn hàng tháng (cp_301) của bạn kết thúc vào ngày 30/09/2026. Gói Toàn quyền theo Quý sẽ kích hoạt từ 01/10 sau khi thanh toán được xác nhận. Nếu muốn tiếp tục dùng gói Tiêu chuẩn, hãy gia hạn ở mục Gói của tôi.", type: "package", date: "2026-09-24 09:00", read: false },
+  { id: "n2", title: "Yêu cầu đổi lịch từ Maya Nguyễn", body: "Thứ Hai 18:00 → Thứ Ba 07:00", detail: "Maya đề nghị chuyển buổi 'Sức bền & cơ core' từ Thứ Hai 29/09 18:00 sang Thứ Ba 30/09 07:00 vì tham dự khóa chứng chỉ. Hãy xác nhận hoặc từ chối tại trang Đổi lịch.", type: "session", date: "2026-09-23 15:12", read: false },
+  { id: "n3", title: "Đã nhận thanh toán — 2.390.000 VNĐ", body: "Gói Toàn quyền theo Quý qua VNPAY.", detail: "Chúng tôi đã nhận thanh toán VNPAY 2.390.000 VNĐ (mã VNP14829301) cho Gói Toàn quyền theo Quý. Gói đang chờ kích hoạt từ 01/10/2026.", type: "payment", date: "2026-09-21 20:41", read: true },
+  { id: "n4", title: "Thanh toán thất bại", body: "Giao dịch PAYOS PO-7781230 bị từ chối.", detail: "Giao dịch PAYOS 2.390.000 VNĐ đã bị nhà cung cấp từ chối. Không có khoản tiền nào bị trừ. Bạn đã hoàn tất thanh toán bằng VNPAY sau đó.", type: "payment", date: "2026-09-21 20:35", read: true },
+  { id: "n5", title: "Tin nhắn mới từ Maya", body: "Buổi tập hôm nay rất tốt — nhớ ghi lại RPE nhé!", detail: "Maya đã gửi tin nhắn cho bạn: 'Buổi tập hôm nay rất tốt — nhớ ghi lại RPE nhé! Tuần sau mình sẽ tăng đẩy ngực lên 87,5 kg.'", type: "chat", date: "2026-09-22 19:10", read: true },
+  { id: "n6", title: "Phát hiện chững tiến bộ ở bài đẩy ngực", body: "Không tăng trong 4 tuần liên tiếp.", detail: "Mức tạ đẩy ngực cao nhất của bạn giữ nguyên 85 kg trong 4 tuần liên tiếp. Huấn luyện viên đã được thông báo và có thể điều chỉnh giáo án bằng một tuần giảm tải hoặc bài tập biến thể.", type: "system", date: "2026-09-20 08:00", read: true },
 ];
 
 export const roadmap = [
-  { phase: "Phase 1", title: "Foundation", weeks: "Weeks 1–4", status: "COMPLETED", goals: ["Learn squat, bench, deadlift technique", "3 sessions per week", "Baseline body scan"], progress: 100 },
-  { phase: "Phase 2", title: "Strength build", weeks: "Weeks 5–8", status: "COMPLETED", goals: ["Linear progression on main lifts", "Reach 80 kg bench", "Body fat below 22%"], progress: 100 },
-  { phase: "Phase 3", title: "Intensification", weeks: "Weeks 9–12", status: "IN_PROGRESS", goals: ["Bench 90 kg × 3", "Squat 120 kg × 5", "Body fat 20%"], progress: 55 },
-  { phase: "Phase 4", title: "Peak & test", weeks: "Weeks 13–14", status: "UPCOMING", goals: ["Test 1RM bench (target 100 kg)", "Final body scan", "Plan next block"], progress: 0 },
+  { phase: "Giai đoạn 1", title: "Nền tảng", weeks: "Tuần 1–4", status: "COMPLETED", goals: ["Học kỹ thuật squat, đẩy ngực, deadlift", "3 buổi tập mỗi tuần", "Đo chỉ số cơ thể ban đầu"], progress: 100 },
+  { phase: "Giai đoạn 2", title: "Xây dựng sức mạnh", weeks: "Tuần 5–8", status: "COMPLETED", goals: ["Tăng tải tuyến tính các bài chính", "Đạt đẩy ngực 80 kg", "Tỷ lệ mỡ dưới 22%"], progress: 100 },
+  { phase: "Giai đoạn 3", title: "Tăng cường độ", weeks: "Tuần 9–12", status: "IN_PROGRESS", goals: ["Đẩy ngực 90 kg × 3", "Squat 120 kg × 5", "Tỷ lệ mỡ 20%"], progress: 55 },
+  { phase: "Giai đoạn 4", title: "Đỉnh cao & kiểm tra", weeks: "Tuần 13–14", status: "UPCOMING", goals: ["Kiểm tra 1RM đẩy ngực (mục tiêu 100 kg)", "Đo chỉ số cơ thể lần cuối", "Lên kế hoạch giai đoạn tiếp theo"], progress: 0 },
 ];
 
 export const exerciseGuides = [
-  { id: "e1", name: "Barbell back squat", muscle: "Legs", level: "Intermediate", duration: "4:12", equipment: "Barbell, rack", cues: ["Brace before descent", "Knees track over toes", "Hit depth below parallel"] },
-  { id: "e2", name: "Bench press", muscle: "Chest", level: "Intermediate", duration: "5:03", equipment: "Barbell, bench", cues: ["Retract shoulder blades", "Touch lower chest", "Drive feet into floor"] },
-  { id: "e3", name: "Conventional deadlift", muscle: "Back", level: "Intermediate", duration: "4:47", equipment: "Barbell", cues: ["Bar over mid-foot", "Push the floor away", "Lock out with glutes"] },
-  { id: "e4", name: "Pull-up", muscle: "Back", level: "Beginner", duration: "3:20", equipment: "Pull-up bar", cues: ["Full hang start", "Lead with chest", "Control the descent"] },
-  { id: "e5", name: "Romanian deadlift", muscle: "Legs", level: "Beginner", duration: "3:55", equipment: "Barbell / DBs", cues: ["Soft knees", "Hips back", "Feel hamstring stretch"] },
-  { id: "e6", name: "Overhead press", muscle: "Shoulders", level: "Intermediate", duration: "4:01", equipment: "Barbell", cues: ["Squeeze glutes", "Bar path straight up", "Head through at top"] },
-  { id: "e7", name: "Kettlebell swing", muscle: "Full body", level: "Beginner", duration: "2:48", equipment: "Kettlebell", cues: ["Hinge, don't squat", "Snap hips", "Float the bell"] },
-  { id: "e8", name: "Plank variations", muscle: "Core", level: "Beginner", duration: "3:10", equipment: "None", cues: ["Neutral spine", "Squeeze glutes", "Breathe steadily"] },
+  { id: "e1", name: "Squat sau với tạ đòn", muscle: "Chân", level: "Trung cấp", duration: "4:12", equipment: "Tạ đòn, giá đỡ", cues: ["Siết cơ bụng trước khi hạ", "Đầu gối theo hướng mũi chân", "Hạ thấp qua song song"] },
+  { id: "e2", name: "Đẩy ngực", muscle: "Ngực", level: "Trung cấp", duration: "5:03", equipment: "Tạ đòn, ghế tập", cues: ["Ép chặt hai bả vai", "Chạm ngực dưới", "Đạp chân xuống sàn"] },
+  { id: "e3", name: "Deadlift kiểu truyền thống", muscle: "Lưng", level: "Trung cấp", duration: "4:47", equipment: "Tạ đòn", cues: ["Đòn tạ ở giữa bàn chân", "Đẩy sàn ra xa", "Khóa khớp bằng cơ mông"] },
+  { id: "e4", name: "Hít xà", muscle: "Lưng", level: "Cơ bản", duration: "3:20", equipment: "Xà đơn", cues: ["Bắt đầu từ tư thế treo thẳng", "Dẫn động bằng ngực", "Kiểm soát khi hạ xuống"] },
+  { id: "e5", name: "Deadlift Romania", muscle: "Chân", level: "Cơ bản", duration: "3:55", equipment: "Tạ đòn / tạ đơn", cues: ["Gối hơi chùng", "Đẩy hông ra sau", "Cảm nhận căng gân kheo"] },
+  { id: "e6", name: "Đẩy vai", muscle: "Vai", level: "Trung cấp", duration: "4:01", equipment: "Tạ đòn", cues: ["Siết cơ mông", "Đường đẩy tạ thẳng lên", "Đưa đầu qua khi lên đỉnh"] },
+  { id: "e7", name: "Đu tạ ấm (kettlebell swing)", muscle: "Toàn thân", level: "Cơ bản", duration: "2:48", equipment: "Tạ ấm (kettlebell)", cues: ["Gập hông chứ không squat", "Bật hông dứt khoát", "Để tạ bay tự nhiên"] },
+  { id: "e8", name: "Các biến thể plank", muscle: "Cơ core", level: "Cơ bản", duration: "3:10", equipment: "Không cần dụng cụ", cues: ["Giữ cột sống trung tính", "Siết cơ mông", "Thở đều"] },
 ];
 
 export const sampleWorkouts = [
-  { id: "w1", name: "Full-body beginner A", duration: 45, level: "Beginner", goal: "Strength", exercises: ["Goblet squat 3×10", "Push-up 3×8", "DB row 3×10", "Plank 3×30s"] },
-  { id: "w2", name: "Upper hypertrophy", duration: 60, level: "Intermediate", goal: "Muscle gain", exercises: ["Bench press 4×8", "Lat pulldown 4×10", "Incline DB press 3×12", "Face pull 3×15", "Curls 3×12"] },
-  { id: "w3", name: "Metcon 20", duration: 20, level: "All levels", goal: "Fat loss", exercises: ["KB swing ×15", "Burpee ×10", "Row 250 m", "AMRAP 20 min"] },
-  { id: "w4", name: "Lower strength", duration: 55, level: "Intermediate", goal: "Strength", exercises: ["Back squat 5×5", "RDL 3×8", "Bulgarian split squat 3×10", "Calf raise 3×15"] },
-  { id: "w5", name: "Mobility reset", duration: 25, level: "All levels", goal: "Recovery", exercises: ["Couch stretch 2×60s", "90/90 hips 2×60s", "Thread the needle 2×10", "Dead hang 3×30s"] },
-  { id: "w6", name: "Zone 2 + core", duration: 40, level: "Beginner", goal: "Endurance", exercises: ["Bike 30 min zone 2", "Dead bug 3×10", "Side plank 3×30s"] },
+  { id: "w1", name: "Toàn thân cho người mới A", duration: 45, level: "Cơ bản", goal: "Sức mạnh", exercises: ["Goblet squat 3×10", "Chống đẩy 3×8", "Kéo tạ đơn 3×10", "Plank 3×30s"] },
+  { id: "w2", name: "Phì đại thân trên", duration: 60, level: "Trung cấp", goal: "Tăng cơ", exercises: ["Đẩy ngực 4×8", "Kéo xô 4×10", "Đẩy ngực nghiêng tạ đơn 3×12", "Kéo mặt 3×15", "Cuốn tay 3×12"] },
+  { id: "w3", name: "Metcon 20 phút", duration: 20, level: "Mọi trình độ", goal: "Giảm mỡ", exercises: ["Đu tạ ấm ×15", "Burpee ×10", "Chèo thuyền 250 m", "AMRAP 20 phút"] },
+  { id: "w4", name: "Sức mạnh thân dưới", duration: 55, level: "Trung cấp", goal: "Sức mạnh", exercises: ["Squat sau 5×5", "RDL 3×8", "Split squat Bulgaria 3×10", "Nhón bắp chân 3×15"] },
+  { id: "w5", name: "Phục hồi linh hoạt", duration: 25, level: "Mọi trình độ", goal: "Phục hồi", exercises: ["Giãn cơ tư thế ghế 2×60s", "Giãn hông 90/90 2×60s", "Xỏ kim (thread the needle) 2×10", "Treo xà thư giãn 3×30s"] },
+  { id: "w6", name: "Zone 2 & core", duration: 40, level: "Cơ bản", goal: "Sức bền", exercises: ["Đạp xe 30 phút zone 2", "Dead bug 3×10", "Plank nghiêng 3×30s"] },
 ];
 
 export const chatMessages = [
-  { id: "m1", from: "trainer", text: "Morning Alex! How's the lower back after Monday's deadlifts?", time: "08:12" },
-  { id: "m2", from: "me", text: "All good — a bit tight but fine after the mobility routine.", time: "08:30" },
-  { id: "m3", from: "trainer", text: "Perfect. Tonight we'll hit bench 5×5 at 85 kg. If it moves well we go 87.5 next week.", time: "08:31" },
-  { id: "m4", from: "me", text: "Sounds good. Can I move Friday's session to the evening?", time: "09:02" },
-  { id: "m5", from: "trainer", text: "Send a reschedule request and I'll confirm it 👍", time: "09:05" },
+  { id: "m1", from: "trainer", text: "Chào buổi sáng Minh Anh! Lưng dưới sau buổi deadlift thứ Hai thế nào rồi?", time: "08:12" },
+  { id: "m2", from: "me", text: "Ổn rồi ạ — hơi căng nhưng đỡ hẳn sau bài giãn cơ.", time: "08:30" },
+  { id: "m3", from: "trainer", text: "Tuyệt vời. Tối nay mình tập đẩy ngực 5×5 ở mức 85 kg. Nếu suôn sẻ tuần sau lên 87,5 kg.", time: "08:31" },
+  { id: "m4", from: "me", text: "Được ạ. Em có thể dời buổi thứ Sáu sang buổi tối không?", time: "09:02" },
+  { id: "m5", from: "trainer", text: "Gửi yêu cầu đổi lịch, mình sẽ xác nhận nhé 👍", time: "09:05" },
 ];
 
 export const trainerSuggestions = [
-  { trainerId: "maya-nguyen", match: 94, reasons: ["Specialises in strength — matches your bench goal", "Available Mon/Wed/Fri evenings", "Same home branch (Downtown)"] },
-  { trainerId: "marco-silva", match: 86, reasons: ["Hypertrophy focus supports body recomposition", "Nutrition certification", "Available weekends"] },
-  { trainerId: "daniel-okafor", match: 81, reasons: ["Fat-loss specialist — fits your 6 kg target", "Conditioning blocks to break plateaus", "Riverside branch, 10 min away"] },
+  { trainerId: "maya-nguyen", match: 94, reasons: ["Chuyên về sức mạnh — phù hợp mục tiêu đẩy ngực của bạn", "Có lịch trống Thứ 2/4/6 buổi tối", "Cùng khung giờ tập với bạn"] },
+  { trainerId: "marco-silva", match: 86, reasons: ["Chuyên phì đại cơ hỗ trợ tái cấu trúc vóc dáng", "Có chứng chỉ dinh dưỡng", "Có lịch trống cuối tuần"] },
+  { trainerId: "daniel-okafor", match: 81, reasons: ["Chuyên giảm mỡ — phù hợp mục tiêu giảm 6 kg", "Bài tập sức bền giúp phá vỡ chững tiến bộ", "Luôn có mặt tại phòng gym"] },
 ];
 
-export const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export const weekDays = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"];
 export const timeSlots = ["06:00", "07:00", "08:00", "12:00", "17:00", "18:00", "19:00", "20:00"];
 export const defaultAvailability: Record<string, boolean> = {
-  "Mon-18:00": true, "Mon-19:00": true, "Wed-18:00": true, "Wed-19:00": true, "Fri-07:00": true, "Fri-18:00": true, "Sat-08:00": true,
+  "T2-18:00": true, "T2-19:00": true, "T4-18:00": true, "T4-19:00": true, "T6-07:00": true, "T6-18:00": true, "T7-08:00": true,
 };
 
 export const toStatus = (s: string) => s.toLowerCase();

@@ -1,14 +1,15 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Check, Clock, Star } from "lucide-react";
 import type { Article, GymPackage, Review, Trainer } from "@/lib/mock/public";
-import { formatCurrency, formatDate, initials } from "@/lib/mock/public";
+import { articleCategoryLabels, formatCurrency, formatDate, initials } from "@/lib/mock/public";
+import { imageFor } from "@/lib/images";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function Stars({ rating, className }: { rating: number; className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-0.5", className)} aria-label={`${rating} out of 5`}>
+    <span className={cn("inline-flex items-center gap-0.5", className)} aria-label={`${rating} trên 5`}>
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
@@ -67,36 +68,46 @@ export function PackageCard({ pkg }: { pkg: GymPackage }) {
   return (
     <div
       className={cn(
-        "flex flex-col rounded-lg border bg-card p-6",
+        "flex flex-col overflow-hidden rounded-lg border bg-card transition-shadow hover:shadow-md",
         pkg.featured ? "border-primary ring-1 ring-primary" : "border-border",
       )}
     >
-      <div className="flex items-center justify-between gap-2">
-        <Badge variant={pkg.type === "PT" ? "default" : "secondary"}>{pkg.type === "PT" ? "Personal training" : "Membership"}</Badge>
-        {pkg.featured ? <span className="text-xs font-semibold text-primary">Most popular</span> : null}
+      <img
+        src={imageFor(pkg.id)}
+        alt={pkg.name}
+        loading="lazy"
+        width={480}
+        height={160}
+        className="h-32 w-full object-cover"
+      />
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-center justify-between gap-2">
+          <Badge variant={pkg.type === "PT" ? "default" : "secondary"}>{pkg.type === "PT" ? "Personal training" : "Hội viên"}</Badge>
+          {pkg.featured ? <span className="text-xs font-semibold text-primary">Phổ biến nhất</span> : null}
+        </div>
+        <h3 className="mt-4 text-lg font-semibold">{pkg.name}</h3>
+        <p className="mt-1 text-sm text-muted-foreground">{pkg.description}</p>
+        <p className="mt-5 text-3xl font-semibold tracking-tight">
+          {formatCurrency(pkg.price)}
+          <span className="ml-1 text-sm font-normal text-muted-foreground">/ {pkg.durationDays} ngày</span>
+        </p>
+        <p className="mt-1 text-xs text-muted-foreground">
+          {pkg.totalSessions ? `${pkg.totalSessions} buổi huấn luyện đi kèm` : "Ra vào không giới hạn"}
+        </p>
+        <ul className="mt-5 flex-1 space-y-2 text-sm">
+          {pkg.perks.slice(0, 4).map((p) => (
+            <li key={p} className="flex gap-2">
+              <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+              {p}
+            </li>
+          ))}
+        </ul>
+        <Button className="mt-6" variant={pkg.featured ? "default" : "outline"} asChild>
+          <Link to="/packages/$id" params={{ id: pkg.id }}>
+            Xem chi tiết
+          </Link>
+        </Button>
       </div>
-      <h3 className="mt-4 text-lg font-semibold">{pkg.name}</h3>
-      <p className="mt-1 text-sm text-muted-foreground">{pkg.description}</p>
-      <p className="mt-5 text-3xl font-semibold tracking-tight">
-        {formatCurrency(pkg.price)}
-        <span className="ml-1 text-sm font-normal text-muted-foreground">/ {pkg.durationDays} days</span>
-      </p>
-      <p className="mt-1 text-xs text-muted-foreground">
-        {pkg.totalSessions ? `${pkg.totalSessions} coached sessions included` : "Unlimited visits"}
-      </p>
-      <ul className="mt-5 flex-1 space-y-2 text-sm">
-        {pkg.perks.slice(0, 4).map((p) => (
-          <li key={p} className="flex gap-2">
-            <Check className="mt-0.5 size-4 shrink-0 text-primary" />
-            {p}
-          </li>
-        ))}
-      </ul>
-      <Button className="mt-6" variant={pkg.featured ? "default" : "outline"} asChild>
-        <Link to="/packages/$id" params={{ id: pkg.id }}>
-          View details
-        </Link>
-      </Button>
     </div>
   );
 }
@@ -106,23 +117,33 @@ export function TrainerCard({ trainer }: { trainer: Trainer }) {
     <Link
       to="/trainers/$id"
       params={{ id: trainer.id }}
-      className="group flex flex-col rounded-lg border border-border bg-card p-6 transition-colors hover:border-primary"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary hover:shadow-md"
     >
-      <div className="flex items-center gap-4">
-        <Avatar name={trainer.name} size="lg" />
-        <div className="min-w-0">
-          <p className="font-semibold">{trainer.name}</p>
-          <p className="truncate text-sm text-muted-foreground">{trainer.specialization}</p>
+      <img
+        src={imageFor(trainer.id)}
+        alt={trainer.name}
+        loading="lazy"
+        width={480}
+        height={140}
+        className="h-28 w-full object-cover"
+      />
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-center gap-4">
+          <Avatar name={trainer.name} size="lg" />
+          <div className="min-w-0">
+            <p className="font-semibold">{trainer.name}</p>
+            <p className="truncate text-sm text-muted-foreground">{trainer.specialization}</p>
+          </div>
         </div>
-      </div>
-      <p className="mt-4 line-clamp-3 flex-1 text-sm text-muted-foreground">{trainer.bio}</p>
-      <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-sm">
-        <span className="flex items-center gap-1.5">
-          <Star className="size-4 fill-primary text-primary" />
-          <span className="font-medium">{trainer.ratingAvg.toFixed(2)}</span>
-          <span className="text-muted-foreground">({trainer.reviewCount})</span>
-        </span>
-        <span className="text-muted-foreground">{trainer.experienceYears} yrs exp.</span>
+        <p className="mt-4 line-clamp-3 flex-1 text-sm text-muted-foreground">{trainer.bio}</p>
+        <div className="mt-5 flex items-center justify-between border-t border-border pt-4 text-sm">
+          <span className="flex items-center gap-1.5">
+            <Star className="size-4 fill-primary text-primary" />
+            <span className="font-medium">{trainer.ratingAvg.toFixed(2)}</span>
+            <span className="text-muted-foreground">({trainer.reviewCount})</span>
+          </span>
+          <span className="text-muted-foreground">{trainer.experienceYears} năm kinh nghiệm</span>
+        </div>
       </div>
     </Link>
   );
@@ -133,13 +154,19 @@ export function ArticleCard({ article }: { article: Article }) {
     <Link
       to="/articles/$id"
       params={{ id: article.id }}
-      className="group flex flex-col rounded-lg border border-border bg-card transition-colors hover:border-primary"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary hover:shadow-md"
     >
-      <div className="flex h-32 items-end rounded-t-lg bg-surface p-4">
-        <Badge variant="secondary">{article.category}</Badge>
-      </div>
+      <img
+        src={imageFor(article.id)}
+        alt={article.title}
+        loading="lazy"
+        width={480}
+        height={160}
+        className="h-32 w-full object-cover"
+      />
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-semibold leading-snug group-hover:text-primary">{article.title}</h3>
+        <Badge variant="secondary" className="w-fit">{articleCategoryLabels[article.category]}</Badge>
+        <h3 className="mt-3 font-semibold leading-snug group-hover:text-primary">{article.title}</h3>
         <p className="mt-2 line-clamp-2 flex-1 text-sm text-muted-foreground">{article.excerpt}</p>
         <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
           <span>
@@ -147,7 +174,7 @@ export function ArticleCard({ article }: { article: Article }) {
           </span>
           <span className="flex items-center gap-1">
             <Clock className="size-3" />
-            {article.readMinutes} min
+            {article.readMinutes} phút đọc
           </span>
         </div>
       </div>
@@ -166,7 +193,7 @@ export function ReviewCard({ review }: { review: Review }) {
         <div className="text-sm">
           <p className="font-medium">{review.author}</p>
           <p className="text-xs text-muted-foreground">
-            {review.branch} · member since {review.memberSince}
+            {review.branch} · hội viên từ {review.memberSince}
           </p>
         </div>
       </div>

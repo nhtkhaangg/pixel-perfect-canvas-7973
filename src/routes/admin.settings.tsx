@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/admin/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — Admin — GymFit" },
-      { name: "description", content: "Platform configuration and integrations." },
-      { property: "og:title", content: "Settings — Admin — GymFit" },
-      { property: "og:description", content: "Platform configuration and integrations." },
+      { title: "Cài đặt — Quản trị viên — GymFit" },
+      { name: "description", content: "Cấu hình hệ thống và tích hợp." },
+      { property: "og:title", content: "Cài đặt — Quản trị viên — GymFit" },
+      { property: "og:description", content: "Cấu hình hệ thống và tích hợp." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/admin/settings")({
 });
 
 function AdminSettingsPage() {
-  return <ScaffoldPage title="Settings" description="Platform configuration and integrations." />;
+  return <ScaffoldPage title="Cài đặt" description="Cấu hình hệ thống và tích hợp." />;
 }

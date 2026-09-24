@@ -9,49 +9,49 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export const Route = createFileRoute("/_public/trainers/")({
-  head: () => seo("Our trainers", "Browse GymFit's certified personal trainers by specialization, experience and member rating."),
+  head: () => seo("Huấn luyện viên", "Khám phá đội ngũ huấn luyện viên chuyên nghiệp tại GymFit theo chuyên môn, kinh nghiệm và đánh giá hội viên."),
   component: TrainersPage,
 });
 
 function TrainersPage() {
   const [q, setQ] = useState("");
-  const [branch, setBranch] = useState("all");
+  const [zone, setZone] = useState("all");
   const [sort, setSort] = useState("rating");
-  const branches = [...new Set(trainers.map((t) => t.branch))];
+  const zones = [...new Set(trainers.map((t) => t.branch))];
 
   const list = useMemo(() => {
     const term = q.toLowerCase();
     return trainers
-      .filter((t) => branch === "all" || t.branch === branch)
+      .filter((t) => zone === "all" || t.branch === zone)
       .filter((t) => !term || [t.name, t.specialization, ...t.tags].join(" ").toLowerCase().includes(term))
       .sort((a, b) => (sort === "rating" ? b.ratingAvg - a.ratingAvg : b.experienceYears - a.experienceYears));
-  }, [q, branch, sort]);
+  }, [q, zone, sort]);
 
   return (
     <>
       <PageHero
-        eyebrow="Trainers"
-        title="Coaches who know their craft"
-        description="Every GymFit trainer is certified, insured and reviewed by members. Find the right fit for your goal."
+        eyebrow="Huấn luyện viên"
+        title="Những huấn luyện viên am hiểu chuyên môn"
+        description="Mỗi huấn luyện viên tại GymFit đều có chứng chỉ, được bảo hiểm và đánh giá bởi hội viên. Tìm người phù hợp với mục tiêu của bạn."
       />
       <section className="mx-auto w-full max-w-6xl px-4 py-10 lg:px-6">
         <div className="mb-6 flex flex-wrap gap-3">
           <div className="relative min-w-60 flex-1">
             <Search className="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
-            <Input className="pl-9" placeholder="Search name, specialty or goal…" value={q} onChange={(e) => setQ(e.target.value)} />
+            <Input className="pl-9" placeholder="Tìm tên, chuyên môn hoặc mục tiêu…" value={q} onChange={(e) => setQ(e.target.value)} />
           </div>
-          <Select value={branch} onValueChange={setBranch}>
-            <SelectTrigger className="w-40"><SelectValue /></SelectTrigger>
+          <Select value={zone} onValueChange={setZone}>
+            <SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">All branches</SelectItem>
-              {branches.map((b) => <SelectItem key={b} value={b}>{b}</SelectItem>)}
+              <SelectItem value="all">Tất cả khu vực</SelectItem>
+              {zones.map((z) => <SelectItem key={z} value={z}>{z}</SelectItem>)}
             </SelectContent>
           </Select>
           <Select value={sort} onValueChange={setSort}>
             <SelectTrigger className="w-44"><SelectValue /></SelectTrigger>
             <SelectContent>
-              <SelectItem value="rating">Highest rated</SelectItem>
-              <SelectItem value="experience">Most experienced</SelectItem>
+              <SelectItem value="rating">Đánh giá cao nhất</SelectItem>
+              <SelectItem value="experience">Nhiều kinh nghiệm nhất</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -60,7 +60,7 @@ function TrainersPage() {
             {list.map((t) => <TrainerCard key={t.id} trainer={t} />)}
           </div>
         ) : (
-          <EmptyState title="No trainers match" description="Try a different search or branch." />
+          <EmptyState title="Không tìm thấy huấn luyện viên phù hợp" description="Hãy thử từ khóa hoặc khu vực khác." />
         )}
       </section>
     </>

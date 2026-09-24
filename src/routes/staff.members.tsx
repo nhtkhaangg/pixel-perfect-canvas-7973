@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/staff/members")({
   head: () => ({
     meta: [
-      { title: "Members — Staff — GymFit" },
-      { name: "description", content: "Look up member records and membership status." },
-      { property: "og:title", content: "Members — Staff — GymFit" },
-      { property: "og:description", content: "Look up member records and membership status." },
+      { title: "Hội viên — Nhân viên — GymFit" },
+      { name: "description", content: "Tra cứu hồ sơ hội viên và tình trạng gói tập." },
+      { property: "og:title", content: "Hội viên — Nhân viên — GymFit" },
+      { property: "og:description", content: "Tra cứu hồ sơ hội viên và tình trạng gói tập." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/staff/members")({
 });
 
 function StaffMembersPage() {
-  return <ScaffoldPage title="Members" description="Look up member records and membership status." />;
+  return <ScaffoldPage title="Hội viên" description="Tra cứu hồ sơ hội viên và tình trạng gói tập." />;
 }

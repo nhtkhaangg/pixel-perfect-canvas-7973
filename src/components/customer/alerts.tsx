@@ -3,20 +3,20 @@ import { AlertTriangle, TrendingDown, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-export function ExpiringPackageBanner({ days = 6, name = "Standard Monthly" }: { days?: number; name?: string }) {
+export function ExpiringPackageBanner({ days = 6, name = "Gói Tiêu chuẩn hàng tháng" }: { days?: number; name?: string }) {
   const [open, setOpen] = useState(true);
   if (!open) return null;
   return (
     <div className="flex flex-wrap items-center gap-3 rounded-lg border border-warning/40 bg-warning/10 px-4 py-3">
       <AlertTriangle className="size-5 shrink-0 text-warning-foreground" />
       <p className="flex-1 text-sm">
-        <span className="font-semibold">{name} expires in {days} days.</span>{" "}
-        <span className="text-muted-foreground">Renew now to keep your access and class bookings.</span>
+        <span className="font-semibold">{name} sẽ hết hạn sau {days} ngày.</span>{" "}
+        <span className="text-muted-foreground">Gia hạn ngay để không bị gián đoạn quyền tập và đặt lịch.</span>
       </p>
       <Button size="sm" asChild>
-        <Link to="/customer/purchase">Renew</Link>
+        <Link to="/customer/purchase">Gia hạn</Link>
       </Button>
-      <Button size="icon" variant="ghost" className="size-8" onClick={() => setOpen(false)} aria-label="Dismiss">
+      <Button size="icon" variant="ghost" className="size-8" onClick={() => setOpen(false)} aria-label="Đóng">
         <X className="size-4" />
       </Button>
     </div>
@@ -31,17 +31,17 @@ export function PlateauAlertCard() {
           <TrendingDown className="size-4" />
         </span>
         <div className="flex-1">
-          <p className="font-semibold">Training plateau detected</p>
+          <p className="font-semibold">Phát hiện chững tiến bộ tập luyện</p>
           <p className="mt-1 text-sm text-muted-foreground">
-            Bench press has stayed at <span className="font-medium text-foreground">85 kg</span> for 4 weeks. Try a
-            deload week, then a 3-week variation block (paused bench, close-grip).
+            Bài đẩy ngực vẫn giữ ở mức <span className="font-medium text-foreground">85 kg</span> suốt 4 tuần. Hãy thử
+            một tuần giảm tải, sau đó là chu kỳ 3 tuần với biến thể (đẩy ngực dừng, tay hẹp).
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             <Button size="sm" variant="outline" asChild>
-              <Link to="/customer/chat">Ask your coach</Link>
+              <Link to="/customer/chat">Hỏi huấn luyện viên</Link>
             </Button>
             <Button size="sm" variant="ghost" asChild>
-              <Link to="/customer/progress">View progress</Link>
+              <Link to="/customer/progress">Xem tiến độ</Link>
             </Button>
           </div>
         </div>
