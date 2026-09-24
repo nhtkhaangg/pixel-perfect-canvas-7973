@@ -59,9 +59,6 @@ import { Route as StaffCheckInRouteImport } from './routes/staff.check-in'
 import { Route as StaffClassesRouteImport } from './routes/staff.classes'
 import { Route as StaffMembersRouteImport } from './routes/staff.members'
 import { Route as TrainerIndexRouteImport } from './routes/trainer.index'
-import { Route as TrainerClientsRouteImport } from './routes/trainer.clients'
-import { Route as TrainerProgramsRouteImport } from './routes/trainer.programs'
-import { Route as TrainerScheduleRouteImport } from './routes/trainer.schedule'
 import { Route as PublicArticlesIndexRouteImport } from './routes/_public.articles.index'
 import { Route as PublicArticlesIdRouteImport } from './routes/_public.articles.$id'
 import { Route as PublicPackagesIndexRouteImport } from './routes/_public.packages.index'
@@ -323,21 +320,6 @@ const TrainerIndexRoute = TrainerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => TrainerRoute,
 } as any)
-const TrainerClientsRoute = TrainerClientsRouteImport.update({
-  id: '/clients',
-  path: '/clients',
-  getParentRoute: () => TrainerRoute,
-} as any)
-const TrainerProgramsRoute = TrainerProgramsRouteImport.update({
-  id: '/programs',
-  path: '/programs',
-  getParentRoute: () => TrainerRoute,
-} as any)
-const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
-  id: '/schedule',
-  path: '/schedule',
-  getParentRoute: () => TrainerRoute,
-} as any)
 const PublicArticlesIndexRoute = PublicArticlesIndexRouteImport.update({
   id: '/articles/',
   path: '/articles/',
@@ -441,9 +423,6 @@ export interface FileRoutesByFullPath {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
-  '/trainer/clients': typeof TrainerClientsRoute
-  '/trainer/programs': typeof TrainerProgramsRoute
-  '/trainer/schedule': typeof TrainerScheduleRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
   '/manager/': typeof ManagerIndexRoute
@@ -500,9 +479,6 @@ export interface FileRoutesByTo {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
-  '/trainer/clients': typeof TrainerClientsRoute
-  '/trainer/programs': typeof TrainerProgramsRoute
-  '/trainer/schedule': typeof TrainerScheduleRoute
   '/': typeof PublicIndexRoute
   '/admin': typeof AdminIndexRoute
   '/customer': typeof CustomerIndexRoute
@@ -567,9 +543,6 @@ export interface FileRoutesById {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
-  '/trainer/clients': typeof TrainerClientsRoute
-  '/trainer/programs': typeof TrainerProgramsRoute
-  '/trainer/schedule': typeof TrainerScheduleRoute
   '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
@@ -635,9 +608,6 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
-    | '/trainer/clients'
-    | '/trainer/programs'
-    | '/trainer/schedule'
     | '/admin/'
     | '/customer/'
     | '/manager/'
@@ -694,9 +664,6 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
-    | '/trainer/clients'
-    | '/trainer/programs'
-    | '/trainer/schedule'
     | '/'
     | '/admin'
     | '/customer'
@@ -760,9 +727,6 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
-    | '/trainer/clients'
-    | '/trainer/programs'
-    | '/trainer/schedule'
     | '/_public/'
     | '/admin/'
     | '/customer/'
@@ -1145,27 +1109,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainerIndexRouteImport
       parentRoute: typeof TrainerRoute
     }
-    '/trainer/clients': {
-      id: '/trainer/clients'
-      path: '/clients'
-      fullPath: '/trainer/clients'
-      preLoaderRoute: typeof TrainerClientsRouteImport
-      parentRoute: typeof TrainerRoute
-    }
-    '/trainer/programs': {
-      id: '/trainer/programs'
-      path: '/programs'
-      fullPath: '/trainer/programs'
-      preLoaderRoute: typeof TrainerProgramsRouteImport
-      parentRoute: typeof TrainerRoute
-    }
-    '/trainer/schedule': {
-      id: '/trainer/schedule'
-      path: '/schedule'
-      fullPath: '/trainer/schedule'
-      preLoaderRoute: typeof TrainerScheduleRouteImport
-      parentRoute: typeof TrainerRoute
-    }
     '/_public/articles/': {
       id: '/_public/articles/'
       path: '/articles'
@@ -1395,16 +1338,10 @@ const StaffRouteChildren: StaffRouteChildren = {
 const StaffRouteWithChildren = StaffRoute._addFileChildren(StaffRouteChildren)
 
 interface TrainerRouteChildren {
-  TrainerClientsRoute: typeof TrainerClientsRoute
-  TrainerProgramsRoute: typeof TrainerProgramsRoute
-  TrainerScheduleRoute: typeof TrainerScheduleRoute
   TrainerIndexRoute: typeof TrainerIndexRoute
 }
 
 const TrainerRouteChildren: TrainerRouteChildren = {
-  TrainerClientsRoute: TrainerClientsRoute,
-  TrainerProgramsRoute: TrainerProgramsRoute,
-  TrainerScheduleRoute: TrainerScheduleRoute,
   TrainerIndexRoute: TrainerIndexRoute,
 }
 
