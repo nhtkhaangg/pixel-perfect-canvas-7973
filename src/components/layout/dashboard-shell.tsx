@@ -103,9 +103,9 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
               <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
               <Input placeholder="Search" className="h-9 pl-9" />
             </div>
-            {role === "customer" ? (
+            {role === "customer" || role === "trainer" ? (
               <Button variant="ghost" size="icon" asChild className="relative">
-                <Link to="/customer/notifications" aria-label="Notifications">
+                <Link to={role === "customer" ? "/customer/notifications" : "/trainer/notifications"} aria-label="Notifications">
                   <Bell className="size-4" />
                   <span className="absolute top-2 right-2 size-2 rounded-full bg-primary" />
                 </Link>
@@ -118,11 +118,11 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
             <div className="flex items-center gap-2 border-l border-border pl-2">
               <Avatar className="size-8">
                 <AvatarFallback className="bg-muted text-xs font-semibold">
-                  {area.name.slice(0, 2).toUpperCase()}
+                  {role === "customer" ? "AM" : role === "trainer" ? "MN" : area.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="hidden text-xs leading-tight sm:block">
-                <p className="font-medium text-foreground">{role === "customer" ? "Alex Morgan" : `Demo ${area.name}`}</p>
+                <p className="font-medium text-foreground">{role === "customer" ? "Alex Morgan" : role === "trainer" ? "Maya Nguyen" : `Demo ${area.name}`}</p>
                 <p className="text-muted-foreground">{area.key}@gymfit.dev</p>
               </div>
             </div>
