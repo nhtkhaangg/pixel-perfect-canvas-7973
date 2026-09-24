@@ -1,3 +1,4 @@
+import type { LinkProps } from "@tanstack/react-router";
 import {
   LayoutDashboard,
   CalendarDays,
@@ -16,9 +17,11 @@ import {
 
 export type RoleKey = "guest" | "customer" | "trainer" | "staff" | "manager" | "admin";
 
+export type NavTo = NonNullable<LinkProps["to"]>;
+
 export type NavItem = {
   label: string;
-  to: string;
+  to: NavTo;
   icon: LucideIcon;
   description?: string;
 };
@@ -27,7 +30,7 @@ export type RoleArea = {
   key: RoleKey;
   name: string;
   tagline: string;
-  home: string;
+  home: NavTo;
   items: NavItem[];
 };
 
