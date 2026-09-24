@@ -33,10 +33,8 @@ export type OpsConfig = {
 
 export function OpsPage({ config }: { config: OpsConfig }) {
   const { table } = config;
-  const columns: Column<OpsRow>[] = table.columns.map((c) => ({
-    key: c.key,
-    header: c.header,
-    cell:
+  const columns: Column<OpsRow>[] = table.columns.map((c) => {
+    const cell: Column<OpsRow>["cell"] =
       c.kind === "status"
         ? (row) => <StatusBadge status={String(row[c.key])} />
         : c.kind === "money"
@@ -50,8 +48,9 @@ export function OpsPage({ config }: { config: OpsConfig }) {
                   <span className="text-xs tabular-nums text-muted-foreground">{row[c.key]}%</span>
                 </div>
               )
-            : undefined,
-  }));
+            : undefined;
+    return cell ? { key: c.key, header: c.header, cell } : { key: c.key, header: c.header };
+  });
 
   return (
     <div className="space-y-6">
@@ -88,12 +87,12 @@ export function OpsPage({ config }: { config: OpsConfig }) {
         <DataTable
           data={table.rows}
           columns={columns}
-          rowKey={(r) => String(r.id)}
+          rowKey={(r) => String(r["id"])}
           filters={table.filter ? [table.filter] : []}
           filterValue={(r, k) => String(r[k])}
           rowActions={(table.actions ?? ["Xem chi tiết", "Chỉnh sửa"]).map((label) => ({
             label,
-            onSelect: (r) => toast.success(`${label}: ${r.name ?? r.id}`),
+            onSelect: (r: OpsRow) => toast.success(`${label}: ${r["name"] ?? r["id"]}`),
           }))}
         />
       </div>

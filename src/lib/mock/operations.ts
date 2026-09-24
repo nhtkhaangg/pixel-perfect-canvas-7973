@@ -6,7 +6,7 @@ const names = [
   "Nguyễn Minh Anh", "Trần Quốc Bảo", "Lê Thu Hà", "Phạm Gia Huy", "Hoàng Ngọc Lan", "Võ Thành Nam",
   "Đặng Mỹ Linh", "Bùi Đức Thắng", "Đỗ Khánh Vy", "Ngô Hải Đăng", "Dương Thảo My", "Lý Tuấn Kiệt",
 ];
-const pick = <T,>(arr: T[], i: number) => arr[i % arr.length];
+const pick = <T,>(arr: T[], i: number) => arr[i % arr.length]!;
 const date = (i: number) => `2026-09-${String(24 - (i % 20)).padStart(2, "0")}`;
 const statusOpts = (pairs: [string, string][]) => pairs.map(([value, label]) => ({ value, label }));
 
