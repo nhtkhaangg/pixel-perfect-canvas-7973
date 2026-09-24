@@ -12,6 +12,7 @@ import {
   Shield,
   Store,
   Tags,
+  Bell, TrendingUp, CalendarClock, Route, PlayCircle, MessageSquare, Sparkles, ClipboardList, Scale, Clock, ShoppingCart, UserPlus, Undo2, QrCode, ScanLine, KeyRound, Star,
   type LucideIcon,
 } from "lucide-react";
 
@@ -24,6 +25,7 @@ export type NavItem = {
   to: NavTo;
   icon: LucideIcon;
   description?: string;
+  group?: string;
 };
 
 export type RoleArea = {
@@ -56,10 +58,29 @@ export const roleAreas: RoleArea[] = [
     tagline: "Member self-service area",
     home: "/customer",
     items: [
-      { label: "Dashboard", to: "/customer", icon: LayoutDashboard },
-      { label: "Classes", to: "/customer/classes", icon: CalendarDays },
-      { label: "Membership", to: "/customer/membership", icon: CreditCard },
-      { label: "Profile", to: "/customer/profile", icon: User },
+      { label: "Dashboard", to: "/customer", icon: LayoutDashboard, group: "Overview" },
+      { label: "Notifications", to: "/customer/notifications", icon: Bell, group: "Overview" },
+      { label: "Progress", to: "/customer/progress", icon: TrendingUp, group: "Overview" },
+      { label: "Schedule", to: "/customer/schedule", icon: CalendarDays, group: "Training" },
+      { label: "Reschedules", to: "/customer/reschedule", icon: CalendarClock, group: "Training" },
+      { label: "Sessions", to: "/customer/sessions", icon: ClipboardCheck, group: "Training" },
+      { label: "Roadmap", to: "/customer/roadmap", icon: Route, group: "Training" },
+      { label: "Exercise guides", to: "/customer/exercises", icon: PlayCircle, group: "Training" },
+      { label: "Sample workouts", to: "/customer/workouts", icon: Dumbbell, group: "Training" },
+      { label: "Chat", to: "/customer/chat", icon: MessageSquare, group: "Training" },
+      { label: "Find a trainer", to: "/customer/trainer-match", icon: Sparkles, group: "Training" },
+      { label: "Assessment", to: "/customer/assessment", icon: ClipboardList, group: "Body" },
+      { label: "Body metrics", to: "/customer/metrics", icon: Scale, group: "Body" },
+      { label: "Availability", to: "/customer/availability", icon: Clock, group: "Body" },
+      { label: "My packages", to: "/customer/packages", icon: CreditCard, group: "Packages" },
+      { label: "Buy membership", to: "/customer/purchase", icon: ShoppingCart, group: "Packages" },
+      { label: "Book PT", to: "/customer/book-pt", icon: UserPlus, group: "Packages" },
+      { label: "Refund request", to: "/customer/refund", icon: Undo2, group: "Packages" },
+      { label: "My QR code", to: "/customer/check-in", icon: QrCode, group: "Check-in" },
+      { label: "Check-in screen", to: "/customer/check-in-screen", icon: ScanLine, group: "Check-in" },
+      { label: "Profile", to: "/customer/profile", icon: User, group: "Account" },
+      { label: "Change password", to: "/customer/change-password", icon: KeyRound, group: "Account" },
+      { label: "Review gym", to: "/customer/review", icon: Star, group: "Account" },
     ],
   },
   {
