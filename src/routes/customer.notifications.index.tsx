@@ -12,7 +12,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/customer/notifications/")({
-  head: () => seo("Notifications", "Package, session, payment and chat notifications."),
+  head: () => seo("Thông báo", "Thông báo về gói tập, buổi tập, thanh toán và tin nhắn."),
   component: NotificationsPage,
 });
 
@@ -26,26 +26,26 @@ function NotificationsPage() {
 
   return (
     <>
-      <PageHeader title="Notifications" description={`${all.filter((n) => !n.read).length} unread`} actions={<Button variant="outline" onClick={() => notificationStore.markRead(all.map((n) => n.id))}>Mark all read</Button>} />
+      <PageHeader title="Thông báo" description={`${all.filter((n) => !n.read).length} thông báo chưa đọc`} actions={<Button variant="outline" onClick={() => notificationStore.markRead(all.map((n) => n.id))}>Đánh dấu tất cả đã đọc</Button>} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <Tabs value={tab} onValueChange={setTab}>
           <TabsList>
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="unread">Unread</TabsTrigger>
-            <TabsTrigger value="package">Packages</TabsTrigger>
-            <TabsTrigger value="session">Sessions</TabsTrigger>
-            <TabsTrigger value="payment">Payments</TabsTrigger>
+            <TabsTrigger value="all">Tất cả</TabsTrigger>
+            <TabsTrigger value="unread">Chưa đọc</TabsTrigger>
+            <TabsTrigger value="package">Gói tập</TabsTrigger>
+            <TabsTrigger value="session">Buổi tập</TabsTrigger>
+            <TabsTrigger value="payment">Thanh toán</TabsTrigger>
           </TabsList>
         </Tabs>
         {sel.length ? (
           <div className="flex gap-2">
-            <Button size="sm" variant="outline" onClick={() => { notificationStore.markRead(sel); setSel([]); }}>Mark read ({sel.length})</Button>
-            <Button size="sm" variant="destructive" onClick={() => { notificationStore.remove(sel); toast.success(`${sel.length} deleted`); setSel([]); }}><Trash2 className="size-4" /> Delete</Button>
+            <Button size="sm" variant="outline" onClick={() => { notificationStore.markRead(sel); setSel([]); }}>Đánh dấu đã đọc ({sel.length})</Button>
+            <Button size="sm" variant="destructive" onClick={() => { notificationStore.remove(sel); toast.success(`Đã xóa ${sel.length} thông báo`); setSel([]); }}><Trash2 className="size-4" /> Xóa</Button>
           </div>
         ) : null}
       </div>
       {list.length ? (
-        <ul className="divide-y divide-border rounded-lg border border-border bg-card">
+        <ul className="divide-y divide-border rounded-lg border border-border bg-card shadow-sm">
           {list.map((n) => {
             const Icon = typeIcon[n.type];
             return (
@@ -58,12 +58,12 @@ function NotificationsPage() {
                   <p className="mt-1 text-xs text-muted-foreground">{n.date}</p>
                 </Link>
                 {!n.read ? <span className="mt-2 size-2 rounded-full bg-primary" /> : null}
-                <Button size="icon" variant="ghost" className="size-8" aria-label="Delete" onClick={() => { notificationStore.remove([n.id]); toast("Notification deleted"); }}><Trash2 className="size-4" /></Button>
+                <Button size="icon" variant="ghost" className="size-8" aria-label="Xóa" onClick={() => { notificationStore.remove([n.id]); toast("Đã xóa thông báo"); }}><Trash2 className="size-4" /></Button>
               </li>
             );
           })}
         </ul>
-      ) : <EmptyState icon={Bell} title="No notifications" description="You're all caught up." />}
+      ) : <EmptyState icon={Bell} title="Không có thông báo" description="Bạn đã xem hết mọi thông báo." />}
     </>
   );
 }

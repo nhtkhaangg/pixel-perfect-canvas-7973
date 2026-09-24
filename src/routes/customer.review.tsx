@@ -3,7 +3,6 @@ import { Star } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { seo } from "@/lib/seo";
-import { gymInfo } from "@/lib/mock/public";
 import { PageHeader } from "@/components/shared/page-header";
 import { FormField } from "@/components/shared/form-field";
 import { StatusBadge } from "@/components/shared/status-badge";
@@ -11,22 +10,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/customer/review")({
-  head: () => seo("Review the gym", "Rate your GymFit branch and share feedback with other members."),
+  head: () => seo("Đánh giá phòng gym", "Chấm điểm GymFit và chia sẻ nhận xét với các hội viên khác."),
   component: ReviewGym,
 });
 
-const aspects = ["Cleanliness", "Equipment", "Staff", "Classes", "Value"];
+const aspects = ["Vệ sinh", "Trang thiết bị", "Nhân viên", "Lớp học", "Giá trị nhận được"];
 
 function StarInput({ value, onChange, size = "size-7" }: { value: number; onChange: (n: number) => void; size?: string }) {
   const [hover, setHover] = useState(0);
   return (
     <div className="flex gap-1" onMouseLeave={() => setHover(0)}>
       {[1, 2, 3, 4, 5].map((n) => (
-        <button key={n} type="button" aria-label={`${n} stars`} onMouseEnter={() => setHover(n)} onClick={() => onChange(n)}>
+        <button key={n} type="button" aria-label={`${n} sao`} onMouseEnter={() => setHover(n)} onClick={() => onChange(n)}>
           <Star className={cn(size, n <= (hover || value) ? "fill-primary text-primary" : "text-muted-foreground/40")} />
         </button>
       ))}
@@ -37,7 +35,6 @@ function StarInput({ value, onChange, size = "size-7" }: { value: number; onChan
 function ReviewGym() {
   const [rating, setRating] = useState(0);
   const [scores, setScores] = useState<Record<string, number>>({});
-  const [branch, setBranch] = useState("Downtown");
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -46,41 +43,34 @@ function ReviewGym() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const errs: Record<string, string> = {};
-    if (!rating) errs["rating"] = "Choose an overall rating";
-    if (title.trim().length < 4) errs["title"] = "Add a short title";
-    if (body.trim().length < 20) errs["body"] = "Write at least 20 characters";
+    if (!rating) errs["rating"] = "Vui lòng chọn đánh giá tổng thể";
+    if (title.trim().length < 4) errs["title"] = "Vui lòng nhập tiêu đề ngắn";
+    if (body.trim().length < 20) errs["body"] = "Vui lòng viết ít nhất 20 ký tự";
     setErrors(errs);
     if (Object.keys(errs).length) return;
     setSent(true);
-    toast.success("Review submitted for moderation");
+    toast.success("Đã gửi đánh giá để kiểm duyệt");
   }
 
   if (sent)
     return (
       <>
-        <PageHeader title="Review the gym" />
-        <div className="max-w-xl rounded-lg border border-border bg-card p-6">
-          <StatusBadge status="pending" label="Pending moderation" />
+        <PageHeader title="Đánh giá phòng gym" />
+        <div className="max-w-xl rounded-lg border border-border bg-card p-6 shadow-sm">
+          <StatusBadge status="pending" label="Đang chờ kiểm duyệt" />
           <p className="mt-3 font-semibold">{title}</p>
           <p className="mt-1 text-sm text-muted-foreground">{body}</p>
-          <Button className="mt-5" variant="outline" onClick={() => setSent(false)}>Edit review</Button>
+          <Button className="mt-5" variant="outline" onClick={() => setSent(false)}>Chỉnh sửa đánh giá</Button>
         </div>
       </>
     );
 
   return (
     <>
-      <PageHeader title="Review the gym" description="Your review appears on the public reviews page after moderation." />
-      <form onSubmit={submit} noValidate className="max-w-2xl space-y-5 rounded-lg border border-border bg-card p-6">
+      <PageHeader title="Đánh giá phòng gym" description="Đánh giá của bạn sẽ hiển thị ở trang đánh giá công khai sau khi được kiểm duyệt." />
+      <form onSubmit={submit} noValidate className="max-w-2xl space-y-5 rounded-lg border border-border bg-card p-6 shadow-sm">
         <div className="space-y-1.5">
-          <Label>Branch</Label>
-          <Select value={branch} onValueChange={setBranch}>
-            <SelectTrigger className="w-56"><SelectValue /></SelectTrigger>
-            <SelectContent>{gymInfo.branches.map((b) => <SelectItem key={b.name} value={b.name}>{b.name}</SelectItem>)}</SelectContent>
-          </Select>
-        </div>
-        <div className="space-y-1.5">
-          <Label>Overall rating<span className="text-destructive">*</span></Label>
+          <Label>Đánh giá tổng thể<span className="text-destructive">*</span></Label>
           <StarInput value={rating} onChange={setRating} />
           {errors["rating"] ? <p className="text-xs text-destructive">{errors["rating"]}</p> : null}
         </div>
@@ -92,9 +82,9 @@ function ReviewGym() {
             </div>
           ))}
         </div>
-        <FormField label="Title" required error={errors["title"]}>{(p) => <Input {...p} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Great coaches, spotless floor" />}</FormField>
-        <FormField label="Your review" required error={errors["body"]} hint={`${body.length}/500`}>{(p) => <Textarea {...p} rows={5} maxLength={500} value={body} onChange={(e) => setBody(e.target.value)} />}</FormField>
-        <Button type="submit">Submit review</Button>
+        <FormField label="Tiêu đề" required error={errors["title"]}>{(p) => <Input {...p} value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Ví dụ: Huấn luyện viên nhiệt tình, sàn tập rất sạch" />}</FormField>
+        <FormField label="Nội dung đánh giá" required error={errors["body"]} hint={`${body.length}/500`}>{(p) => <Textarea {...p} rows={5} maxLength={500} value={body} onChange={(e) => setBody(e.target.value)} />}</FormField>
+        <Button type="submit">Gửi đánh giá</Button>
       </form>
     </>
   );

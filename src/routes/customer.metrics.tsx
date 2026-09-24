@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/customer/metrics")({
-  head: () => seo("Body metrics", "Log body metrics and see weight and body-fat progress over time."),
+  head: () => seo("Chỉ số cơ thể", "Ghi lại chỉ số cơ thể và theo dõi tiến độ cân nặng, tỷ lệ mỡ theo thời gian."),
   component: Metrics,
 });
 
@@ -29,42 +29,42 @@ function Metrics() {
 
   function save() {
     const w = Number(f.weight), bf = Number(f.bodyFat);
-    if (!(w > 30 && w < 250) || !(bf > 3 && bf < 60)) return setErr("Enter realistic weight and body-fat values");
-    setRows([...rows, { date: "Sep 24", weight: w, bodyFat: bf, muscle: Number(f.muscle), waist: Number(f.waist) }]);
+    if (!(w > 30 && w < 250) || !(bf > 3 && bf < 60)) return setErr("Nhập cân nặng và tỷ lệ mỡ hợp lý");
+    setRows([...rows, { date: "24/09", weight: w, bodyFat: bf, muscle: Number(f.muscle), waist: Number(f.waist) }]);
     setOpen(false);
     setErr(undefined);
-    toast.success("Metrics logged");
+    toast.success("Đã ghi nhận chỉ số");
   }
 
   return (
     <>
-      <PageHeader title="Body metrics" description="Weigh in every two weeks, same time of day, for reliable trends." actions={<Button onClick={() => setOpen(true)}><Plus className="size-4" /> Update metrics</Button>} />
+      <PageHeader title="Chỉ số cơ thể" description="Cân đo mỗi hai tuần, cùng một khung giờ trong ngày để có xu hướng chính xác." actions={<Button onClick={() => setOpen(true)}><Plus className="size-4" /> Cập nhật chỉ số</Button>} />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Weight" value={`${last.weight} kg`} delta={-((first.weight - last.weight) / first.weight) * 100} hint="since first entry" />
-        <StatCard label="Body fat" value={`${last.bodyFat}%`} delta={-(first.bodyFat - last.bodyFat)} />
-        <StatCard label="Muscle mass" value={`${last.muscle} kg`} delta={((last.muscle - first.muscle) / first.muscle) * 100} />
-        <StatCard label="Waist" value={`${last.waist} cm`} delta={-((first.waist - last.waist) / first.waist) * 100} />
+        <StatCard label="Cân nặng" value={`${last.weight} kg`} delta={-((first.weight - last.weight) / first.weight) * 100} hint="so với lần đo đầu" />
+        <StatCard label="Tỷ lệ mỡ" value={`${last.bodyFat}%`} delta={-(first.bodyFat - last.bodyFat)} />
+        <StatCard label="Khối lượng cơ" value={`${last.muscle} kg`} delta={((last.muscle - first.muscle) / first.muscle) * 100} />
+        <StatCard label="Vòng eo" value={`${last.waist} cm`} delta={-((first.waist - last.waist) / first.waist) * 100} />
       </div>
       <div className="grid gap-6 lg:grid-cols-2">
-        <SimpleChart title="Weight over time" description="kg" data={rows} xKey="date" series={[{ key: "weight", label: "Weight" }]} />
-        <SimpleChart title="Body fat over time" description="%" data={rows} xKey="date" series={[{ key: "bodyFat", label: "Body fat", color: "var(--chart-2)" }]} />
+        <SimpleChart title="Cân nặng theo thời gian" description="kg" data={rows} xKey="date" series={[{ key: "weight", label: "Cân nặng" }]} />
+        <SimpleChart title="Tỷ lệ mỡ theo thời gian" description="%" data={rows} xKey="date" series={[{ key: "bodyFat", label: "Tỷ lệ mỡ", color: "var(--chart-2)" }]} />
       </div>
       <DataTable
         data={[...rows].reverse()}
         rowKey={(r) => r.date}
-        searchPlaceholder="Search date…"
+        searchPlaceholder="Tìm theo ngày…"
         columns={[
-          { key: "date", header: "Date" },
-          { key: "weight", header: "Weight (kg)", sortable: true },
-          { key: "bodyFat", header: "Body fat (%)", sortable: true },
-          { key: "muscle", header: "Muscle (kg)", sortable: true },
-          { key: "waist", header: "Waist (cm)", sortable: true },
+          { key: "date", header: "Ngày" },
+          { key: "weight", header: "Cân nặng (kg)", sortable: true },
+          { key: "bodyFat", header: "Tỷ lệ mỡ (%)", sortable: true },
+          { key: "muscle", header: "Khối lượng cơ (kg)", sortable: true },
+          { key: "waist", header: "Vòng eo (cm)", sortable: true },
         ]}
       />
-      <FormModal open={open} onOpenChange={setOpen} title="Update body metrics" description="Today's measurements" footer={<Button onClick={save}>Save entry</Button>}>
+      <FormModal open={open} onOpenChange={setOpen} title="Cập nhật chỉ số cơ thể" description="Số đo hôm nay" footer={<Button onClick={save}>Lưu chỉ số</Button>}>
         <div className="grid grid-cols-2 gap-4">
           {(["weight", "bodyFat", "muscle", "waist"] as const).map((k) => (
-            <FormField key={k} label={{ weight: "Weight (kg)", bodyFat: "Body fat (%)", muscle: "Muscle (kg)", waist: "Waist (cm)" }[k]} error={k === "weight" ? err : undefined}>
+            <FormField key={k} label={{ weight: "Cân nặng (kg)", bodyFat: "Tỷ lệ mỡ (%)", muscle: "Khối lượng cơ (kg)", waist: "Vòng eo (cm)" }[k]} error={k === "weight" ? err : undefined}>
               {(p) => <Input {...p} type="number" step="0.1" value={f[k]} onChange={(e) => setF({ ...f, [k]: e.target.value })} />}
             </FormField>
           ))}
