@@ -46,7 +46,7 @@ function SessionDetail() {
   const update = (i: number, patch: Partial<SetRow>) => setRows((r) => r.map((x, j) => (j === i ? { ...x, ...patch } : x)));
 
   function finish() {
-    if (otp !== "4821") return toast.error("Invalid code", { description: "Ask your coach for the 4-digit session code (demo: 4821)." });
+    if (otp !== "4821") { toast.error("Invalid code", { description: "Ask your coach for the 4-digit session code (demo: 4821)." }); return; }
     setStatus("COMPLETED");
     toast.success("Session verified & finished", { description: "1 session deducted from PT Transform 24." });
   }

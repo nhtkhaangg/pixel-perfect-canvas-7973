@@ -59,9 +59,17 @@ import { Route as StaffCheckInRouteImport } from './routes/staff.check-in'
 import { Route as StaffClassesRouteImport } from './routes/staff.classes'
 import { Route as StaffMembersRouteImport } from './routes/staff.members'
 import { Route as TrainerIndexRouteImport } from './routes/trainer.index'
-import { Route as TrainerClientsRouteImport } from './routes/trainer.clients'
-import { Route as TrainerProgramsRouteImport } from './routes/trainer.programs'
+import { Route as TrainerChatRouteImport } from './routes/trainer.chat'
+import { Route as TrainerDaysOffRouteImport } from './routes/trainer.days-off'
+import { Route as TrainerFeedbackRouteImport } from './routes/trainer.feedback'
+import { Route as TrainerLiveRouteImport } from './routes/trainer.live'
+import { Route as TrainerNotificationsRouteImport } from './routes/trainer.notifications'
+import { Route as TrainerNutritionRouteImport } from './routes/trainer.nutrition'
+import { Route as TrainerProfileRouteImport } from './routes/trainer.profile'
+import { Route as TrainerProgressRouteImport } from './routes/trainer.progress'
+import { Route as TrainerRescheduleRouteImport } from './routes/trainer.reschedule'
 import { Route as TrainerScheduleRouteImport } from './routes/trainer.schedule'
+import { Route as TrainerVerifyRouteImport } from './routes/trainer.verify'
 import { Route as PublicArticlesIndexRouteImport } from './routes/_public.articles.index'
 import { Route as PublicArticlesIdRouteImport } from './routes/_public.articles.$id'
 import { Route as PublicPackagesIndexRouteImport } from './routes/_public.packages.index'
@@ -73,6 +81,19 @@ import { Route as CustomerNotificationsIndexRouteImport } from './routes/custome
 import { Route as CustomerNotificationsIdRouteImport } from './routes/customer.notifications.$id'
 import { Route as CustomerSessionsIndexRouteImport } from './routes/customer.sessions.index'
 import { Route as CustomerSessionsIdRouteImport } from './routes/customer.sessions.$id'
+import { Route as TrainerCertificatesIndexRouteImport } from './routes/trainer.certificates.index'
+import { Route as TrainerCertificatesIdRouteImport } from './routes/trainer.certificates.$id'
+import { Route as TrainerCustomersIndexRouteImport } from './routes/trainer.customers.index'
+import { Route as TrainerCustomersIdRouteImport } from './routes/trainer.customers.$id'
+import { Route as TrainerExercisesIndexRouteImport } from './routes/trainer.exercises.index'
+import { Route as TrainerExercisesIdRouteImport } from './routes/trainer.exercises.$id'
+import { Route as TrainerLessonsIndexRouteImport } from './routes/trainer.lessons.index'
+import { Route as TrainerLessonsIdRouteImport } from './routes/trainer.lessons.$id'
+import { Route as TrainerPlansIndexRouteImport } from './routes/trainer.plans.index'
+import { Route as TrainerPlansIdRouteImport } from './routes/trainer.plans.$id'
+import { Route as TrainerPlansAiRouteImport } from './routes/trainer.plans.ai'
+import { Route as TrainerReviewsIndexRouteImport } from './routes/trainer.reviews.index'
+import { Route as TrainerReviewsIdRouteImport } from './routes/trainer.reviews.$id'
 
 const PublicRoute = PublicRouteImport.update({
   id: '/_public',
@@ -323,19 +344,59 @@ const TrainerIndexRoute = TrainerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => TrainerRoute,
 } as any)
-const TrainerClientsRoute = TrainerClientsRouteImport.update({
-  id: '/clients',
-  path: '/clients',
+const TrainerChatRoute = TrainerChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
   getParentRoute: () => TrainerRoute,
 } as any)
-const TrainerProgramsRoute = TrainerProgramsRouteImport.update({
-  id: '/programs',
-  path: '/programs',
+const TrainerDaysOffRoute = TrainerDaysOffRouteImport.update({
+  id: '/days-off',
+  path: '/days-off',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerFeedbackRoute = TrainerFeedbackRouteImport.update({
+  id: '/feedback',
+  path: '/feedback',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerLiveRoute = TrainerLiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerNotificationsRoute = TrainerNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerNutritionRoute = TrainerNutritionRouteImport.update({
+  id: '/nutrition',
+  path: '/nutrition',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerProfileRoute = TrainerProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerProgressRoute = TrainerProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerRescheduleRoute = TrainerRescheduleRouteImport.update({
+  id: '/reschedule',
+  path: '/reschedule',
   getParentRoute: () => TrainerRoute,
 } as any)
 const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
   id: '/schedule',
   path: '/schedule',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerVerifyRoute = TrainerVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
   getParentRoute: () => TrainerRoute,
 } as any)
 const PublicArticlesIndexRoute = PublicArticlesIndexRouteImport.update({
@@ -395,6 +456,72 @@ const CustomerSessionsIdRoute = CustomerSessionsIdRouteImport.update({
   path: '/sessions/$id',
   getParentRoute: () => CustomerRoute,
 } as any)
+const TrainerCertificatesIndexRoute =
+  TrainerCertificatesIndexRouteImport.update({
+    id: '/certificates/',
+    path: '/certificates/',
+    getParentRoute: () => TrainerRoute,
+  } as any)
+const TrainerCertificatesIdRoute = TrainerCertificatesIdRouteImport.update({
+  id: '/certificates/$id',
+  path: '/certificates/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerCustomersIndexRoute = TrainerCustomersIndexRouteImport.update({
+  id: '/customers/',
+  path: '/customers/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerCustomersIdRoute = TrainerCustomersIdRouteImport.update({
+  id: '/customers/$id',
+  path: '/customers/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerExercisesIndexRoute = TrainerExercisesIndexRouteImport.update({
+  id: '/exercises/',
+  path: '/exercises/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerExercisesIdRoute = TrainerExercisesIdRouteImport.update({
+  id: '/exercises/$id',
+  path: '/exercises/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerLessonsIndexRoute = TrainerLessonsIndexRouteImport.update({
+  id: '/lessons/',
+  path: '/lessons/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerLessonsIdRoute = TrainerLessonsIdRouteImport.update({
+  id: '/lessons/$id',
+  path: '/lessons/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerPlansIndexRoute = TrainerPlansIndexRouteImport.update({
+  id: '/plans/',
+  path: '/plans/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerPlansIdRoute = TrainerPlansIdRouteImport.update({
+  id: '/plans/$id',
+  path: '/plans/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerPlansAiRoute = TrainerPlansAiRouteImport.update({
+  id: '/plans/ai',
+  path: '/plans/ai',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerReviewsIndexRoute = TrainerReviewsIndexRouteImport.update({
+  id: '/reviews/',
+  path: '/reviews/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerReviewsIdRoute = TrainerReviewsIdRouteImport.update({
+  id: '/reviews/$id',
+  path: '/reviews/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
@@ -441,9 +568,17 @@ export interface FileRoutesByFullPath {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
-  '/trainer/clients': typeof TrainerClientsRoute
-  '/trainer/programs': typeof TrainerProgramsRoute
+  '/trainer/chat': typeof TrainerChatRoute
+  '/trainer/days-off': typeof TrainerDaysOffRoute
+  '/trainer/feedback': typeof TrainerFeedbackRoute
+  '/trainer/live': typeof TrainerLiveRoute
+  '/trainer/notifications': typeof TrainerNotificationsRoute
+  '/trainer/nutrition': typeof TrainerNutritionRoute
+  '/trainer/profile': typeof TrainerProfileRoute
+  '/trainer/progress': typeof TrainerProgressRoute
+  '/trainer/reschedule': typeof TrainerRescheduleRoute
   '/trainer/schedule': typeof TrainerScheduleRoute
+  '/trainer/verify': typeof TrainerVerifyRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
   '/manager/': typeof ManagerIndexRoute
@@ -455,11 +590,24 @@ export interface FileRoutesByFullPath {
   '/trainers/$id': typeof PublicTrainersIdRoute
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
+  '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
+  '/trainer/customers/$id': typeof TrainerCustomersIdRoute
+  '/trainer/exercises/$id': typeof TrainerExercisesIdRoute
+  '/trainer/lessons/$id': typeof TrainerLessonsIdRoute
+  '/trainer/plans/$id': typeof TrainerPlansIdRoute
+  '/trainer/plans/ai': typeof TrainerPlansAiRoute
+  '/trainer/reviews/$id': typeof TrainerReviewsIdRoute
   '/articles/': typeof PublicArticlesIndexRoute
   '/packages/': typeof PublicPackagesIndexRoute
   '/trainers/': typeof PublicTrainersIndexRoute
   '/customer/notifications/': typeof CustomerNotificationsIndexRoute
   '/customer/sessions/': typeof CustomerSessionsIndexRoute
+  '/trainer/certificates/': typeof TrainerCertificatesIndexRoute
+  '/trainer/customers/': typeof TrainerCustomersIndexRoute
+  '/trainer/exercises/': typeof TrainerExercisesIndexRoute
+  '/trainer/lessons/': typeof TrainerLessonsIndexRoute
+  '/trainer/plans/': typeof TrainerPlansIndexRoute
+  '/trainer/reviews/': typeof TrainerReviewsIndexRoute
 }
 export interface FileRoutesByTo {
   '/guest': typeof GuestRoute
@@ -500,9 +648,17 @@ export interface FileRoutesByTo {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
-  '/trainer/clients': typeof TrainerClientsRoute
-  '/trainer/programs': typeof TrainerProgramsRoute
+  '/trainer/chat': typeof TrainerChatRoute
+  '/trainer/days-off': typeof TrainerDaysOffRoute
+  '/trainer/feedback': typeof TrainerFeedbackRoute
+  '/trainer/live': typeof TrainerLiveRoute
+  '/trainer/notifications': typeof TrainerNotificationsRoute
+  '/trainer/nutrition': typeof TrainerNutritionRoute
+  '/trainer/profile': typeof TrainerProfileRoute
+  '/trainer/progress': typeof TrainerProgressRoute
+  '/trainer/reschedule': typeof TrainerRescheduleRoute
   '/trainer/schedule': typeof TrainerScheduleRoute
+  '/trainer/verify': typeof TrainerVerifyRoute
   '/': typeof PublicIndexRoute
   '/admin': typeof AdminIndexRoute
   '/customer': typeof CustomerIndexRoute
@@ -515,11 +671,24 @@ export interface FileRoutesByTo {
   '/trainers/$id': typeof PublicTrainersIdRoute
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
+  '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
+  '/trainer/customers/$id': typeof TrainerCustomersIdRoute
+  '/trainer/exercises/$id': typeof TrainerExercisesIdRoute
+  '/trainer/lessons/$id': typeof TrainerLessonsIdRoute
+  '/trainer/plans/$id': typeof TrainerPlansIdRoute
+  '/trainer/plans/ai': typeof TrainerPlansAiRoute
+  '/trainer/reviews/$id': typeof TrainerReviewsIdRoute
   '/articles': typeof PublicArticlesIndexRoute
   '/packages': typeof PublicPackagesIndexRoute
   '/trainers': typeof PublicTrainersIndexRoute
   '/customer/notifications': typeof CustomerNotificationsIndexRoute
   '/customer/sessions': typeof CustomerSessionsIndexRoute
+  '/trainer/certificates': typeof TrainerCertificatesIndexRoute
+  '/trainer/customers': typeof TrainerCustomersIndexRoute
+  '/trainer/exercises': typeof TrainerExercisesIndexRoute
+  '/trainer/lessons': typeof TrainerLessonsIndexRoute
+  '/trainer/plans': typeof TrainerPlansIndexRoute
+  '/trainer/reviews': typeof TrainerReviewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -567,9 +736,17 @@ export interface FileRoutesById {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
-  '/trainer/clients': typeof TrainerClientsRoute
-  '/trainer/programs': typeof TrainerProgramsRoute
+  '/trainer/chat': typeof TrainerChatRoute
+  '/trainer/days-off': typeof TrainerDaysOffRoute
+  '/trainer/feedback': typeof TrainerFeedbackRoute
+  '/trainer/live': typeof TrainerLiveRoute
+  '/trainer/notifications': typeof TrainerNotificationsRoute
+  '/trainer/nutrition': typeof TrainerNutritionRoute
+  '/trainer/profile': typeof TrainerProfileRoute
+  '/trainer/progress': typeof TrainerProgressRoute
+  '/trainer/reschedule': typeof TrainerRescheduleRoute
   '/trainer/schedule': typeof TrainerScheduleRoute
+  '/trainer/verify': typeof TrainerVerifyRoute
   '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
@@ -582,11 +759,24 @@ export interface FileRoutesById {
   '/_public/trainers/$id': typeof PublicTrainersIdRoute
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
+  '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
+  '/trainer/customers/$id': typeof TrainerCustomersIdRoute
+  '/trainer/exercises/$id': typeof TrainerExercisesIdRoute
+  '/trainer/lessons/$id': typeof TrainerLessonsIdRoute
+  '/trainer/plans/$id': typeof TrainerPlansIdRoute
+  '/trainer/plans/ai': typeof TrainerPlansAiRoute
+  '/trainer/reviews/$id': typeof TrainerReviewsIdRoute
   '/_public/articles/': typeof PublicArticlesIndexRoute
   '/_public/packages/': typeof PublicPackagesIndexRoute
   '/_public/trainers/': typeof PublicTrainersIndexRoute
   '/customer/notifications/': typeof CustomerNotificationsIndexRoute
   '/customer/sessions/': typeof CustomerSessionsIndexRoute
+  '/trainer/certificates/': typeof TrainerCertificatesIndexRoute
+  '/trainer/customers/': typeof TrainerCustomersIndexRoute
+  '/trainer/exercises/': typeof TrainerExercisesIndexRoute
+  '/trainer/lessons/': typeof TrainerLessonsIndexRoute
+  '/trainer/plans/': typeof TrainerPlansIndexRoute
+  '/trainer/reviews/': typeof TrainerReviewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -635,9 +825,17 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
-    | '/trainer/clients'
-    | '/trainer/programs'
+    | '/trainer/chat'
+    | '/trainer/days-off'
+    | '/trainer/feedback'
+    | '/trainer/live'
+    | '/trainer/notifications'
+    | '/trainer/nutrition'
+    | '/trainer/profile'
+    | '/trainer/progress'
+    | '/trainer/reschedule'
     | '/trainer/schedule'
+    | '/trainer/verify'
     | '/admin/'
     | '/customer/'
     | '/manager/'
@@ -649,11 +847,24 @@ export interface FileRouteTypes {
     | '/trainers/$id'
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
+    | '/trainer/certificates/$id'
+    | '/trainer/customers/$id'
+    | '/trainer/exercises/$id'
+    | '/trainer/lessons/$id'
+    | '/trainer/plans/$id'
+    | '/trainer/plans/ai'
+    | '/trainer/reviews/$id'
     | '/articles/'
     | '/packages/'
     | '/trainers/'
     | '/customer/notifications/'
     | '/customer/sessions/'
+    | '/trainer/certificates/'
+    | '/trainer/customers/'
+    | '/trainer/exercises/'
+    | '/trainer/lessons/'
+    | '/trainer/plans/'
+    | '/trainer/reviews/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/guest'
@@ -694,9 +905,17 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
-    | '/trainer/clients'
-    | '/trainer/programs'
+    | '/trainer/chat'
+    | '/trainer/days-off'
+    | '/trainer/feedback'
+    | '/trainer/live'
+    | '/trainer/notifications'
+    | '/trainer/nutrition'
+    | '/trainer/profile'
+    | '/trainer/progress'
+    | '/trainer/reschedule'
     | '/trainer/schedule'
+    | '/trainer/verify'
     | '/'
     | '/admin'
     | '/customer'
@@ -709,11 +928,24 @@ export interface FileRouteTypes {
     | '/trainers/$id'
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
+    | '/trainer/certificates/$id'
+    | '/trainer/customers/$id'
+    | '/trainer/exercises/$id'
+    | '/trainer/lessons/$id'
+    | '/trainer/plans/$id'
+    | '/trainer/plans/ai'
+    | '/trainer/reviews/$id'
     | '/articles'
     | '/packages'
     | '/trainers'
     | '/customer/notifications'
     | '/customer/sessions'
+    | '/trainer/certificates'
+    | '/trainer/customers'
+    | '/trainer/exercises'
+    | '/trainer/lessons'
+    | '/trainer/plans'
+    | '/trainer/reviews'
   id:
     | '__root__'
     | '/_public'
@@ -760,9 +992,17 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
-    | '/trainer/clients'
-    | '/trainer/programs'
+    | '/trainer/chat'
+    | '/trainer/days-off'
+    | '/trainer/feedback'
+    | '/trainer/live'
+    | '/trainer/notifications'
+    | '/trainer/nutrition'
+    | '/trainer/profile'
+    | '/trainer/progress'
+    | '/trainer/reschedule'
     | '/trainer/schedule'
+    | '/trainer/verify'
     | '/_public/'
     | '/admin/'
     | '/customer/'
@@ -775,11 +1015,24 @@ export interface FileRouteTypes {
     | '/_public/trainers/$id'
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
+    | '/trainer/certificates/$id'
+    | '/trainer/customers/$id'
+    | '/trainer/exercises/$id'
+    | '/trainer/lessons/$id'
+    | '/trainer/plans/$id'
+    | '/trainer/plans/ai'
+    | '/trainer/reviews/$id'
     | '/_public/articles/'
     | '/_public/packages/'
     | '/_public/trainers/'
     | '/customer/notifications/'
     | '/customer/sessions/'
+    | '/trainer/certificates/'
+    | '/trainer/customers/'
+    | '/trainer/exercises/'
+    | '/trainer/lessons/'
+    | '/trainer/plans/'
+    | '/trainer/reviews/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1145,18 +1398,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainerIndexRouteImport
       parentRoute: typeof TrainerRoute
     }
-    '/trainer/clients': {
-      id: '/trainer/clients'
-      path: '/clients'
-      fullPath: '/trainer/clients'
-      preLoaderRoute: typeof TrainerClientsRouteImport
+    '/trainer/chat': {
+      id: '/trainer/chat'
+      path: '/chat'
+      fullPath: '/trainer/chat'
+      preLoaderRoute: typeof TrainerChatRouteImport
       parentRoute: typeof TrainerRoute
     }
-    '/trainer/programs': {
-      id: '/trainer/programs'
-      path: '/programs'
-      fullPath: '/trainer/programs'
-      preLoaderRoute: typeof TrainerProgramsRouteImport
+    '/trainer/days-off': {
+      id: '/trainer/days-off'
+      path: '/days-off'
+      fullPath: '/trainer/days-off'
+      preLoaderRoute: typeof TrainerDaysOffRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/feedback': {
+      id: '/trainer/feedback'
+      path: '/feedback'
+      fullPath: '/trainer/feedback'
+      preLoaderRoute: typeof TrainerFeedbackRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/live': {
+      id: '/trainer/live'
+      path: '/live'
+      fullPath: '/trainer/live'
+      preLoaderRoute: typeof TrainerLiveRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/notifications': {
+      id: '/trainer/notifications'
+      path: '/notifications'
+      fullPath: '/trainer/notifications'
+      preLoaderRoute: typeof TrainerNotificationsRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/nutrition': {
+      id: '/trainer/nutrition'
+      path: '/nutrition'
+      fullPath: '/trainer/nutrition'
+      preLoaderRoute: typeof TrainerNutritionRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/profile': {
+      id: '/trainer/profile'
+      path: '/profile'
+      fullPath: '/trainer/profile'
+      preLoaderRoute: typeof TrainerProfileRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/progress': {
+      id: '/trainer/progress'
+      path: '/progress'
+      fullPath: '/trainer/progress'
+      preLoaderRoute: typeof TrainerProgressRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/reschedule': {
+      id: '/trainer/reschedule'
+      path: '/reschedule'
+      fullPath: '/trainer/reschedule'
+      preLoaderRoute: typeof TrainerRescheduleRouteImport
       parentRoute: typeof TrainerRoute
     }
     '/trainer/schedule': {
@@ -1164,6 +1466,13 @@ declare module '@tanstack/react-router' {
       path: '/schedule'
       fullPath: '/trainer/schedule'
       preLoaderRoute: typeof TrainerScheduleRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/verify': {
+      id: '/trainer/verify'
+      path: '/verify'
+      fullPath: '/trainer/verify'
+      preLoaderRoute: typeof TrainerVerifyRouteImport
       parentRoute: typeof TrainerRoute
     }
     '/_public/articles/': {
@@ -1242,6 +1551,97 @@ declare module '@tanstack/react-router' {
       fullPath: '/customer/sessions/$id'
       preLoaderRoute: typeof CustomerSessionsIdRouteImport
       parentRoute: typeof CustomerRoute
+    }
+    '/trainer/certificates/': {
+      id: '/trainer/certificates/'
+      path: '/certificates'
+      fullPath: '/trainer/certificates/'
+      preLoaderRoute: typeof TrainerCertificatesIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/certificates/$id': {
+      id: '/trainer/certificates/$id'
+      path: '/certificates/$id'
+      fullPath: '/trainer/certificates/$id'
+      preLoaderRoute: typeof TrainerCertificatesIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/customers/': {
+      id: '/trainer/customers/'
+      path: '/customers'
+      fullPath: '/trainer/customers/'
+      preLoaderRoute: typeof TrainerCustomersIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/customers/$id': {
+      id: '/trainer/customers/$id'
+      path: '/customers/$id'
+      fullPath: '/trainer/customers/$id'
+      preLoaderRoute: typeof TrainerCustomersIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/exercises/': {
+      id: '/trainer/exercises/'
+      path: '/exercises'
+      fullPath: '/trainer/exercises/'
+      preLoaderRoute: typeof TrainerExercisesIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/exercises/$id': {
+      id: '/trainer/exercises/$id'
+      path: '/exercises/$id'
+      fullPath: '/trainer/exercises/$id'
+      preLoaderRoute: typeof TrainerExercisesIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/lessons/': {
+      id: '/trainer/lessons/'
+      path: '/lessons'
+      fullPath: '/trainer/lessons/'
+      preLoaderRoute: typeof TrainerLessonsIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/lessons/$id': {
+      id: '/trainer/lessons/$id'
+      path: '/lessons/$id'
+      fullPath: '/trainer/lessons/$id'
+      preLoaderRoute: typeof TrainerLessonsIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/plans/': {
+      id: '/trainer/plans/'
+      path: '/plans'
+      fullPath: '/trainer/plans/'
+      preLoaderRoute: typeof TrainerPlansIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/plans/$id': {
+      id: '/trainer/plans/$id'
+      path: '/plans/$id'
+      fullPath: '/trainer/plans/$id'
+      preLoaderRoute: typeof TrainerPlansIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/plans/ai': {
+      id: '/trainer/plans/ai'
+      path: '/plans/ai'
+      fullPath: '/trainer/plans/ai'
+      preLoaderRoute: typeof TrainerPlansAiRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/reviews/': {
+      id: '/trainer/reviews/'
+      path: '/reviews'
+      fullPath: '/trainer/reviews/'
+      preLoaderRoute: typeof TrainerReviewsIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/reviews/$id': {
+      id: '/trainer/reviews/$id'
+      path: '/reviews/$id'
+      fullPath: '/trainer/reviews/$id'
+      preLoaderRoute: typeof TrainerReviewsIdRouteImport
+      parentRoute: typeof TrainerRoute
     }
   }
 }
@@ -1395,17 +1795,59 @@ const StaffRouteChildren: StaffRouteChildren = {
 const StaffRouteWithChildren = StaffRoute._addFileChildren(StaffRouteChildren)
 
 interface TrainerRouteChildren {
-  TrainerClientsRoute: typeof TrainerClientsRoute
-  TrainerProgramsRoute: typeof TrainerProgramsRoute
+  TrainerChatRoute: typeof TrainerChatRoute
+  TrainerDaysOffRoute: typeof TrainerDaysOffRoute
+  TrainerFeedbackRoute: typeof TrainerFeedbackRoute
+  TrainerLiveRoute: typeof TrainerLiveRoute
+  TrainerNotificationsRoute: typeof TrainerNotificationsRoute
+  TrainerNutritionRoute: typeof TrainerNutritionRoute
+  TrainerProfileRoute: typeof TrainerProfileRoute
+  TrainerProgressRoute: typeof TrainerProgressRoute
+  TrainerRescheduleRoute: typeof TrainerRescheduleRoute
   TrainerScheduleRoute: typeof TrainerScheduleRoute
+  TrainerVerifyRoute: typeof TrainerVerifyRoute
   TrainerIndexRoute: typeof TrainerIndexRoute
+  TrainerCertificatesIdRoute: typeof TrainerCertificatesIdRoute
+  TrainerCustomersIdRoute: typeof TrainerCustomersIdRoute
+  TrainerExercisesIdRoute: typeof TrainerExercisesIdRoute
+  TrainerLessonsIdRoute: typeof TrainerLessonsIdRoute
+  TrainerPlansIdRoute: typeof TrainerPlansIdRoute
+  TrainerPlansAiRoute: typeof TrainerPlansAiRoute
+  TrainerReviewsIdRoute: typeof TrainerReviewsIdRoute
+  TrainerCertificatesIndexRoute: typeof TrainerCertificatesIndexRoute
+  TrainerCustomersIndexRoute: typeof TrainerCustomersIndexRoute
+  TrainerExercisesIndexRoute: typeof TrainerExercisesIndexRoute
+  TrainerLessonsIndexRoute: typeof TrainerLessonsIndexRoute
+  TrainerPlansIndexRoute: typeof TrainerPlansIndexRoute
+  TrainerReviewsIndexRoute: typeof TrainerReviewsIndexRoute
 }
 
 const TrainerRouteChildren: TrainerRouteChildren = {
-  TrainerClientsRoute: TrainerClientsRoute,
-  TrainerProgramsRoute: TrainerProgramsRoute,
+  TrainerChatRoute: TrainerChatRoute,
+  TrainerDaysOffRoute: TrainerDaysOffRoute,
+  TrainerFeedbackRoute: TrainerFeedbackRoute,
+  TrainerLiveRoute: TrainerLiveRoute,
+  TrainerNotificationsRoute: TrainerNotificationsRoute,
+  TrainerNutritionRoute: TrainerNutritionRoute,
+  TrainerProfileRoute: TrainerProfileRoute,
+  TrainerProgressRoute: TrainerProgressRoute,
+  TrainerRescheduleRoute: TrainerRescheduleRoute,
   TrainerScheduleRoute: TrainerScheduleRoute,
+  TrainerVerifyRoute: TrainerVerifyRoute,
   TrainerIndexRoute: TrainerIndexRoute,
+  TrainerCertificatesIdRoute: TrainerCertificatesIdRoute,
+  TrainerCustomersIdRoute: TrainerCustomersIdRoute,
+  TrainerExercisesIdRoute: TrainerExercisesIdRoute,
+  TrainerLessonsIdRoute: TrainerLessonsIdRoute,
+  TrainerPlansIdRoute: TrainerPlansIdRoute,
+  TrainerPlansAiRoute: TrainerPlansAiRoute,
+  TrainerReviewsIdRoute: TrainerReviewsIdRoute,
+  TrainerCertificatesIndexRoute: TrainerCertificatesIndexRoute,
+  TrainerCustomersIndexRoute: TrainerCustomersIndexRoute,
+  TrainerExercisesIndexRoute: TrainerExercisesIndexRoute,
+  TrainerLessonsIndexRoute: TrainerLessonsIndexRoute,
+  TrainerPlansIndexRoute: TrainerPlansIndexRoute,
+  TrainerReviewsIndexRoute: TrainerReviewsIndexRoute,
 }
 
 const TrainerRouteWithChildren =
