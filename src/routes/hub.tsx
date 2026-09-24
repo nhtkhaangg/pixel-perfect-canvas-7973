@@ -6,7 +6,7 @@ import { StatusBadge } from "@/components/shared/status-badge";
 import { SimpleChart } from "@/components/shared/simple-chart";
 import { Button } from "@/components/ui/button";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/hub")({
   head: () => ({
     meta: [
       { title: "GymFit — Role Hub" },
@@ -57,7 +57,7 @@ function RoleHub() {
           </p>
           <div className="mt-7 flex flex-wrap gap-2">
             <Button asChild>
-              <Link to="/guest">View public site</Link>
+              <Link to="/">View public site</Link>
             </Button>
             <Button variant="secondary" asChild>
               <Link to="/manager">Open manager dashboard</Link>

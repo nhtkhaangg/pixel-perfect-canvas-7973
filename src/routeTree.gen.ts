@@ -9,13 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as PublicRouteImport } from './routes/_public'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CustomerRouteImport } from './routes/customer'
 import { Route as GuestRouteImport } from './routes/guest'
+import { Route as HubRouteImport } from './routes/hub'
 import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as TrainerRouteImport } from './routes/trainer'
+import { Route as PublicIndexRouteImport } from './routes/_public.index'
+import { Route as PublicForgotPasswordRouteImport } from './routes/_public.forgot-password'
+import { Route as PublicGymInfoRouteImport } from './routes/_public.gym-info'
+import { Route as PublicLoginRouteImport } from './routes/_public.login'
+import { Route as PublicRegisterRouteImport } from './routes/_public.register'
+import { Route as PublicRegisterTrainerRouteImport } from './routes/_public.register-trainer'
+import { Route as PublicReviewsRouteImport } from './routes/_public.reviews'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBranchesRouteImport } from './routes/admin.branches'
 import { Route as AdminRolesRouteImport } from './routes/admin.roles'
@@ -25,9 +33,6 @@ import { Route as CustomerIndexRouteImport } from './routes/customer.index'
 import { Route as CustomerClassesRouteImport } from './routes/customer.classes'
 import { Route as CustomerMembershipRouteImport } from './routes/customer.membership'
 import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
-import { Route as GuestIndexRouteImport } from './routes/guest.index'
-import { Route as GuestClassesRouteImport } from './routes/guest.classes'
-import { Route as GuestPricingRouteImport } from './routes/guest.pricing'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerMembershipsRouteImport } from './routes/manager.memberships'
 import { Route as ManagerReportsRouteImport } from './routes/manager.reports'
@@ -40,10 +45,16 @@ import { Route as TrainerIndexRouteImport } from './routes/trainer.index'
 import { Route as TrainerClientsRouteImport } from './routes/trainer.clients'
 import { Route as TrainerProgramsRouteImport } from './routes/trainer.programs'
 import { Route as TrainerScheduleRouteImport } from './routes/trainer.schedule'
+import { Route as PublicArticlesIndexRouteImport } from './routes/_public.articles.index'
+import { Route as PublicArticlesIdRouteImport } from './routes/_public.articles.$id'
+import { Route as PublicPackagesIndexRouteImport } from './routes/_public.packages.index'
+import { Route as PublicPackagesIdRouteImport } from './routes/_public.packages.$id'
+import { Route as PublicToolsFitnessCalculatorRouteImport } from './routes/_public.tools.fitness-calculator'
+import { Route as PublicTrainersIndexRouteImport } from './routes/_public.trainers.index'
+import { Route as PublicTrainersIdRouteImport } from './routes/_public.trainers.$id'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const PublicRoute = PublicRouteImport.update({
+  id: '/_public',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -61,6 +72,11 @@ const GuestRoute = GuestRouteImport.update({
   path: '/guest',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HubRoute = HubRouteImport.update({
+  id: '/hub',
+  path: '/hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ManagerRoute = ManagerRouteImport.update({
   id: '/manager',
   path: '/manager',
@@ -75,6 +91,41 @@ const TrainerRoute = TrainerRouteImport.update({
   id: '/trainer',
   path: '/trainer',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PublicIndexRoute = PublicIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicForgotPasswordRoute = PublicForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicGymInfoRoute = PublicGymInfoRouteImport.update({
+  id: '/gym-info',
+  path: '/gym-info',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicLoginRoute = PublicLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicRegisterRoute = PublicRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicRegisterTrainerRoute = PublicRegisterTrainerRouteImport.update({
+  id: '/register-trainer',
+  path: '/register-trainer',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicReviewsRoute = PublicReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => PublicRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
@@ -120,21 +171,6 @@ const CustomerProfileRoute = CustomerProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => CustomerRoute,
-} as any)
-const GuestIndexRoute = GuestIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestClassesRoute = GuestClassesRouteImport.update({
-  id: '/classes',
-  path: '/classes',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestPricingRoute = GuestPricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => GuestRoute,
 } as any)
 const ManagerIndexRoute = ManagerIndexRouteImport.update({
   id: '/',
@@ -196,15 +232,58 @@ const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
   path: '/schedule',
   getParentRoute: () => TrainerRoute,
 } as any)
+const PublicArticlesIndexRoute = PublicArticlesIndexRouteImport.update({
+  id: '/articles/',
+  path: '/articles/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicArticlesIdRoute = PublicArticlesIdRouteImport.update({
+  id: '/articles/$id',
+  path: '/articles/$id',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicPackagesIndexRoute = PublicPackagesIndexRouteImport.update({
+  id: '/packages/',
+  path: '/packages/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicPackagesIdRoute = PublicPackagesIdRouteImport.update({
+  id: '/packages/$id',
+  path: '/packages/$id',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicToolsFitnessCalculatorRoute =
+  PublicToolsFitnessCalculatorRouteImport.update({
+    id: '/tools/fitness-calculator',
+    path: '/tools/fitness-calculator',
+    getParentRoute: () => PublicRoute,
+  } as any)
+const PublicTrainersIndexRoute = PublicTrainersIndexRouteImport.update({
+  id: '/trainers/',
+  path: '/trainers/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTrainersIdRoute = PublicTrainersIdRouteImport.update({
+  id: '/trainers/$id',
+  path: '/trainers/$id',
+  getParentRoute: () => PublicRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof PublicIndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/customer': typeof CustomerRouteWithChildren
-  '/guest': typeof GuestRouteWithChildren
+  '/guest': typeof GuestRoute
+  '/hub': typeof HubRoute
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/forgot-password': typeof PublicForgotPasswordRoute
+  '/gym-info': typeof PublicGymInfoRoute
+  '/login': typeof PublicLoginRoute
+  '/register': typeof PublicRegisterRoute
+  '/register-trainer': typeof PublicRegisterTrainerRoute
+  '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -212,8 +291,6 @@ export interface FileRoutesByFullPath {
   '/customer/classes': typeof CustomerClassesRoute
   '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
-  '/guest/classes': typeof GuestClassesRoute
-  '/guest/pricing': typeof GuestPricingRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -225,13 +302,26 @@ export interface FileRoutesByFullPath {
   '/trainer/schedule': typeof TrainerScheduleRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
-  '/guest/': typeof GuestIndexRoute
   '/manager/': typeof ManagerIndexRoute
   '/staff/': typeof StaffIndexRoute
   '/trainer/': typeof TrainerIndexRoute
+  '/articles/$id': typeof PublicArticlesIdRoute
+  '/packages/$id': typeof PublicPackagesIdRoute
+  '/tools/fitness-calculator': typeof PublicToolsFitnessCalculatorRoute
+  '/trainers/$id': typeof PublicTrainersIdRoute
+  '/articles/': typeof PublicArticlesIndexRoute
+  '/packages/': typeof PublicPackagesIndexRoute
+  '/trainers/': typeof PublicTrainersIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/guest': typeof GuestRoute
+  '/hub': typeof HubRoute
+  '/forgot-password': typeof PublicForgotPasswordRoute
+  '/gym-info': typeof PublicGymInfoRoute
+  '/login': typeof PublicLoginRoute
+  '/register': typeof PublicRegisterRoute
+  '/register-trainer': typeof PublicRegisterTrainerRoute
+  '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -239,8 +329,6 @@ export interface FileRoutesByTo {
   '/customer/classes': typeof CustomerClassesRoute
   '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
-  '/guest/classes': typeof GuestClassesRoute
-  '/guest/pricing': typeof GuestPricingRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -250,22 +338,36 @@ export interface FileRoutesByTo {
   '/trainer/clients': typeof TrainerClientsRoute
   '/trainer/programs': typeof TrainerProgramsRoute
   '/trainer/schedule': typeof TrainerScheduleRoute
+  '/': typeof PublicIndexRoute
   '/admin': typeof AdminIndexRoute
   '/customer': typeof CustomerIndexRoute
-  '/guest': typeof GuestIndexRoute
   '/manager': typeof ManagerIndexRoute
   '/staff': typeof StaffIndexRoute
   '/trainer': typeof TrainerIndexRoute
+  '/articles/$id': typeof PublicArticlesIdRoute
+  '/packages/$id': typeof PublicPackagesIdRoute
+  '/tools/fitness-calculator': typeof PublicToolsFitnessCalculatorRoute
+  '/trainers/$id': typeof PublicTrainersIdRoute
+  '/articles': typeof PublicArticlesIndexRoute
+  '/packages': typeof PublicPackagesIndexRoute
+  '/trainers': typeof PublicTrainersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_public': typeof PublicRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
   '/customer': typeof CustomerRouteWithChildren
-  '/guest': typeof GuestRouteWithChildren
+  '/guest': typeof GuestRoute
+  '/hub': typeof HubRoute
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/_public/forgot-password': typeof PublicForgotPasswordRoute
+  '/_public/gym-info': typeof PublicGymInfoRoute
+  '/_public/login': typeof PublicLoginRoute
+  '/_public/register': typeof PublicRegisterRoute
+  '/_public/register-trainer': typeof PublicRegisterTrainerRoute
+  '/_public/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -273,8 +375,6 @@ export interface FileRoutesById {
   '/customer/classes': typeof CustomerClassesRoute
   '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
-  '/guest/classes': typeof GuestClassesRoute
-  '/guest/pricing': typeof GuestPricingRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -284,12 +384,19 @@ export interface FileRoutesById {
   '/trainer/clients': typeof TrainerClientsRoute
   '/trainer/programs': typeof TrainerProgramsRoute
   '/trainer/schedule': typeof TrainerScheduleRoute
+  '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
-  '/guest/': typeof GuestIndexRoute
   '/manager/': typeof ManagerIndexRoute
   '/staff/': typeof StaffIndexRoute
   '/trainer/': typeof TrainerIndexRoute
+  '/_public/articles/$id': typeof PublicArticlesIdRoute
+  '/_public/packages/$id': typeof PublicPackagesIdRoute
+  '/_public/tools/fitness-calculator': typeof PublicToolsFitnessCalculatorRoute
+  '/_public/trainers/$id': typeof PublicTrainersIdRoute
+  '/_public/articles/': typeof PublicArticlesIndexRoute
+  '/_public/packages/': typeof PublicPackagesIndexRoute
+  '/_public/trainers/': typeof PublicTrainersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -298,9 +405,16 @@ export interface FileRouteTypes {
     | '/admin'
     | '/customer'
     | '/guest'
+    | '/hub'
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/forgot-password'
+    | '/gym-info'
+    | '/login'
+    | '/register'
+    | '/register-trainer'
+    | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
     | '/admin/settings'
@@ -308,8 +422,6 @@ export interface FileRouteTypes {
     | '/customer/classes'
     | '/customer/membership'
     | '/customer/profile'
-    | '/guest/classes'
-    | '/guest/pricing'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -321,13 +433,26 @@ export interface FileRouteTypes {
     | '/trainer/schedule'
     | '/admin/'
     | '/customer/'
-    | '/guest/'
     | '/manager/'
     | '/staff/'
     | '/trainer/'
+    | '/articles/$id'
+    | '/packages/$id'
+    | '/tools/fitness-calculator'
+    | '/trainers/$id'
+    | '/articles/'
+    | '/packages/'
+    | '/trainers/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
+    | '/guest'
+    | '/hub'
+    | '/forgot-password'
+    | '/gym-info'
+    | '/login'
+    | '/register'
+    | '/register-trainer'
+    | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
     | '/admin/settings'
@@ -335,8 +460,6 @@ export interface FileRouteTypes {
     | '/customer/classes'
     | '/customer/membership'
     | '/customer/profile'
-    | '/guest/classes'
-    | '/guest/pricing'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -346,21 +469,35 @@ export interface FileRouteTypes {
     | '/trainer/clients'
     | '/trainer/programs'
     | '/trainer/schedule'
+    | '/'
     | '/admin'
     | '/customer'
-    | '/guest'
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/articles/$id'
+    | '/packages/$id'
+    | '/tools/fitness-calculator'
+    | '/trainers/$id'
+    | '/articles'
+    | '/packages'
+    | '/trainers'
   id:
     | '__root__'
-    | '/'
+    | '/_public'
     | '/admin'
     | '/customer'
     | '/guest'
+    | '/hub'
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/_public/forgot-password'
+    | '/_public/gym-info'
+    | '/_public/login'
+    | '/_public/register'
+    | '/_public/register-trainer'
+    | '/_public/reviews'
     | '/admin/branches'
     | '/admin/roles'
     | '/admin/settings'
@@ -368,8 +505,6 @@ export interface FileRouteTypes {
     | '/customer/classes'
     | '/customer/membership'
     | '/customer/profile'
-    | '/guest/classes'
-    | '/guest/pricing'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -379,19 +514,27 @@ export interface FileRouteTypes {
     | '/trainer/clients'
     | '/trainer/programs'
     | '/trainer/schedule'
+    | '/_public/'
     | '/admin/'
     | '/customer/'
-    | '/guest/'
     | '/manager/'
     | '/staff/'
     | '/trainer/'
+    | '/_public/articles/$id'
+    | '/_public/packages/$id'
+    | '/_public/tools/fitness-calculator'
+    | '/_public/trainers/$id'
+    | '/_public/articles/'
+    | '/_public/packages/'
+    | '/_public/trainers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  PublicRoute: typeof PublicRouteWithChildren
   AdminRoute: typeof AdminRouteWithChildren
   CustomerRoute: typeof CustomerRouteWithChildren
-  GuestRoute: typeof GuestRouteWithChildren
+  GuestRoute: typeof GuestRoute
+  HubRoute: typeof HubRoute
   ManagerRoute: typeof ManagerRouteWithChildren
   StaffRoute: typeof StaffRouteWithChildren
   TrainerRoute: typeof TrainerRouteWithChildren
@@ -399,11 +542,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
+    '/_public': {
+      id: '/_public'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof PublicRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -427,6 +570,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hub': {
+      id: '/hub'
+      path: '/hub'
+      fullPath: '/hub'
+      preLoaderRoute: typeof HubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/manager': {
       id: '/manager'
       path: '/manager'
@@ -447,6 +597,55 @@ declare module '@tanstack/react-router' {
       fullPath: '/trainer'
       preLoaderRoute: typeof TrainerRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_public/': {
+      id: '/_public/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/forgot-password': {
+      id: '/_public/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof PublicForgotPasswordRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/gym-info': {
+      id: '/_public/gym-info'
+      path: '/gym-info'
+      fullPath: '/gym-info'
+      preLoaderRoute: typeof PublicGymInfoRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/login': {
+      id: '/_public/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof PublicLoginRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/register': {
+      id: '/_public/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof PublicRegisterRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/register-trainer': {
+      id: '/_public/register-trainer'
+      path: '/register-trainer'
+      fullPath: '/register-trainer'
+      preLoaderRoute: typeof PublicRegisterTrainerRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/reviews': {
+      id: '/_public/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof PublicReviewsRouteImport
+      parentRoute: typeof PublicRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -510,27 +709,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/customer/profile'
       preLoaderRoute: typeof CustomerProfileRouteImport
       parentRoute: typeof CustomerRoute
-    }
-    '/guest/': {
-      id: '/guest/'
-      path: '/'
-      fullPath: '/guest/'
-      preLoaderRoute: typeof GuestIndexRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/guest/classes': {
-      id: '/guest/classes'
-      path: '/classes'
-      fullPath: '/guest/classes'
-      preLoaderRoute: typeof GuestClassesRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/guest/pricing': {
-      id: '/guest/pricing'
-      path: '/pricing'
-      fullPath: '/guest/pricing'
-      preLoaderRoute: typeof GuestPricingRouteImport
-      parentRoute: typeof GuestRoute
     }
     '/manager/': {
       id: '/manager/'
@@ -616,8 +794,94 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainerScheduleRouteImport
       parentRoute: typeof TrainerRoute
     }
+    '/_public/articles/': {
+      id: '/_public/articles/'
+      path: '/articles'
+      fullPath: '/articles/'
+      preLoaderRoute: typeof PublicArticlesIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/articles/$id': {
+      id: '/_public/articles/$id'
+      path: '/articles/$id'
+      fullPath: '/articles/$id'
+      preLoaderRoute: typeof PublicArticlesIdRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/packages/': {
+      id: '/_public/packages/'
+      path: '/packages'
+      fullPath: '/packages/'
+      preLoaderRoute: typeof PublicPackagesIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/packages/$id': {
+      id: '/_public/packages/$id'
+      path: '/packages/$id'
+      fullPath: '/packages/$id'
+      preLoaderRoute: typeof PublicPackagesIdRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/tools/fitness-calculator': {
+      id: '/_public/tools/fitness-calculator'
+      path: '/tools/fitness-calculator'
+      fullPath: '/tools/fitness-calculator'
+      preLoaderRoute: typeof PublicToolsFitnessCalculatorRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/trainers/': {
+      id: '/_public/trainers/'
+      path: '/trainers'
+      fullPath: '/trainers/'
+      preLoaderRoute: typeof PublicTrainersIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/trainers/$id': {
+      id: '/_public/trainers/$id'
+      path: '/trainers/$id'
+      fullPath: '/trainers/$id'
+      preLoaderRoute: typeof PublicTrainersIdRouteImport
+      parentRoute: typeof PublicRoute
+    }
   }
 }
+
+interface PublicRouteChildren {
+  PublicForgotPasswordRoute: typeof PublicForgotPasswordRoute
+  PublicGymInfoRoute: typeof PublicGymInfoRoute
+  PublicLoginRoute: typeof PublicLoginRoute
+  PublicRegisterRoute: typeof PublicRegisterRoute
+  PublicRegisterTrainerRoute: typeof PublicRegisterTrainerRoute
+  PublicReviewsRoute: typeof PublicReviewsRoute
+  PublicIndexRoute: typeof PublicIndexRoute
+  PublicArticlesIdRoute: typeof PublicArticlesIdRoute
+  PublicPackagesIdRoute: typeof PublicPackagesIdRoute
+  PublicToolsFitnessCalculatorRoute: typeof PublicToolsFitnessCalculatorRoute
+  PublicTrainersIdRoute: typeof PublicTrainersIdRoute
+  PublicArticlesIndexRoute: typeof PublicArticlesIndexRoute
+  PublicPackagesIndexRoute: typeof PublicPackagesIndexRoute
+  PublicTrainersIndexRoute: typeof PublicTrainersIndexRoute
+}
+
+const PublicRouteChildren: PublicRouteChildren = {
+  PublicForgotPasswordRoute: PublicForgotPasswordRoute,
+  PublicGymInfoRoute: PublicGymInfoRoute,
+  PublicLoginRoute: PublicLoginRoute,
+  PublicRegisterRoute: PublicRegisterRoute,
+  PublicRegisterTrainerRoute: PublicRegisterTrainerRoute,
+  PublicReviewsRoute: PublicReviewsRoute,
+  PublicIndexRoute: PublicIndexRoute,
+  PublicArticlesIdRoute: PublicArticlesIdRoute,
+  PublicPackagesIdRoute: PublicPackagesIdRoute,
+  PublicToolsFitnessCalculatorRoute: PublicToolsFitnessCalculatorRoute,
+  PublicTrainersIdRoute: PublicTrainersIdRoute,
+  PublicArticlesIndexRoute: PublicArticlesIndexRoute,
+  PublicPackagesIndexRoute: PublicPackagesIndexRoute,
+  PublicTrainersIndexRoute: PublicTrainersIndexRoute,
+}
+
+const PublicRouteWithChildren =
+  PublicRoute._addFileChildren(PublicRouteChildren)
 
 interface AdminRouteChildren {
   AdminBranchesRoute: typeof AdminBranchesRoute
@@ -654,20 +918,6 @@ const CustomerRouteChildren: CustomerRouteChildren = {
 const CustomerRouteWithChildren = CustomerRoute._addFileChildren(
   CustomerRouteChildren,
 )
-
-interface GuestRouteChildren {
-  GuestClassesRoute: typeof GuestClassesRoute
-  GuestPricingRoute: typeof GuestPricingRoute
-  GuestIndexRoute: typeof GuestIndexRoute
-}
-
-const GuestRouteChildren: GuestRouteChildren = {
-  GuestClassesRoute: GuestClassesRoute,
-  GuestPricingRoute: GuestPricingRoute,
-  GuestIndexRoute: GuestIndexRoute,
-}
-
-const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
 
 interface ManagerRouteChildren {
   ManagerMembershipsRoute: typeof ManagerMembershipsRoute
@@ -720,10 +970,11 @@ const TrainerRouteWithChildren =
   TrainerRoute._addFileChildren(TrainerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  PublicRoute: PublicRouteWithChildren,
   AdminRoute: AdminRouteWithChildren,
   CustomerRoute: CustomerRouteWithChildren,
-  GuestRoute: GuestRouteWithChildren,
+  GuestRoute: GuestRoute,
+  HubRoute: HubRoute,
   ManagerRoute: ManagerRouteWithChildren,
   StaffRoute: StaffRouteWithChildren,
   TrainerRoute: TrainerRouteWithChildren,

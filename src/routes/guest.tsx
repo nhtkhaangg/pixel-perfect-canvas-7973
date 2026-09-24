@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { PublicShell } from "@/components/layout/public-shell";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/guest")({
-  component: PublicShell,
+  beforeLoad: () => {
+    throw redirect({ to: "/" });
+  },
 });

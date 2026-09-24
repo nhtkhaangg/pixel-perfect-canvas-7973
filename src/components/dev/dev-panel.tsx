@@ -32,7 +32,7 @@ export function DevPanel() {
       </div>
       <div className="overflow-y-auto p-2">
         <Link
-          to="/"
+          to="/hub"
           className="mb-1 block rounded-md px-2.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
           Role hub
