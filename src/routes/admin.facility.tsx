@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ScaffoldPage } from "@/components/shared/scaffold-page";
 
-export const Route = createFileRoute("/admin/branches")({
+export const Route = createFileRoute("/admin/facility")({
   head: () => ({
     meta: [
       { title: "Cơ sở vật chất — Quản trị viên — GymFit" },
