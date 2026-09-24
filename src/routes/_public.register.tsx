@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 
 export const Route = createFileRoute("/_public/register")({
-  head: () => seo("Create your account", "Join GymFit in under a minute and get a free day pass at any of our four branches."),
+  head: () => seo("Tạo tài khoản", "Đăng ký GymFit chưa đầy một phút và nhận ngay một ngày tập miễn phí."),
   component: RegisterPage,
 });
 
@@ -23,54 +23,54 @@ function RegisterPage() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const errs: Record<string, string> = {};
-    if (form.name.trim().length < 2) errs["name"] = "Enter your full name";
-    if (!isEmail(form.email)) errs["email"] = "Enter a valid email address";
-    if (!/^[+\d\s()-]{7,}$/.test(form.phone)) errs["phone"] = "Enter a valid phone number";
-    if (form.password.length < 8) errs["password"] = "Use at least 8 characters";
-    if (form.confirm !== form.password) errs["confirm"] = "Passwords don't match";
-    if (!agree) errs["agree"] = "You must accept the terms";
+    if (form.name.trim().length < 2) errs["name"] = "Vui lòng nhập họ tên đầy đủ";
+    if (!isEmail(form.email)) errs["email"] = "Email không hợp lệ";
+    if (!/^[+\d\s()-]{7,}$/.test(form.phone)) errs["phone"] = "Số điện thoại không hợp lệ";
+    if (form.password.length < 8) errs["password"] = "Dùng ít nhất 8 ký tự";
+    if (form.confirm !== form.password) errs["confirm"] = "Mật khẩu xác nhận không khớp";
+    if (!agree) errs["agree"] = "Bạn cần đồng ý với điều khoản";
     setErrors(errs);
     if (Object.keys(errs).length) return;
-    toast.success("Account created", { description: "Your free day pass is in your member area." });
+    toast.success("Tạo tài khoản thành công", { description: "Ngày tập miễn phí của bạn đã có trong khu vực hội viên." });
     navigate({ to: "/customer" });
   }
 
   return (
     <AuthCard
-      title="Create your account"
-      description="Free to join — pick a package whenever you're ready."
-      aside={<AuthAside quote="Signed up on a Monday, had my first PT session on Wednesday. Down 7 kg three months later." author="James K., Riverside" />}
-      footer={<>Already a member? <Link to="/login" className="font-medium text-primary">Log in</Link> · <Link to="/register-trainer" className="font-medium text-primary">Apply as a trainer</Link></>}
+      title="Tạo tài khoản"
+      description="Miễn phí đăng ký — chọn gói tập bất cứ khi nào bạn sẵn sàng."
+      aside={<AuthAside quote="Đăng ký thứ Hai, thứ Tư đã có buổi PT đầu tiên. Sau ba tháng tôi giảm được 7 kg." author="Nam K., hội viên" />}
+      footer={<>Đã là hội viên? <Link to="/login" className="font-medium text-primary">Đăng nhập</Link> · <Link to="/register-trainer" className="font-medium text-primary">Ứng tuyển làm huấn luyện viên</Link></>}
     >
       <OAuthButtons />
       <form onSubmit={submit} className="space-y-4" noValidate>
-        <FormField label="Full name" required error={errors["name"]}>
-          {(p) => <Input {...p} value={form.name} onChange={set("name")} placeholder="Alex Morgan" />}
+        <FormField label="Họ và tên" required error={errors["name"]}>
+          {(p) => <Input {...p} value={form.name} onChange={set("name")} placeholder="Nguyễn Văn A" />}
         </FormField>
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField label="Email" required error={errors["email"]}>
-            {(p) => <Input {...p} type="email" value={form.email} onChange={set("email")} placeholder="you@example.com" />}
+            {(p) => <Input {...p} type="email" value={form.email} onChange={set("email")} placeholder="ban@vidu.com" />}
           </FormField>
-          <FormField label="Phone" required error={errors["phone"]}>
-            {(p) => <Input {...p} type="tel" value={form.phone} onChange={set("phone")} placeholder="+1 415 555 0100" />}
+          <FormField label="Số điện thoại" required error={errors["phone"]}>
+            {(p) => <Input {...p} type="tel" value={form.phone} onChange={set("phone")} placeholder="0901 234 567" />}
           </FormField>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
-          <FormField label="Password" required error={errors["password"]} hint="At least 8 characters">
+          <FormField label="Mật khẩu" required error={errors["password"]} hint="Ít nhất 8 ký tự">
             {(p) => <Input {...p} type="password" value={form.password} onChange={set("password")} />}
           </FormField>
-          <FormField label="Confirm password" required error={errors["confirm"]}>
+          <FormField label="Xác nhận mật khẩu" required error={errors["confirm"]}>
             {(p) => <Input {...p} type="password" value={form.confirm} onChange={set("confirm")} />}
           </FormField>
         </div>
         <div>
           <label className="flex items-start gap-2 text-sm">
             <Checkbox checked={agree} onCheckedChange={(v) => setAgree(v === true)} className="mt-0.5" />
-            I agree to the membership terms and privacy policy
+            Tôi đồng ý với điều khoản hội viên và chính sách bảo mật
           </label>
           {errors["agree"] ? <p className="mt-1 text-xs text-destructive">{errors["agree"]}</p> : null}
         </div>
-        <Button type="submit" className="w-full">Create account</Button>
+        <Button type="submit" className="w-full">Tạo tài khoản</Button>
       </form>
     </AuthCard>
   );
