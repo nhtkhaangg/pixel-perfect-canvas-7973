@@ -18,7 +18,11 @@ import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as TrainerRouteImport } from './routes/trainer'
 import { Route as PublicIndexRouteImport } from './routes/_public.index'
+import { Route as PublicForgotPasswordRouteImport } from './routes/_public.forgot-password'
 import { Route as PublicGymInfoRouteImport } from './routes/_public.gym-info'
+import { Route as PublicLoginRouteImport } from './routes/_public.login'
+import { Route as PublicRegisterRouteImport } from './routes/_public.register'
+import { Route as PublicRegisterTrainerRouteImport } from './routes/_public.register-trainer'
 import { Route as PublicReviewsRouteImport } from './routes/_public.reviews'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBranchesRouteImport } from './routes/admin.branches'
@@ -93,9 +97,29 @@ const PublicIndexRoute = PublicIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicForgotPasswordRoute = PublicForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => PublicRoute,
+} as any)
 const PublicGymInfoRoute = PublicGymInfoRouteImport.update({
   id: '/gym-info',
   path: '/gym-info',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicLoginRoute = PublicLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicRegisterRoute = PublicRegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicRegisterTrainerRoute = PublicRegisterTrainerRouteImport.update({
+  id: '/register-trainer',
+  path: '/register-trainer',
   getParentRoute: () => PublicRoute,
 } as any)
 const PublicReviewsRoute = PublicReviewsRouteImport.update({
@@ -254,7 +278,11 @@ export interface FileRoutesByFullPath {
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/forgot-password': typeof PublicForgotPasswordRoute
   '/gym-info': typeof PublicGymInfoRoute
+  '/login': typeof PublicLoginRoute
+  '/register': typeof PublicRegisterRoute
+  '/register-trainer': typeof PublicRegisterTrainerRoute
   '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
@@ -288,7 +316,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/guest': typeof GuestRoute
   '/hub': typeof HubRoute
+  '/forgot-password': typeof PublicForgotPasswordRoute
   '/gym-info': typeof PublicGymInfoRoute
+  '/login': typeof PublicLoginRoute
+  '/register': typeof PublicRegisterRoute
+  '/register-trainer': typeof PublicRegisterTrainerRoute
   '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
@@ -330,7 +362,11 @@ export interface FileRoutesById {
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/_public/forgot-password': typeof PublicForgotPasswordRoute
   '/_public/gym-info': typeof PublicGymInfoRoute
+  '/_public/login': typeof PublicLoginRoute
+  '/_public/register': typeof PublicRegisterRoute
+  '/_public/register-trainer': typeof PublicRegisterTrainerRoute
   '/_public/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
@@ -373,7 +409,11 @@ export interface FileRouteTypes {
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/forgot-password'
     | '/gym-info'
+    | '/login'
+    | '/register'
+    | '/register-trainer'
     | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
@@ -407,7 +447,11 @@ export interface FileRouteTypes {
   to:
     | '/guest'
     | '/hub'
+    | '/forgot-password'
     | '/gym-info'
+    | '/login'
+    | '/register'
+    | '/register-trainer'
     | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
@@ -448,7 +492,11 @@ export interface FileRouteTypes {
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/_public/forgot-password'
     | '/_public/gym-info'
+    | '/_public/login'
+    | '/_public/register'
+    | '/_public/register-trainer'
     | '/_public/reviews'
     | '/admin/branches'
     | '/admin/roles'
@@ -557,11 +605,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicIndexRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/forgot-password': {
+      id: '/_public/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof PublicForgotPasswordRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/gym-info': {
       id: '/_public/gym-info'
       path: '/gym-info'
       fullPath: '/gym-info'
       preLoaderRoute: typeof PublicGymInfoRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/login': {
+      id: '/_public/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof PublicLoginRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/register': {
+      id: '/_public/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof PublicRegisterRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/register-trainer': {
+      id: '/_public/register-trainer'
+      path: '/register-trainer'
+      fullPath: '/register-trainer'
+      preLoaderRoute: typeof PublicRegisterTrainerRouteImport
       parentRoute: typeof PublicRoute
     }
     '/_public/reviews': {
@@ -771,7 +847,11 @@ declare module '@tanstack/react-router' {
 }
 
 interface PublicRouteChildren {
+  PublicForgotPasswordRoute: typeof PublicForgotPasswordRoute
   PublicGymInfoRoute: typeof PublicGymInfoRoute
+  PublicLoginRoute: typeof PublicLoginRoute
+  PublicRegisterRoute: typeof PublicRegisterRoute
+  PublicRegisterTrainerRoute: typeof PublicRegisterTrainerRoute
   PublicReviewsRoute: typeof PublicReviewsRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicArticlesIdRoute: typeof PublicArticlesIdRoute
@@ -784,7 +864,11 @@ interface PublicRouteChildren {
 }
 
 const PublicRouteChildren: PublicRouteChildren = {
+  PublicForgotPasswordRoute: PublicForgotPasswordRoute,
   PublicGymInfoRoute: PublicGymInfoRoute,
+  PublicLoginRoute: PublicLoginRoute,
+  PublicRegisterRoute: PublicRegisterRoute,
+  PublicRegisterTrainerRoute: PublicRegisterTrainerRoute,
   PublicReviewsRoute: PublicReviewsRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicArticlesIdRoute: PublicArticlesIdRoute,
