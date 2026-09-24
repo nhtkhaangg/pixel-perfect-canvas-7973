@@ -10,20 +10,116 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as CustomerRouteImport } from './routes/customer'
 import { Route as GuestRouteImport } from './routes/guest'
+import { Route as ManagerRouteImport } from './routes/manager'
+import { Route as StaffRouteImport } from './routes/staff'
+import { Route as TrainerRouteImport } from './routes/trainer'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminBranchesRouteImport } from './routes/admin.branches'
+import { Route as AdminRolesRouteImport } from './routes/admin.roles'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as CustomerIndexRouteImport } from './routes/customer.index'
+import { Route as CustomerClassesRouteImport } from './routes/customer.classes'
+import { Route as CustomerMembershipRouteImport } from './routes/customer.membership'
+import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
 import { Route as GuestIndexRouteImport } from './routes/guest.index'
 import { Route as GuestClassesRouteImport } from './routes/guest.classes'
 import { Route as GuestPricingRouteImport } from './routes/guest.pricing'
+import { Route as ManagerIndexRouteImport } from './routes/manager.index'
+import { Route as ManagerMembershipsRouteImport } from './routes/manager.memberships'
+import { Route as ManagerReportsRouteImport } from './routes/manager.reports'
+import { Route as ManagerStaffRouteImport } from './routes/manager.staff'
+import { Route as StaffIndexRouteImport } from './routes/staff.index'
+import { Route as StaffCheckInRouteImport } from './routes/staff.check-in'
+import { Route as StaffClassesRouteImport } from './routes/staff.classes'
+import { Route as StaffMembersRouteImport } from './routes/staff.members'
+import { Route as TrainerIndexRouteImport } from './routes/trainer.index'
+import { Route as TrainerClientsRouteImport } from './routes/trainer.clients'
+import { Route as TrainerProgramsRouteImport } from './routes/trainer.programs'
+import { Route as TrainerScheduleRouteImport } from './routes/trainer.schedule'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CustomerRoute = CustomerRouteImport.update({
+  id: '/customer',
+  path: '/customer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuestRoute = GuestRouteImport.update({
   id: '/guest',
   path: '/guest',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ManagerRoute = ManagerRouteImport.update({
+  id: '/manager',
+  path: '/manager',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StaffRoute = StaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrainerRoute = TrainerRouteImport.update({
+  id: '/trainer',
+  path: '/trainer',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBranchesRoute = AdminBranchesRouteImport.update({
+  id: '/branches',
+  path: '/branches',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminRolesRoute = AdminRolesRouteImport.update({
+  id: '/roles',
+  path: '/roles',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const CustomerIndexRoute = CustomerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerClassesRoute = CustomerClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerMembershipRoute = CustomerMembershipRouteImport.update({
+  id: '/membership',
+  path: '/membership',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerProfileRoute = CustomerProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => CustomerRoute,
 } as any)
 const GuestIndexRoute = GuestIndexRouteImport.update({
   id: '/',
@@ -40,45 +136,265 @@ const GuestPricingRoute = GuestPricingRouteImport.update({
   path: '/pricing',
   getParentRoute: () => GuestRoute,
 } as any)
+const ManagerIndexRoute = ManagerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerMembershipsRoute = ManagerMembershipsRouteImport.update({
+  id: '/memberships',
+  path: '/memberships',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerReportsRoute = ManagerReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const ManagerStaffRoute = ManagerStaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => ManagerRoute,
+} as any)
+const StaffIndexRoute = StaffIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => StaffRoute,
+} as any)
+const StaffCheckInRoute = StaffCheckInRouteImport.update({
+  id: '/check-in',
+  path: '/check-in',
+  getParentRoute: () => StaffRoute,
+} as any)
+const StaffClassesRoute = StaffClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => StaffRoute,
+} as any)
+const StaffMembersRoute = StaffMembersRouteImport.update({
+  id: '/members',
+  path: '/members',
+  getParentRoute: () => StaffRoute,
+} as any)
+const TrainerIndexRoute = TrainerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerClientsRoute = TrainerClientsRouteImport.update({
+  id: '/clients',
+  path: '/clients',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerProgramsRoute = TrainerProgramsRouteImport.update({
+  id: '/programs',
+  path: '/programs',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => TrainerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/customer': typeof CustomerRouteWithChildren
   '/guest': typeof GuestRouteWithChildren
+  '/manager': typeof ManagerRouteWithChildren
+  '/staff': typeof StaffRouteWithChildren
+  '/trainer': typeof TrainerRouteWithChildren
+  '/admin/branches': typeof AdminBranchesRoute
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/customer/classes': typeof CustomerClassesRoute
+  '/customer/membership': typeof CustomerMembershipRoute
+  '/customer/profile': typeof CustomerProfileRoute
   '/guest/classes': typeof GuestClassesRoute
   '/guest/pricing': typeof GuestPricingRoute
+  '/manager/memberships': typeof ManagerMembershipsRoute
+  '/manager/reports': typeof ManagerReportsRoute
+  '/manager/staff': typeof ManagerStaffRoute
+  '/staff/check-in': typeof StaffCheckInRoute
+  '/staff/classes': typeof StaffClassesRoute
+  '/staff/members': typeof StaffMembersRoute
+  '/trainer/clients': typeof TrainerClientsRoute
+  '/trainer/programs': typeof TrainerProgramsRoute
+  '/trainer/schedule': typeof TrainerScheduleRoute
+  '/admin/': typeof AdminIndexRoute
+  '/customer/': typeof CustomerIndexRoute
   '/guest/': typeof GuestIndexRoute
+  '/manager/': typeof ManagerIndexRoute
+  '/staff/': typeof StaffIndexRoute
+  '/trainer/': typeof TrainerIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/branches': typeof AdminBranchesRoute
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/customer/classes': typeof CustomerClassesRoute
+  '/customer/membership': typeof CustomerMembershipRoute
+  '/customer/profile': typeof CustomerProfileRoute
   '/guest/classes': typeof GuestClassesRoute
   '/guest/pricing': typeof GuestPricingRoute
+  '/manager/memberships': typeof ManagerMembershipsRoute
+  '/manager/reports': typeof ManagerReportsRoute
+  '/manager/staff': typeof ManagerStaffRoute
+  '/staff/check-in': typeof StaffCheckInRoute
+  '/staff/classes': typeof StaffClassesRoute
+  '/staff/members': typeof StaffMembersRoute
+  '/trainer/clients': typeof TrainerClientsRoute
+  '/trainer/programs': typeof TrainerProgramsRoute
+  '/trainer/schedule': typeof TrainerScheduleRoute
+  '/admin': typeof AdminIndexRoute
+  '/customer': typeof CustomerIndexRoute
   '/guest': typeof GuestIndexRoute
+  '/manager': typeof ManagerIndexRoute
+  '/staff': typeof StaffIndexRoute
+  '/trainer': typeof TrainerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
+  '/customer': typeof CustomerRouteWithChildren
   '/guest': typeof GuestRouteWithChildren
+  '/manager': typeof ManagerRouteWithChildren
+  '/staff': typeof StaffRouteWithChildren
+  '/trainer': typeof TrainerRouteWithChildren
+  '/admin/branches': typeof AdminBranchesRoute
+  '/admin/roles': typeof AdminRolesRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/users': typeof AdminUsersRoute
+  '/customer/classes': typeof CustomerClassesRoute
+  '/customer/membership': typeof CustomerMembershipRoute
+  '/customer/profile': typeof CustomerProfileRoute
   '/guest/classes': typeof GuestClassesRoute
   '/guest/pricing': typeof GuestPricingRoute
+  '/manager/memberships': typeof ManagerMembershipsRoute
+  '/manager/reports': typeof ManagerReportsRoute
+  '/manager/staff': typeof ManagerStaffRoute
+  '/staff/check-in': typeof StaffCheckInRoute
+  '/staff/classes': typeof StaffClassesRoute
+  '/staff/members': typeof StaffMembersRoute
+  '/trainer/clients': typeof TrainerClientsRoute
+  '/trainer/programs': typeof TrainerProgramsRoute
+  '/trainer/schedule': typeof TrainerScheduleRoute
+  '/admin/': typeof AdminIndexRoute
+  '/customer/': typeof CustomerIndexRoute
   '/guest/': typeof GuestIndexRoute
+  '/manager/': typeof ManagerIndexRoute
+  '/staff/': typeof StaffIndexRoute
+  '/trainer/': typeof TrainerIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/guest' | '/guest/classes' | '/guest/pricing' | '/guest/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/customer'
+    | '/guest'
+    | '/manager'
+    | '/staff'
+    | '/trainer'
+    | '/admin/branches'
+    | '/admin/roles'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/customer/classes'
+    | '/customer/membership'
+    | '/customer/profile'
+    | '/guest/classes'
+    | '/guest/pricing'
+    | '/manager/memberships'
+    | '/manager/reports'
+    | '/manager/staff'
+    | '/staff/check-in'
+    | '/staff/classes'
+    | '/staff/members'
+    | '/trainer/clients'
+    | '/trainer/programs'
+    | '/trainer/schedule'
+    | '/admin/'
+    | '/customer/'
+    | '/guest/'
+    | '/manager/'
+    | '/staff/'
+    | '/trainer/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/guest/classes' | '/guest/pricing' | '/guest'
+  to:
+    | '/'
+    | '/admin/branches'
+    | '/admin/roles'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/customer/classes'
+    | '/customer/membership'
+    | '/customer/profile'
+    | '/guest/classes'
+    | '/guest/pricing'
+    | '/manager/memberships'
+    | '/manager/reports'
+    | '/manager/staff'
+    | '/staff/check-in'
+    | '/staff/classes'
+    | '/staff/members'
+    | '/trainer/clients'
+    | '/trainer/programs'
+    | '/trainer/schedule'
+    | '/admin'
+    | '/customer'
+    | '/guest'
+    | '/manager'
+    | '/staff'
+    | '/trainer'
   id:
     | '__root__'
     | '/'
+    | '/admin'
+    | '/customer'
     | '/guest'
+    | '/manager'
+    | '/staff'
+    | '/trainer'
+    | '/admin/branches'
+    | '/admin/roles'
+    | '/admin/settings'
+    | '/admin/users'
+    | '/customer/classes'
+    | '/customer/membership'
+    | '/customer/profile'
     | '/guest/classes'
     | '/guest/pricing'
+    | '/manager/memberships'
+    | '/manager/reports'
+    | '/manager/staff'
+    | '/staff/check-in'
+    | '/staff/classes'
+    | '/staff/members'
+    | '/trainer/clients'
+    | '/trainer/programs'
+    | '/trainer/schedule'
+    | '/admin/'
+    | '/customer/'
     | '/guest/'
+    | '/manager/'
+    | '/staff/'
+    | '/trainer/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
+  CustomerRoute: typeof CustomerRouteWithChildren
   GuestRoute: typeof GuestRouteWithChildren
+  ManagerRoute: typeof ManagerRouteWithChildren
+  StaffRoute: typeof StaffRouteWithChildren
+  TrainerRoute: typeof TrainerRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -90,12 +406,110 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/customer': {
+      id: '/customer'
+      path: '/customer'
+      fullPath: '/customer'
+      preLoaderRoute: typeof CustomerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guest': {
       id: '/guest'
       path: '/guest'
       fullPath: '/guest'
       preLoaderRoute: typeof GuestRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/manager': {
+      id: '/manager'
+      path: '/manager'
+      fullPath: '/manager'
+      preLoaderRoute: typeof ManagerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/staff': {
+      id: '/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof StaffRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trainer': {
+      id: '/trainer'
+      path: '/trainer'
+      fullPath: '/trainer'
+      preLoaderRoute: typeof TrainerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/branches': {
+      id: '/admin/branches'
+      path: '/branches'
+      fullPath: '/admin/branches'
+      preLoaderRoute: typeof AdminBranchesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/roles': {
+      id: '/admin/roles'
+      path: '/roles'
+      fullPath: '/admin/roles'
+      preLoaderRoute: typeof AdminRolesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/customer/': {
+      id: '/customer/'
+      path: '/'
+      fullPath: '/customer/'
+      preLoaderRoute: typeof CustomerIndexRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/classes': {
+      id: '/customer/classes'
+      path: '/classes'
+      fullPath: '/customer/classes'
+      preLoaderRoute: typeof CustomerClassesRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/membership': {
+      id: '/customer/membership'
+      path: '/membership'
+      fullPath: '/customer/membership'
+      preLoaderRoute: typeof CustomerMembershipRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/profile': {
+      id: '/customer/profile'
+      path: '/profile'
+      fullPath: '/customer/profile'
+      preLoaderRoute: typeof CustomerProfileRouteImport
+      parentRoute: typeof CustomerRoute
     }
     '/guest/': {
       id: '/guest/'
@@ -118,8 +532,128 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GuestPricingRouteImport
       parentRoute: typeof GuestRoute
     }
+    '/manager/': {
+      id: '/manager/'
+      path: '/'
+      fullPath: '/manager/'
+      preLoaderRoute: typeof ManagerIndexRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/memberships': {
+      id: '/manager/memberships'
+      path: '/memberships'
+      fullPath: '/manager/memberships'
+      preLoaderRoute: typeof ManagerMembershipsRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/reports': {
+      id: '/manager/reports'
+      path: '/reports'
+      fullPath: '/manager/reports'
+      preLoaderRoute: typeof ManagerReportsRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/manager/staff': {
+      id: '/manager/staff'
+      path: '/staff'
+      fullPath: '/manager/staff'
+      preLoaderRoute: typeof ManagerStaffRouteImport
+      parentRoute: typeof ManagerRoute
+    }
+    '/staff/': {
+      id: '/staff/'
+      path: '/'
+      fullPath: '/staff/'
+      preLoaderRoute: typeof StaffIndexRouteImport
+      parentRoute: typeof StaffRoute
+    }
+    '/staff/check-in': {
+      id: '/staff/check-in'
+      path: '/check-in'
+      fullPath: '/staff/check-in'
+      preLoaderRoute: typeof StaffCheckInRouteImport
+      parentRoute: typeof StaffRoute
+    }
+    '/staff/classes': {
+      id: '/staff/classes'
+      path: '/classes'
+      fullPath: '/staff/classes'
+      preLoaderRoute: typeof StaffClassesRouteImport
+      parentRoute: typeof StaffRoute
+    }
+    '/staff/members': {
+      id: '/staff/members'
+      path: '/members'
+      fullPath: '/staff/members'
+      preLoaderRoute: typeof StaffMembersRouteImport
+      parentRoute: typeof StaffRoute
+    }
+    '/trainer/': {
+      id: '/trainer/'
+      path: '/'
+      fullPath: '/trainer/'
+      preLoaderRoute: typeof TrainerIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/clients': {
+      id: '/trainer/clients'
+      path: '/clients'
+      fullPath: '/trainer/clients'
+      preLoaderRoute: typeof TrainerClientsRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/programs': {
+      id: '/trainer/programs'
+      path: '/programs'
+      fullPath: '/trainer/programs'
+      preLoaderRoute: typeof TrainerProgramsRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/schedule': {
+      id: '/trainer/schedule'
+      path: '/schedule'
+      fullPath: '/trainer/schedule'
+      preLoaderRoute: typeof TrainerScheduleRouteImport
+      parentRoute: typeof TrainerRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminBranchesRoute: typeof AdminBranchesRoute
+  AdminRolesRoute: typeof AdminRolesRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminBranchesRoute: AdminBranchesRoute,
+  AdminRolesRoute: AdminRolesRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface CustomerRouteChildren {
+  CustomerClassesRoute: typeof CustomerClassesRoute
+  CustomerMembershipRoute: typeof CustomerMembershipRoute
+  CustomerProfileRoute: typeof CustomerProfileRoute
+  CustomerIndexRoute: typeof CustomerIndexRoute
+}
+
+const CustomerRouteChildren: CustomerRouteChildren = {
+  CustomerClassesRoute: CustomerClassesRoute,
+  CustomerMembershipRoute: CustomerMembershipRoute,
+  CustomerProfileRoute: CustomerProfileRoute,
+  CustomerIndexRoute: CustomerIndexRoute,
+}
+
+const CustomerRouteWithChildren = CustomerRoute._addFileChildren(
+  CustomerRouteChildren,
+)
 
 interface GuestRouteChildren {
   GuestClassesRoute: typeof GuestClassesRoute
@@ -135,9 +669,64 @@ const GuestRouteChildren: GuestRouteChildren = {
 
 const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
 
+interface ManagerRouteChildren {
+  ManagerMembershipsRoute: typeof ManagerMembershipsRoute
+  ManagerReportsRoute: typeof ManagerReportsRoute
+  ManagerStaffRoute: typeof ManagerStaffRoute
+  ManagerIndexRoute: typeof ManagerIndexRoute
+}
+
+const ManagerRouteChildren: ManagerRouteChildren = {
+  ManagerMembershipsRoute: ManagerMembershipsRoute,
+  ManagerReportsRoute: ManagerReportsRoute,
+  ManagerStaffRoute: ManagerStaffRoute,
+  ManagerIndexRoute: ManagerIndexRoute,
+}
+
+const ManagerRouteWithChildren =
+  ManagerRoute._addFileChildren(ManagerRouteChildren)
+
+interface StaffRouteChildren {
+  StaffCheckInRoute: typeof StaffCheckInRoute
+  StaffClassesRoute: typeof StaffClassesRoute
+  StaffMembersRoute: typeof StaffMembersRoute
+  StaffIndexRoute: typeof StaffIndexRoute
+}
+
+const StaffRouteChildren: StaffRouteChildren = {
+  StaffCheckInRoute: StaffCheckInRoute,
+  StaffClassesRoute: StaffClassesRoute,
+  StaffMembersRoute: StaffMembersRoute,
+  StaffIndexRoute: StaffIndexRoute,
+}
+
+const StaffRouteWithChildren = StaffRoute._addFileChildren(StaffRouteChildren)
+
+interface TrainerRouteChildren {
+  TrainerClientsRoute: typeof TrainerClientsRoute
+  TrainerProgramsRoute: typeof TrainerProgramsRoute
+  TrainerScheduleRoute: typeof TrainerScheduleRoute
+  TrainerIndexRoute: typeof TrainerIndexRoute
+}
+
+const TrainerRouteChildren: TrainerRouteChildren = {
+  TrainerClientsRoute: TrainerClientsRoute,
+  TrainerProgramsRoute: TrainerProgramsRoute,
+  TrainerScheduleRoute: TrainerScheduleRoute,
+  TrainerIndexRoute: TrainerIndexRoute,
+}
+
+const TrainerRouteWithChildren =
+  TrainerRoute._addFileChildren(TrainerRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
+  CustomerRoute: CustomerRouteWithChildren,
   GuestRoute: GuestRouteWithChildren,
+  ManagerRoute: ManagerRouteWithChildren,
+  StaffRoute: StaffRouteWithChildren,
+  TrainerRoute: TrainerRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
