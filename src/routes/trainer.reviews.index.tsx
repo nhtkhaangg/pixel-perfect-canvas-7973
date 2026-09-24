@@ -9,7 +9,7 @@ import { Avatar, Stars } from "@/components/public/cards";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Route = createFileRoute("/trainer/reviews/")({
-  head: () => seo("My reviews", "Client reviews of your coaching and your replies."),
+  head: () => seo("Đánh giá của tôi", "Đánh giá của hội viên về hoạt động huấn luyện và các phản hồi của bạn."),
   component: Reviews,
 });
 
@@ -20,17 +20,17 @@ function Reviews() {
   const avg = list.reduce((s, r) => s + r.rating, 0) / list.length;
   return (
     <>
-      <PageHeader title="My reviews" description="Replying publicly builds trust with future clients." />
+      <PageHeader title="Đánh giá của tôi" description="Phản hồi công khai giúp xây dựng lòng tin với hội viên tương lai." />
       <div className="grid gap-4 sm:grid-cols-3">
-        <StatCard label="Average rating" value={avg.toFixed(2)} />
-        <StatCard label="Reviews" value={list.length} />
-        <StatCard label="Awaiting reply" value={list.filter((r) => !r.reply).length} />
+        <StatCard label="Đánh giá trung bình" value={avg.toFixed(2)} />
+        <StatCard label="Số đánh giá" value={list.length} />
+        <StatCard label="Chờ phản hồi" value={list.filter((r) => !r.reply).length} />
       </div>
-      <Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="all">All</TabsTrigger><TabsTrigger value="unanswered">Unanswered</TabsTrigger><TabsTrigger value="replied">Replied</TabsTrigger></TabsList></Tabs>
+      <Tabs value={tab} onValueChange={setTab}><TabsList><TabsTrigger value="all">Tất cả</TabsTrigger><TabsTrigger value="unanswered">Chưa phản hồi</TabsTrigger><TabsTrigger value="replied">Đã phản hồi</TabsTrigger></TabsList></Tabs>
       <div className="grid gap-4 md:grid-cols-2">
         {shown.map((r) => (
           <Link key={r.id} to="/trainer/reviews/$id" params={{ id: r.id }} className="rounded-lg border border-border bg-card p-5 transition-colors hover:border-primary">
-            <div className="flex items-center justify-between"><Stars rating={r.rating} /><StatusBadge status={r.reply ? "completed" : "pending"} label={r.reply ? "Replied" : "Needs reply"} /></div>
+            <div className="flex items-center justify-between"><Stars rating={r.rating} /><StatusBadge status={r.reply ? "completed" : "pending"} label={r.reply ? "Đã phản hồi" : "Cần phản hồi"} /></div>
             <p className="mt-3 font-semibold">{r.title}</p>
             <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">{r.body}</p>
             <div className="mt-4 flex items-center gap-2 text-sm"><Avatar name={r.client} /><div><p className="font-medium">{r.client}</p><p className="text-xs text-muted-foreground">{r.date}</p></div></div>

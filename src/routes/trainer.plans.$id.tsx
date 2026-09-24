@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export const Route = createFileRoute("/trainer/plans/$id")({
-  head: () => seo("Workout plan", "Plan detail, milestones and version history."),
+  head: () => seo("Giáo án tập luyện", "Chi tiết giáo án, cột mốc và lịch sử phiên bản."),
   component: PlanDetail,
 });
 
@@ -32,63 +32,63 @@ function PlanDetail() {
   const p = all.find((x) => x.id === id);
   const [review, setReview] = useState<Milestone | null>(null);
   const [note, setNote] = useState("");
-  if (!p) return <EmptyState title="Plan not found" action={<Button asChild><Link to="/trainer/plans">Back</Link></Button>} />;
+  if (!p) return <EmptyState title="Không tìm thấy giáo án" action={<Button asChild><Link to="/trainer/plans">Quay lại</Link></Button>} />;
 
   function publish() {
     all.filter((x) => x.clientId === p!.clientId && x.status === "ACTIVE" && x.id !== p!.id).forEach((x) => planStore.upsert({ ...x, status: "ARCHIVED" }));
     const version = p!.status === "DRAFT" ? p!.version : p!.version + 1;
-    planStore.upsert({ ...p!, status: "ACTIVE", version, updatedAt: "2026-09-24", versions: [{ version, date: "2026-09-24", author: "Maya Nguyen", change: "Published & activated", status: "ACTIVE" as const }, ...p!.versions.filter((v) => v.version !== version).map((v) => ({ ...v, status: "ARCHIVED" as const }))] });
-    toast.success(`Plan v${version} published & activated`, { description: `${p!.client} can now see it in their roadmap.` });
+    planStore.upsert({ ...p!, status: "ACTIVE", version, updatedAt: "2026-09-24", versions: [{ version, date: "2026-09-24", author: "Maya Nguyen", change: "Đã xuất bản & kích hoạt", status: "ACTIVE" as const }, ...p!.versions.filter((v) => v.version !== version).map((v) => ({ ...v, status: "ARCHIVED" as const }))] });
+    toast.success(`Đã xuất bản & kích hoạt giáo án v${version}`, { description: `${p!.client} giờ có thể xem trong lộ trình của mình.` });
   }
   function saveReview(status: Milestone["status"]) {
     planStore.upsert({ ...p!, milestones: p!.milestones.map((m) => (m.week === review!.week ? { ...m, status, review: note } : m)) });
-    setReview(null); toast.success("Milestone reviewed");
+    setReview(null); toast.success("Đã đánh giá cột mốc");
   }
 
   return (
     <>
-      <Link to="/trainer/plans" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4" /> Workout plans</Link>
+      <Link to="/trainer/plans" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4" /> Giáo án tập luyện</Link>
       <PageHeader
         title={p.title}
-        description={`${p.client} · ${p.goal} · ${p.durationWeeks} weeks`}
+        description={`${p.client} · ${p.goal} · ${p.durationWeeks} tuần`}
         actions={
           <>
             <StatusBadge status={p.status === "ARCHIVED" ? "expired" : toStatus(p.status)} label={`${p.status} · v${p.version}`} />
-            {p.isAiGenerated ? <Badge variant="secondary"><Sparkles className="size-3" /> AI-generated</Badge> : null}
+            {p.isAiGenerated ? <Badge variant="secondary"><Sparkles className="size-3" /> Tạo bởi AI</Badge> : null}
             {p.status !== "ACTIVE" ? (
               <AlertDialog>
-                <AlertDialogTrigger asChild><Button><Rocket className="size-4" /> Publish & activate</Button></AlertDialogTrigger>
+                <AlertDialogTrigger asChild><Button><Rocket className="size-4" /> Xuất bản & kích hoạt</Button></AlertDialogTrigger>
                 <AlertDialogContent>
-                  <AlertDialogHeader><AlertDialogTitle>Publish this plan?</AlertDialogTitle><AlertDialogDescription>{p.client}'s current active plan will be archived and this one becomes ACTIVE immediately.</AlertDialogDescription></AlertDialogHeader>
-                  <AlertDialogFooter><AlertDialogCancel>Cancel</AlertDialogCancel><AlertDialogAction onClick={publish}>Publish</AlertDialogAction></AlertDialogFooter>
+                  <AlertDialogHeader><AlertDialogTitle>Xuất bản giáo án này?</AlertDialogTitle><AlertDialogDescription>Giáo án đang hoạt động hiện tại của {p.client} sẽ được lưu trữ và giáo án này trở thành ACTIVE ngay lập tức.</AlertDialogDescription></AlertDialogHeader>
+                  <AlertDialogFooter><AlertDialogCancel>Hủy</AlertDialogCancel><AlertDialogAction onClick={publish}>Xuất bản</AlertDialogAction></AlertDialogFooter>
                 </AlertDialogContent>
               </AlertDialog>
-            ) : <Button variant="outline" onClick={() => { planStore.upsert({ ...p, status: "DRAFT", version: p.version + 1, versions: [{ version: p.version + 1, date: "2026-09-24", author: "Maya Nguyen", change: "New draft from v" + p.version, status: "DRAFT" }, ...p.versions] }); toast("New draft version created"); }}>Create new version</Button>}
+            ) : <Button variant="outline" onClick={() => { planStore.upsert({ ...p, status: "DRAFT", version: p.version + 1, versions: [{ version: p.version + 1, date: "2026-09-24", author: "Maya Nguyen", change: "Bản nháp mới từ v" + p.version, status: "DRAFT" }, ...p.versions] }); toast("Đã tạo phiên bản nháp mới"); }}>Tạo phiên bản mới</Button>}
           </>
         }
       />
       <Tabs defaultValue="plan">
-        <TabsList><TabsTrigger value="plan">Plan</TabsTrigger><TabsTrigger value="milestones">Milestones</TabsTrigger><TabsTrigger value="history">Version history</TabsTrigger></TabsList>
+        <TabsList><TabsTrigger value="plan">Giáo án</TabsTrigger><TabsTrigger value="milestones">Cột mốc</TabsTrigger><TabsTrigger value="history">Lịch sử phiên bản</TabsTrigger></TabsList>
         <TabsContent value="plan" className="mt-4 grid gap-4 md:grid-cols-2">
           {p.weeks.map((w) => (
             <div key={w.week} className="rounded-lg border border-border bg-card p-5">
-              <p className="text-xs text-muted-foreground">From week {w.week}</p>
+              <p className="text-xs text-muted-foreground">Từ tuần {w.week}</p>
               <p className="font-semibold">{w.focus}</p>
               <ul className="mt-3 flex flex-wrap gap-2">{w.sessions.map((s) => <li key={s} className="rounded-md bg-muted px-2.5 py-1 text-sm">{s}</li>)}</ul>
             </div>
           ))}
         </TabsContent>
         <TabsContent value="milestones" className="mt-4">
-          <Panel title="Milestone reviews">
+          <Panel title="Đánh giá cột mốc">
             <ul className="divide-y divide-border">
               {p.milestones.map((m) => {
                 const Icon = m.status === "COMPLETED" ? CheckCircle2 : m.status === "MISSED" ? XCircle : Circle;
                 return (
                   <li key={m.week} className="flex flex-wrap items-start gap-3 py-4 first:pt-0 last:pb-0">
                     <Icon className={`mt-0.5 size-5 ${m.status === "COMPLETED" ? "text-primary" : m.status === "MISSED" ? "text-destructive" : "text-muted-foreground"}`} />
-                    <div className="flex-1"><p className="font-medium">Week {m.week}: {m.title}</p><p className="text-sm text-muted-foreground">Target: {m.target}</p>{m.review ? <p className="mt-1 text-sm">Review: {m.review}</p> : null}</div>
+                    <div className="flex-1"><p className="font-medium">Tuần {m.week}: {m.title}</p><p className="text-sm text-muted-foreground">Mục tiêu: {m.target}</p>{m.review ? <p className="mt-1 text-sm">Nhận xét: {m.review}</p> : null}</div>
                     <StatusBadge status={m.status === "MISSED" ? "missed" : toStatus(m.status)} label={m.status} />
-                    <Button size="sm" variant="outline" onClick={() => { setReview(m); setNote(m.review ?? ""); }}>Review</Button>
+                    <Button size="sm" variant="outline" onClick={() => { setReview(m); setNote(m.review ?? ""); }}>Đánh giá</Button>
                   </li>
                 );
               })}
@@ -102,14 +102,14 @@ function PlanDetail() {
                 <span className="flex size-9 items-center justify-center rounded-md bg-muted"><History className="size-4" /></span>
                 <div className="flex-1"><p className="font-medium">v{v.version} · {v.change}</p><p className="text-xs text-muted-foreground">{v.date} · {v.author}</p></div>
                 <StatusBadge status={v.status === "ARCHIVED" ? "expired" : toStatus(v.status)} label={v.status} />
-                {v.status === "ARCHIVED" ? <Button size="sm" variant="ghost" onClick={() => toast(`Restored v${v.version} as a new draft`)}>Restore</Button> : null}
+                {v.status === "ARCHIVED" ? <Button size="sm" variant="ghost" onClick={() => toast(`Đã khôi phục v${v.version} thành bản nháp mới`)}>Khôi phục</Button> : null}
               </li>
             ))}
           </ol>
         </TabsContent>
       </Tabs>
-      <FormModal open={!!review} onOpenChange={(o) => !o && setReview(null)} title={review ? `Review: ${review.title}` : ""} description={review ? `Week ${review.week} · target ${review.target}` : ""} footer={<><Button variant="outline" onClick={() => saveReview("MISSED")}>Mark missed</Button><Button onClick={() => saveReview("COMPLETED")}>Mark achieved</Button></>}>
-        <Textarea rows={4} value={note} onChange={(e) => setNote(e.target.value)} placeholder="What happened? Any adjustments to the plan?" />
+      <FormModal open={!!review} onOpenChange={(o) => !o && setReview(null)} title={review ? `Đánh giá: ${review.title}` : ""} description={review ? `Tuần ${review.week} · mục tiêu ${review.target}` : ""} footer={<><Button variant="outline" onClick={() => saveReview("MISSED")}>Đánh dấu chưa đạt</Button><Button onClick={() => saveReview("COMPLETED")}>Đánh dấu đã đạt</Button></>}>
+        <Textarea rows={4} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Đã diễn ra như thế nào? Có điều chỉnh gì cho giáo án không?" />
       </FormModal>
     </>
   );

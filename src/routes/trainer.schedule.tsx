@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/trainer/schedule")({
-  head: () => seo("Booking calendar", "Weekly calendar of client bookings."),
+  head: () => seo("Lịch đặt buổi tập", "Lịch tuần các buổi tập của hội viên."),
   component: Calendar,
 });
 
@@ -27,18 +27,18 @@ function Calendar() {
 
   return (
     <>
-      <PageHeader title="Booking calendar" description="Client sessions by week. Sundays are your weekly day off." actions={<><Button variant="outline" asChild><Link to="/trainer/days-off">Days off</Link></Button><Button variant="outline" asChild><Link to="/trainer/reschedule">Reschedules</Link></Button></>} />
+      <PageHeader title="Lịch đặt buổi tập" description="Các buổi tập của hội viên theo tuần. Chủ nhật là ngày nghỉ cố định của bạn." actions={<><Button variant="outline" asChild><Link to="/trainer/days-off">Ngày nghỉ</Link></Button><Button variant="outline" asChild><Link to="/trainer/reschedule">Đổi lịch</Link></Button></>} />
       <div className="overflow-x-auto rounded-lg border border-border bg-card">
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <Button variant="ghost" size="icon" onClick={() => shift(-7)}><ChevronLeft className="size-4" /></Button>
-          <p className="font-semibold">{days[0]!.toLocaleDateString("en-US", { month: "short", day: "numeric" })} – {days[6]!.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</p>
+          <p className="font-semibold">{days[0]!.toLocaleDateString("vi-VN", { month: "short", day: "numeric" })} – {days[6]!.toLocaleDateString("vi-VN", { month: "short", day: "numeric", year: "numeric" })}</p>
           <Button variant="ghost" size="icon" onClick={() => shift(7)}><ChevronRight className="size-4" /></Button>
         </div>
         <div className="grid min-w-[760px] grid-cols-[56px_repeat(7,1fr)]">
           <div />
           {days.map((d) => {
             const off = d.getDay() === 0 || daysOff.some((o) => o.date === iso(d) && o.type === "Full day");
-            return <div key={d.toISOString()} className={cn("border-b border-l border-border py-2 text-center text-xs", off && "bg-muted/60")}><p className="text-muted-foreground">{d.toLocaleDateString("en-US", { weekday: "short" })}</p><p className={cn("font-semibold", iso(d) === "2026-09-24" && "text-primary")}>{d.getDate()}</p>{off ? <p className="text-[10px] text-muted-foreground">Day off</p> : null}</div>;
+            return <div key={d.toISOString()} className={cn("border-b border-l border-border py-2 text-center text-xs", off && "bg-muted/60")}><p className="text-muted-foreground">{d.toLocaleDateString("vi-VN", { weekday: "short" })}</p><p className={cn("font-semibold", iso(d) === "2026-09-24" && "text-primary")}>{d.getDate()}</p>{off ? <p className="text-[10px] text-muted-foreground">Ngày nghỉ</p> : null}</div>;
           })}
           {hours.map((h) => (
             <div key={h} className="contents">
@@ -62,8 +62,8 @@ function Calendar() {
       </div>
       <FormModal open={!!sel} onOpenChange={(o) => !o && setSel(null)} title={sel ? `${sel.client} — ${sel.focus}` : ""} description={sel ? `${sel.date} · ${sel.start}–${sel.end}` : ""} footer={sel && (
         <>
-          <Button variant="outline" asChild><Link to="/trainer/customers/$id" params={{ id: sel.clientId }}>Client profile</Link></Button>
-          {sel.status === "AWAITING" ? <Button asChild><Link to="/trainer/verify">Verify</Link></Button> : sel.status !== "COMPLETED" ? <Button asChild><Link to="/trainer/live">Start session</Link></Button> : null}
+          <Button variant="outline" asChild><Link to="/trainer/customers/$id" params={{ id: sel.clientId }}>Hồ sơ hội viên</Link></Button>
+          {sel.status === "AWAITING" ? <Button asChild><Link to="/trainer/verify">Xác nhận</Link></Button> : sel.status !== "COMPLETED" ? <Button asChild><Link to="/trainer/live">Bắt đầu buổi tập</Link></Button> : null}
         </>
       )}>
         {sel ? <StatusBadge status={toStatus(sel.status)} label={sel.status.replace("_", " ")} /> : null}
