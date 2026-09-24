@@ -126,7 +126,7 @@ export const opsPages: Record<string, OpsConfig> = {
         ["Thanh toán VNPAY", "Thanh toán", "Bật"], ["Thanh toán PayOS", "Thanh toán", "Bật"], ["Thời hạn hoàn tiền", "Thanh toán", "7 ngày"],
         ["Nhắc gói sắp hết hạn", "Thông báo", "Trước 7 ngày"], ["Email xác nhận đặt lịch", "Thông báo", "Bật"], ["Giờ mở cửa ngày thường", "Vận hành", "05:00–22:00"],
         ["Giờ mở cửa cuối tuần", "Vận hành", "06:00–21:00"], ["Giới hạn đổi lịch PT", "Vận hành", "2 lần/tháng"], ["Gợi ý AI", "Tích hợp", "Bật"], ["Sao lưu tự động", "Hệ thống", "Hằng ngày 02:00"],
-      ].map(([name, group, value], i) => ({ id: `s${i}`, name, group, value, updated: date(i * 4), status: "active" })),
+      ].map(([name, group, value], i) => ({ id: `s${i}`, name: name!, group: group!, value: value!, updated: date(i * 4), status: "active" })),
       actions: ["Chỉnh sửa"],
     },
   },
@@ -143,7 +143,7 @@ export const opsPages: Record<string, OpsConfig> = {
       { title: "Doanh thu 6 tháng (triệu VNĐ)", type: "bar", xKey: "m", series: [{ key: "membership", label: "Gói tập" }, { key: "pt", label: "Gói PT" }],
         data: months.map((m, i) => ({ m, membership: 260 + i * 14, pt: 150 + ((i * 23) % 60) })) },
       { title: "Lượt check-in theo ngày", xKey: "d", series: [{ key: "v", label: "Check-in" }],
-        data: days.map((d, i) => ({ d, v: [290, 305, 322, 298, 340, 410, 260][i] })) },
+        data: days.map((d, i) => ({ d, v: [290, 305, 322, 298, 340, 410, 260][i]! })) },
     ],
     table: {
       title: "Hiệu suất huấn luyện viên",
@@ -238,7 +238,7 @@ export const opsPages: Record<string, OpsConfig> = {
     ],
     charts: [
       { title: "Check-in theo giờ", type: "bar", xKey: "h", series: [{ key: "v", label: "Lượt" }],
-        data: ["05h", "07h", "09h", "11h", "13h", "15h", "17h", "19h", "21h"].map((h, i) => ({ h, v: [42, 58, 24, 16, 12, 20, 64, 72, 10][i] })) },
+        data: ["05h", "07h", "09h", "11h", "13h", "15h", "17h", "19h", "21h"].map((h, i) => ({ h, v: [42, 58, 24, 16, 12, 20, 64, 72, 10][i]! })) },
     ],
     table: {
       title: "Việc cần làm trong ca",
@@ -306,7 +306,7 @@ export const opsPages: Record<string, OpsConfig> = {
     ],
     charts: [
       { title: "Học viên tham gia theo ngày", type: "bar", xKey: "d", series: [{ key: "v", label: "Học viên" }],
-        data: days.map((d, i) => ({ d, v: [96, 110, 104, 118, 122, 140, 88][i] })) },
+        data: days.map((d, i) => ({ d, v: [96, 110, 104, 118, 122, 140, 88][i]! })) },
     ],
     table: {
       title: "Lịch lớp tuần này",
