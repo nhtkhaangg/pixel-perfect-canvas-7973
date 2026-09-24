@@ -25,7 +25,7 @@ import { Route as PublicRegisterRouteImport } from './routes/_public.register'
 import { Route as PublicRegisterTrainerRouteImport } from './routes/_public.register-trainer'
 import { Route as PublicReviewsRouteImport } from './routes/_public.reviews'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
-import { Route as AdminBranchesRouteImport } from './routes/admin.branches'
+import { Route as AdminFacilityRouteImport } from './routes/admin.facility'
 import { Route as AdminRolesRouteImport } from './routes/admin.roles'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
@@ -174,9 +174,9 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
-const AdminBranchesRoute = AdminBranchesRouteImport.update({
-  id: '/branches',
-  path: '/branches',
+const AdminFacilityRoute = AdminFacilityRouteImport.update({
+  id: '/facility',
+  path: '/facility',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminRolesRoute = AdminRolesRouteImport.update({
@@ -538,7 +538,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof PublicRegisterRoute
   '/register-trainer': typeof PublicRegisterTrainerRoute
   '/reviews': typeof PublicReviewsRoute
-  '/admin/branches': typeof AdminBranchesRoute
+  '/admin/facility': typeof AdminFacilityRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -618,7 +618,7 @@ export interface FileRoutesByTo {
   '/register': typeof PublicRegisterRoute
   '/register-trainer': typeof PublicRegisterTrainerRoute
   '/reviews': typeof PublicReviewsRoute
-  '/admin/branches': typeof AdminBranchesRoute
+  '/admin/facility': typeof AdminFacilityRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -706,7 +706,7 @@ export interface FileRoutesById {
   '/_public/register': typeof PublicRegisterRoute
   '/_public/register-trainer': typeof PublicRegisterTrainerRoute
   '/_public/reviews': typeof PublicReviewsRoute
-  '/admin/branches': typeof AdminBranchesRoute
+  '/admin/facility': typeof AdminFacilityRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
@@ -795,7 +795,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/register-trainer'
     | '/reviews'
-    | '/admin/branches'
+    | '/admin/facility'
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
@@ -875,7 +875,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/register-trainer'
     | '/reviews'
-    | '/admin/branches'
+    | '/admin/facility'
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
@@ -962,7 +962,7 @@ export interface FileRouteTypes {
     | '/_public/register'
     | '/_public/register-trainer'
     | '/_public/reviews'
-    | '/admin/branches'
+    | '/admin/facility'
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
@@ -1160,11 +1160,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
-    '/admin/branches': {
-      id: '/admin/branches'
-      path: '/branches'
-      fullPath: '/admin/branches'
-      preLoaderRoute: typeof AdminBranchesRouteImport
+    '/admin/facility': {
+      id: '/admin/facility'
+      path: '/facility'
+      fullPath: '/admin/facility'
+      preLoaderRoute: typeof AdminFacilityRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/roles': {
@@ -1684,7 +1684,7 @@ const PublicRouteWithChildren =
   PublicRoute._addFileChildren(PublicRouteChildren)
 
 interface AdminRouteChildren {
-  AdminBranchesRoute: typeof AdminBranchesRoute
+  AdminFacilityRoute: typeof AdminFacilityRoute
   AdminRolesRoute: typeof AdminRolesRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
@@ -1692,7 +1692,7 @@ interface AdminRouteChildren {
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
-  AdminBranchesRoute: AdminBranchesRoute,
+  AdminFacilityRoute: AdminFacilityRoute,
   AdminRolesRoute: AdminRolesRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
