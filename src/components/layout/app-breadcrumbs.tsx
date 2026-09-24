@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 const segmentLabels: Record<string, string> = {
   admin: "Quản trị viên", manager: "Quản lý", staff: "Nhân viên", trainer: "Huấn luyện viên",
   customer: "Hội viên", guest: "Khách", users: "Người dùng", roles: "Phân quyền", settings: "Cài đặt",
-  branches: "Cơ sở vật chất", memberships: "Gói tập", reports: "Báo cáo", members: "Hội viên",
+  facility: "Cơ sở vật chất", memberships: "Gói tập", reports: "Báo cáo", members: "Hội viên",
   classes: "Lớp tập", "check-in": "Check-in", "check-in-screen": "Màn hình check-in",
   profile: "Hồ sơ", "change-password": "Đổi mật khẩu", assessment: "Đánh giá ban đầu",
   availability: "Lịch rảnh", metrics: "Chỉ số cơ thể", review: "Đánh giá phòng gym",

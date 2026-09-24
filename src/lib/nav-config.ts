@@ -142,7 +142,7 @@ export const roleAreas: RoleArea[] = [
     items: [
       { label: "Tổng quan", to: "/admin", icon: LayoutDashboard },
       { label: "Người dùng", to: "/admin/users", icon: Users },
-      { label: "Cơ sở vật chất", to: "/admin/branches", icon: Store },
+      { label: "Cơ sở vật chất", to: "/admin/facility", icon: Store },
       { label: "Vai trò", to: "/admin/roles", icon: Shield },
       { label: "Cài đặt", to: "/admin/settings", icon: Settings },
     ],
