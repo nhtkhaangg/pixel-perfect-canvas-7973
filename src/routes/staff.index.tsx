@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/staff/")({
   head: () => ({
     meta: [
-      { title: "Dashboard — Staff — GymFit" },
-      { name: "description", content: "Front-desk overview: check-ins, walk-ins and open tasks." },
-      { property: "og:title", content: "Dashboard — Staff — GymFit" },
-      { property: "og:description", content: "Front-desk overview: check-ins, walk-ins and open tasks." },
+      { title: "Tổng quan — Nhân viên — GymFit" },
+      { name: "description", content: "Tổng quan lễ tân: check-in, khách vãng lai và việc cần xử lý." },
+      { property: "og:title", content: "Tổng quan — Nhân viên — GymFit" },
+      { property: "og:description", content: "Tổng quan lễ tân: check-in, khách vãng lai và việc cần xử lý." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/staff/")({
 });
 
 function StaffIndexPage() {
-  return <ScaffoldPage title="Dashboard" description="Front-desk overview: check-ins, walk-ins and open tasks." />;
+  return <ScaffoldPage title="Tổng quan" description="Tổng quan lễ tân: check-in, khách vãng lai và việc cần xử lý." />;
 }

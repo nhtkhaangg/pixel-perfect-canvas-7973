@@ -16,7 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { EmptyState } from "@/components/shared/empty-state";
-import { cn } from "@/lib/utils";
+import { cn, vnDate } from "@/lib/utils";
 
 export type Column<T> = {
   key: string;
@@ -65,13 +65,13 @@ export function DataTable<T>({
   data,
   columns,
   rowKey,
-  searchPlaceholder = "Search...",
+  searchPlaceholder = "Tìm kiếm...",
   filters = [],
   filterValue,
   rowActions = [],
   pageSize = 8,
-  emptyTitle = "No results",
-  emptyDescription = "Try adjusting your search or filters.",
+  emptyTitle = "Không có kết quả",
+  emptyDescription = "Hãy thử thay đổi từ khóa hoặc bộ lọc.",
   toolbar,
 }: Props<T>) {
   const [query, setQuery] = useState("");
@@ -145,7 +145,7 @@ export function DataTable<T>({
                 <SelectValue placeholder={filter.label} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">All {filter.label.toLowerCase()}</SelectItem>
+                <SelectItem value="all">Tất cả {filter.label.toLowerCase()}</SelectItem>
                 {filter.options.map((option) => (
                   <SelectItem key={option.value} value={option.value}>
                     {option.label}
@@ -213,7 +213,7 @@ export function DataTable<T>({
                 >
                   {columns.map((column) => (
                     <td key={column.key} className={cn("px-4 py-3 align-middle", column.className)}>
-                      {column.cell ? column.cell(row) : String(defaultValue(row, column))}
+                      {column.cell ? column.cell(row) : vnDate(String(defaultValue(row, column)))}
                     </td>
                   ))}
                   {rowActions.length > 0 ? (
@@ -222,7 +222,7 @@ export function DataTable<T>({
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" size="icon" className="size-8">
                             <MoreHorizontal className="size-4" />
-                            <span className="sr-only">Row actions</span>
+                            <span className="sr-only">Thao tác</span>
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
@@ -255,11 +255,11 @@ export function DataTable<T>({
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-xs text-muted-foreground">
           {rows.length === 0
-            ? "0 records"
-            : `Showing ${(currentPage - 1) * pageSize + 1}–${Math.min(
+            ? "0 bản ghi"
+            : `Hiển thị ${(currentPage - 1) * pageSize + 1}–${Math.min(
                 currentPage * pageSize,
                 rows.length,
-              )} of ${rows.length}`}
+              )} trên ${rows.length}`}
         </p>
         <div className="flex items-center gap-2">
           <Button
@@ -268,10 +268,10 @@ export function DataTable<T>({
             disabled={currentPage <= 1}
             onClick={() => setPage(currentPage - 1)}
           >
-            Previous
+            Trước
           </Button>
           <span className="text-xs text-muted-foreground">
-            Page {currentPage} of {totalPages}
+            Trang {currentPage}/{totalPages}
           </span>
           <Button
             variant="outline"
@@ -279,7 +279,7 @@ export function DataTable<T>({
             disabled={currentPage >= totalPages}
             onClick={() => setPage(currentPage + 1)}
           >
-            Next
+            Sau
           </Button>
         </div>
       </div>

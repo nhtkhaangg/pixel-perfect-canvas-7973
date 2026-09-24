@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 export const Route = createFileRoute("/_public/packages/")({
   head: () =>
-    seo("Packages & pricing", "Compare GymFit memberships and personal training packages — prices, duration and included sessions."),
+    seo("Gói tập & bảng giá", "So sánh các gói hội viên và huấn luyện cá nhân tại GymFit — giá, thời hạn và số buổi đi kèm."),
   component: PackagesPage,
 });
 
@@ -28,25 +28,25 @@ function PackagesPage() {
   return (
     <>
       <PageHero
-        eyebrow="Packages"
-        title="Memberships and personal training"
-        description="Pick a membership for gym and class access, or a PT package for one-on-one coaching. No joining fee on any plan."
+        eyebrow="Gói tập"
+        title="Hội viên và huấn luyện cá nhân"
+        description="Chọn gói hội viên để ra vào phòng gym và lớp học, hoặc gói PT để được huấn luyện 1-kèm-1. Không phí gia nhập cho bất kỳ gói nào."
       />
       <section className="mx-auto w-full max-w-6xl px-4 py-10 lg:px-6">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <Tabs value={filter} onValueChange={(v) => setFilter(v as Filter)}>
             <TabsList>
-              <TabsTrigger value="ALL">All ({packages.length})</TabsTrigger>
-              <TabsTrigger value="MEMBERSHIP">Membership</TabsTrigger>
-              <TabsTrigger value="PT">Personal training</TabsTrigger>
+              <TabsTrigger value="ALL">Tất cả ({packages.length})</TabsTrigger>
+              <TabsTrigger value="MEMBERSHIP">Hội viên</TabsTrigger>
+              <TabsTrigger value="PT">Huấn luyện cá nhân</TabsTrigger>
             </TabsList>
           </Tabs>
           <Select value={sort} onValueChange={setSort}>
             <SelectTrigger className="w-48"><SelectValue /></SelectTrigger>
             <SelectContent>
-              <SelectItem value="price-asc">Price: low to high</SelectItem>
-              <SelectItem value="price-desc">Price: high to low</SelectItem>
-              <SelectItem value="duration">Shortest duration</SelectItem>
+              <SelectItem value="price-asc">Giá: thấp đến cao</SelectItem>
+              <SelectItem value="price-desc">Giá: cao đến thấp</SelectItem>
+              <SelectItem value="duration">Thời hạn ngắn nhất</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -55,7 +55,7 @@ function PackagesPage() {
             {list.map((p) => <PackageCard key={p.id} pkg={p} />)}
           </div>
         ) : (
-          <EmptyState title="No packages" description="Try another filter." />
+          <EmptyState title="Không có gói tập" description="Hãy thử bộ lọc khác." />
         )}
       </section>
     </>

@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/manager/memberships")({
   head: () => ({
     meta: [
-      { title: "Memberships — Manager — GymFit" },
-      { name: "description", content: "Plans, pricing and membership approvals." },
-      { property: "og:title", content: "Memberships — Manager — GymFit" },
-      { property: "og:description", content: "Plans, pricing and membership approvals." },
+      { title: "Gói hội viên — Quản lý — GymFit" },
+      { name: "description", content: "Gói tập, giá bán và phê duyệt hội viên." },
+      { property: "og:title", content: "Gói hội viên — Quản lý — GymFit" },
+      { property: "og:description", content: "Gói tập, giá bán và phê duyệt hội viên." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/manager/memberships")({
 });
 
 function ManagerMembershipsPage() {
-  return <ScaffoldPage title="Memberships" description="Plans, pricing and membership approvals." />;
+  return <ScaffoldPage title="Gói hội viên" description="Gói tập, giá bán và phê duyệt hội viên." />;
 }

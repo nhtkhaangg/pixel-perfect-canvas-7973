@@ -13,25 +13,25 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export const Route = createFileRoute("/_public/tools/fitness-calculator")({
-  head: () => seo("Fitness calculator — BMI, BMR & TDEE", "Free calculator for body mass index, basal metabolic rate and total daily energy expenditure, with calorie targets."),
+  head: () => seo("Công cụ tính BMI, BMR & TDEE", "Công cụ miễn phí tính chỉ số khối cơ thể, tỷ lệ trao đổi chất cơ bản và tổng năng lượng tiêu hao hàng ngày, kèm mục tiêu calo."),
   component: CalculatorPage,
 });
 
 const activity = [
-  { value: "1.2", label: "Sedentary (little or no exercise)" },
-  { value: "1.375", label: "Light (1–3 days/week)" },
-  { value: "1.55", label: "Moderate (3–5 days/week)" },
-  { value: "1.725", label: "Active (6–7 days/week)" },
-  { value: "1.9", label: "Very active (athlete / physical job)" },
+  { value: "1.2", label: "Ít vận động (gần như không tập)" },
+  { value: "1.375", label: "Nhẹ (1–3 buổi/tuần)" },
+  { value: "1.55", label: "Vừa phải (3–5 buổi/tuần)" },
+  { value: "1.725", label: "Năng động (6–7 buổi/tuần)" },
+  { value: "1.9", label: "Rất năng động (vận động viên / lao động chân tay)" },
 ];
 
 type Result = { bmi: number; bmr: number; tdee: number };
 
 function bmiCategory(bmi: number) {
-  if (bmi < 18.5) return { label: "Underweight", status: "pending" };
-  if (bmi < 25) return { label: "Healthy weight", status: "active" };
-  if (bmi < 30) return { label: "Overweight", status: "pending" };
-  return { label: "Obese", status: "overdue" };
+  if (bmi < 18.5) return { label: "Thiếu cân", status: "pending" };
+  if (bmi < 25) return { label: "Cân nặng khỏe mạnh", status: "active" };
+  if (bmi < 30) return { label: "Thừa cân", status: "pending" };
+  return { label: "Béo phì", status: "overdue" };
 }
 
 function CalculatorPage() {
@@ -47,9 +47,9 @@ function CalculatorPage() {
     e.preventDefault();
     const a = Number(age), h = Number(height), w = Number(weight);
     const errs: Record<string, string> = {};
-    if (!(a >= 15 && a <= 90)) errs["age"] = "Enter an age between 15 and 90";
-    if (!(h >= 120 && h <= 230)) errs["height"] = "Enter height between 120 and 230 cm";
-    if (!(w >= 30 && w <= 250)) errs["weight"] = "Enter weight between 30 and 250 kg";
+    if (!(a >= 15 && a <= 90)) errs["age"] = "Nhập độ tuổi từ 15 đến 90";
+    if (!(h >= 120 && h <= 230)) errs["height"] = "Nhập chiều cao từ 120 đến 230 cm";
+    if (!(w >= 30 && w <= 250)) errs["weight"] = "Nhập cân nặng từ 30 đến 250 kg";
     setErrors(errs);
     if (Object.keys(errs).length) return setResult(null);
     const bmi = w / (h / 100) ** 2;
@@ -61,29 +61,29 @@ function CalculatorPage() {
 
   return (
     <>
-      <PageHero eyebrow="Tools" title="BMI, BMR & TDEE calculator" description="Estimate your body mass index, resting metabolism and daily calorie needs in seconds." />
+      <PageHero eyebrow="Công cụ" title="Công cụ tính BMI, BMR & TDEE" description="Ước tính chỉ số khối cơ thể, tỷ lệ trao đổi chất khi nghỉ và nhu cầu calo hàng ngày chỉ trong vài giây." />
       <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 py-10 lg:grid-cols-[380px_1fr] lg:px-6">
         <form onSubmit={calculate} className="h-fit space-y-5 rounded-lg border border-border bg-card p-6">
           <div className="space-y-1.5">
-            <Label>Sex</Label>
+            <Label>Giới tính</Label>
             <RadioGroup value={sex} onValueChange={setSex} className="flex gap-6">
-              <label className="flex items-center gap-2 text-sm"><RadioGroupItem value="male" /> Male</label>
-              <label className="flex items-center gap-2 text-sm"><RadioGroupItem value="female" /> Female</label>
+              <label className="flex items-center gap-2 text-sm"><RadioGroupItem value="male" /> Nam</label>
+              <label className="flex items-center gap-2 text-sm"><RadioGroupItem value="female" /> Nữ</label>
             </RadioGroup>
           </div>
-          <FormField label="Age" required error={errors["age"]}>
+          <FormField label="Tuổi" required error={errors["age"]}>
             {(p) => <Input {...p} type="number" value={age} onChange={(e) => setAge(e.target.value)} />}
           </FormField>
           <div className="grid grid-cols-2 gap-3">
-            <FormField label="Height (cm)" required error={errors["height"]}>
+            <FormField label="Chiều cao (cm)" required error={errors["height"]}>
               {(p) => <Input {...p} type="number" value={height} onChange={(e) => setHeight(e.target.value)} />}
             </FormField>
-            <FormField label="Weight (kg)" required error={errors["weight"]}>
+            <FormField label="Cân nặng (kg)" required error={errors["weight"]}>
               {(p) => <Input {...p} type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />}
             </FormField>
           </div>
           <div className="space-y-1.5">
-            <Label>Activity level</Label>
+            <Label>Mức độ vận động</Label>
             <Select value={level} onValueChange={setLevel}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -91,8 +91,8 @@ function CalculatorPage() {
               </SelectContent>
             </Select>
           </div>
-          <Button type="submit" className="w-full">Calculate</Button>
-          <p className="text-xs text-muted-foreground">Uses the Mifflin–St Jeor equation. Estimates only — not medical advice.</p>
+          <Button type="submit" className="w-full">Tính toán</Button>
+          <p className="text-xs text-muted-foreground">Sử dụng công thức Mifflin–St Jeor. Chỉ mang tính ước tính, không phải tư vấn y tế.</p>
         </form>
 
         <div>
@@ -100,12 +100,12 @@ function CalculatorPage() {
             <div className="space-y-6">
               <div className="grid gap-3 sm:grid-cols-3">
                 <StatCard label="BMI" value={result.bmi.toFixed(1)} hint="kg/m²" icon={Scale} />
-                <StatCard label="BMR" value={`${Math.round(result.bmr)} kcal`} hint="Calories burned at rest" icon={Activity} />
-                <StatCard label="TDEE" value={`${Math.round(result.tdee)} kcal`} hint="Daily maintenance calories" icon={Flame} />
+                <StatCard label="BMR" value={`${Math.round(result.bmr)} kcal`} hint="Calo tiêu hao khi nghỉ" icon={Activity} />
+                <StatCard label="TDEE" value={`${Math.round(result.tdee)} kcal`} hint="Calo duy trì mỗi ngày" icon={Flame} />
               </div>
               <div className="rounded-lg border border-border bg-card p-6">
                 <div className="flex items-center justify-between">
-                  <p className="font-semibold">BMI category</p>
+                  <p className="font-semibold">Phân loại BMI</p>
                   <StatusBadge status={cat.status} label={cat.label} />
                 </div>
                 <div className="relative mt-5 h-2 rounded-full bg-gradient-to-r from-chart-2 via-primary to-destructive">
@@ -119,12 +119,12 @@ function CalculatorPage() {
                 </div>
               </div>
               <div className="rounded-lg border border-border bg-card p-6">
-                <p className="flex items-center gap-2 font-semibold"><Target className="size-4 text-primary" /> Daily calorie targets</p>
+                <p className="flex items-center gap-2 font-semibold"><Target className="size-4 text-primary" /> Mục tiêu calo hàng ngày</p>
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
                   {[
-                    { label: "Lose weight", value: result.tdee - 500, note: "≈ 0.5 kg / week" },
-                    { label: "Maintain", value: result.tdee, note: "Stay where you are" },
-                    { label: "Build muscle", value: result.tdee + 300, note: "Lean surplus" },
+                    { label: "Giảm cân", value: result.tdee - 500, note: "≈ 0,5 kg / tuần" },
+                    { label: "Duy trì", value: result.tdee, note: "Giữ nguyên vóc dáng" },
+                    { label: "Tăng cơ", value: result.tdee + 300, note: "Thặng dư calo nhẹ" },
                   ].map((t) => (
                     <div key={t.label} className="rounded-md bg-muted p-4">
                       <p className="text-sm text-muted-foreground">{t.label}</p>
@@ -135,15 +135,15 @@ function CalculatorPage() {
                 </div>
               </div>
               <div className="flex flex-wrap items-center justify-between gap-4 rounded-lg bg-surface p-6 text-surface-foreground">
-                <p>Want a plan built around these numbers?</p>
-                <Button asChild><Link to="/trainers">Find a coach</Link></Button>
+                <p>Muốn có giáo án tập luyện dựa trên các chỉ số này?</p>
+                <Button asChild><Link to="/trainers">Tìm huấn luyện viên</Link></Button>
               </div>
             </div>
           ) : (
             <div className="flex h-full min-h-72 flex-col items-center justify-center rounded-lg border border-dashed border-border p-10 text-center">
               <Scale className="size-8 text-muted-foreground" />
-              <p className="mt-3 font-medium">Your results will appear here</p>
-              <p className="mt-1 text-sm text-muted-foreground">Fill in the form and press Calculate.</p>
+              <p className="mt-3 font-medium">Kết quả của bạn sẽ hiển thị ở đây</p>
+              <p className="mt-1 text-sm text-muted-foreground">Điền thông tin và nhấn Tính toán.</p>
             </div>
           )}
         </div>

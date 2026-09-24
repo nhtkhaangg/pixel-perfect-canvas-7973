@@ -5,7 +5,7 @@ import { getRoleArea } from "@/lib/nav-config";
 import { gymInfo } from "@/lib/mock/public";
 import { Button } from "@/components/ui/button";
 
-/** Marketing-style public layout used by the Guest area. */
+/** Bố cục kiểu trang giới thiệu công khai dùng cho khu vực Khách. */
 export function PublicShell() {
   const area = getRoleArea("guest");
   const [open, setOpen] = useState(false);
@@ -32,17 +32,17 @@ export function PublicShell() {
           </nav>
           <div className="ml-auto flex items-center gap-2">
             <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
-              <Link to="/login">Log in</Link>
+              <Link to="/login">Đăng nhập</Link>
             </Button>
             <Button size="sm" asChild>
-              <Link to="/register">Join now</Link>
+              <Link to="/register">Đăng ký ngay</Link>
             </Button>
             <Button
               variant="ghost"
               size="icon"
               className="lg:hidden"
               onClick={() => setOpen((o) => !o)}
-              aria-label="Toggle menu"
+              aria-label="Mở/đóng menu"
             >
               {open ? <X className="size-4" /> : <Menu className="size-4" />}
             </Button>
@@ -62,7 +62,7 @@ export function PublicShell() {
               </Link>
             ))}
             <Link to="/login" className={linkClass} onClick={() => setOpen(false)}>
-              Log in
+              Đăng nhập
             </Link>
           </nav>
         ) : null}
@@ -83,26 +83,26 @@ export function PublicShell() {
             </p>
             <p className="mt-3 text-sm text-surface-foreground/60">{gymInfo.tagline}.</p>
           </div>
-          <FooterCol title="Explore">
-            <Link to="/packages">Packages</Link>
-            <Link to="/trainers">Trainers</Link>
-            <Link to="/articles">Articles</Link>
-            <Link to="/tools/fitness-calculator">Fitness calculator</Link>
+          <FooterCol title="Khám phá">
+            <Link to="/packages">Gói tập</Link>
+            <Link to="/trainers">Huấn luyện viên</Link>
+            <Link to="/articles">Bài viết</Link>
+            <Link to="/tools/fitness-calculator">Công cụ tính toán</Link>
           </FooterCol>
-          <FooterCol title="Company">
-            <Link to="/gym-info">Gym info</Link>
-            <Link to="/reviews">Reviews</Link>
-            <Link to="/register-trainer">Become a trainer</Link>
+          <FooterCol title="Về chúng tôi">
+            <Link to="/gym-info">Thông tin phòng gym</Link>
+            <Link to="/reviews">Đánh giá</Link>
+            <Link to="/register-trainer">Ứng tuyển huấn luyện viên</Link>
           </FooterCol>
-          <FooterCol title="Contact">
+          <FooterCol title="Liên hệ">
             <span>{gymInfo.phone}</span>
             <span>{gymInfo.email}</span>
-            <span>4 branches in San Francisco</span>
+            <span>{gymInfo.address}</span>
           </FooterCol>
         </div>
         <div className="border-t border-surface-foreground/10">
           <p className="mx-auto w-full max-w-6xl px-4 py-4 text-xs text-surface-foreground/50 lg:px-6">
-            © 2026 GymFit. Prototype with mock data.
+            © 2026 GymFit. Dự án minh hoạ với dữ liệu mẫu.
           </p>
         </div>
       </footer>

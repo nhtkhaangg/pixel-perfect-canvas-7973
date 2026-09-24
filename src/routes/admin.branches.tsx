@@ -4,10 +4,10 @@ import { ScaffoldPage } from "@/components/shared/scaffold-page";
 export const Route = createFileRoute("/admin/branches")({
   head: () => ({
     meta: [
-      { title: "Branches — Admin — GymFit" },
-      { name: "description", content: "Gym locations, opening hours and capacity." },
-      { property: "og:title", content: "Branches — Admin — GymFit" },
-      { property: "og:description", content: "Gym locations, opening hours and capacity." },
+      { title: "Cơ sở vật chất — Quản trị viên — GymFit" },
+      { name: "description", content: "Khu vực, giờ mở cửa và sức chứa của phòng gym." },
+      { property: "og:title", content: "Cơ sở vật chất — Quản trị viên — GymFit" },
+      { property: "og:description", content: "Khu vực, giờ mở cửa và sức chứa của phòng gym." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -16,5 +16,5 @@ export const Route = createFileRoute("/admin/branches")({
 });
 
 function AdminBranchesPage() {
-  return <ScaffoldPage title="Branches" description="Gym locations, opening hours and capacity." />;
+  return <ScaffoldPage title="Cơ sở vật chất" description="Khu vực, giờ mở cửa và sức chứa của phòng gym." />;
 }

@@ -12,14 +12,14 @@ export function TrainerPlateauAlert() {
       <div className="flex items-start gap-3">
         <span className="flex size-9 shrink-0 items-center justify-center rounded-md bg-destructive/10 text-destructive"><TrendingDown className="size-4" /></span>
         <div className="flex-1">
-          <p className="font-semibold">Training plateau alert · {stalled.length} clients</p>
+          <p className="font-semibold">Cảnh báo plateau tập luyện · {stalled.length} hội viên</p>
           <ul className="mt-2 space-y-2 text-sm">
             {stalled.map((c) => {
               const last = c.metrics.slice(-3).map((m) => m.bench);
               return (
                 <li key={c.id} className="flex flex-wrap items-center justify-between gap-2">
-                  <span><span className="font-medium">{c.name}</span> <span className="text-muted-foreground">— bench flat at {last[last.length - 1]} kg for 3 check-ins</span></span>
-                  <Button size="sm" variant="outline" asChild><Link to="/trainer/customers/$id" params={{ id: c.id }}>Review</Link></Button>
+                  <span><span className="font-medium">{c.name}</span> <span className="text-muted-foreground">— bench giữ nguyên {last[last.length - 1]} kg trong 3 lần kiểm tra</span></span>
+                  <Button size="sm" variant="outline" asChild><Link to="/trainer/customers/$id" params={{ id: c.id }}>Xem xét</Link></Button>
                 </li>
               );
             })}
