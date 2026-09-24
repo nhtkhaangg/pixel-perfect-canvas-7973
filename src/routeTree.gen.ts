@@ -18,6 +18,7 @@ import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as TrainerRouteImport } from './routes/trainer'
 import { Route as PublicIndexRouteImport } from './routes/_public.index'
+import { Route as PublicGymInfoRouteImport } from './routes/_public.gym-info'
 import { Route as PublicReviewsRouteImport } from './routes/_public.reviews'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBranchesRouteImport } from './routes/admin.branches'
@@ -44,6 +45,7 @@ import { Route as PublicArticlesIndexRouteImport } from './routes/_public.articl
 import { Route as PublicArticlesIdRouteImport } from './routes/_public.articles.$id'
 import { Route as PublicPackagesIndexRouteImport } from './routes/_public.packages.index'
 import { Route as PublicPackagesIdRouteImport } from './routes/_public.packages.$id'
+import { Route as PublicToolsFitnessCalculatorRouteImport } from './routes/_public.tools.fitness-calculator'
 import { Route as PublicTrainersIndexRouteImport } from './routes/_public.trainers.index'
 import { Route as PublicTrainersIdRouteImport } from './routes/_public.trainers.$id'
 
@@ -89,6 +91,11 @@ const TrainerRoute = TrainerRouteImport.update({
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicGymInfoRoute = PublicGymInfoRouteImport.update({
+  id: '/gym-info',
+  path: '/gym-info',
   getParentRoute: () => PublicRoute,
 } as any)
 const PublicReviewsRoute = PublicReviewsRouteImport.update({
@@ -221,6 +228,12 @@ const PublicPackagesIdRoute = PublicPackagesIdRouteImport.update({
   path: '/packages/$id',
   getParentRoute: () => PublicRoute,
 } as any)
+const PublicToolsFitnessCalculatorRoute =
+  PublicToolsFitnessCalculatorRouteImport.update({
+    id: '/tools/fitness-calculator',
+    path: '/tools/fitness-calculator',
+    getParentRoute: () => PublicRoute,
+  } as any)
 const PublicTrainersIndexRoute = PublicTrainersIndexRouteImport.update({
   id: '/trainers/',
   path: '/trainers/',
@@ -241,6 +254,7 @@ export interface FileRoutesByFullPath {
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/gym-info': typeof PublicGymInfoRoute
   '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
@@ -265,6 +279,7 @@ export interface FileRoutesByFullPath {
   '/trainer/': typeof TrainerIndexRoute
   '/articles/$id': typeof PublicArticlesIdRoute
   '/packages/$id': typeof PublicPackagesIdRoute
+  '/tools/fitness-calculator': typeof PublicToolsFitnessCalculatorRoute
   '/trainers/$id': typeof PublicTrainersIdRoute
   '/articles/': typeof PublicArticlesIndexRoute
   '/packages/': typeof PublicPackagesIndexRoute
@@ -273,6 +288,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/guest': typeof GuestRoute
   '/hub': typeof HubRoute
+  '/gym-info': typeof PublicGymInfoRoute
   '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
@@ -298,6 +314,7 @@ export interface FileRoutesByTo {
   '/trainer': typeof TrainerIndexRoute
   '/articles/$id': typeof PublicArticlesIdRoute
   '/packages/$id': typeof PublicPackagesIdRoute
+  '/tools/fitness-calculator': typeof PublicToolsFitnessCalculatorRoute
   '/trainers/$id': typeof PublicTrainersIdRoute
   '/articles': typeof PublicArticlesIndexRoute
   '/packages': typeof PublicPackagesIndexRoute
@@ -313,6 +330,7 @@ export interface FileRoutesById {
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/_public/gym-info': typeof PublicGymInfoRoute
   '/_public/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
@@ -338,6 +356,7 @@ export interface FileRoutesById {
   '/trainer/': typeof TrainerIndexRoute
   '/_public/articles/$id': typeof PublicArticlesIdRoute
   '/_public/packages/$id': typeof PublicPackagesIdRoute
+  '/_public/tools/fitness-calculator': typeof PublicToolsFitnessCalculatorRoute
   '/_public/trainers/$id': typeof PublicTrainersIdRoute
   '/_public/articles/': typeof PublicArticlesIndexRoute
   '/_public/packages/': typeof PublicPackagesIndexRoute
@@ -354,6 +373,7 @@ export interface FileRouteTypes {
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/gym-info'
     | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
@@ -378,6 +398,7 @@ export interface FileRouteTypes {
     | '/trainer/'
     | '/articles/$id'
     | '/packages/$id'
+    | '/tools/fitness-calculator'
     | '/trainers/$id'
     | '/articles/'
     | '/packages/'
@@ -386,6 +407,7 @@ export interface FileRouteTypes {
   to:
     | '/guest'
     | '/hub'
+    | '/gym-info'
     | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
@@ -411,6 +433,7 @@ export interface FileRouteTypes {
     | '/trainer'
     | '/articles/$id'
     | '/packages/$id'
+    | '/tools/fitness-calculator'
     | '/trainers/$id'
     | '/articles'
     | '/packages'
@@ -425,6 +448,7 @@ export interface FileRouteTypes {
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/_public/gym-info'
     | '/_public/reviews'
     | '/admin/branches'
     | '/admin/roles'
@@ -450,6 +474,7 @@ export interface FileRouteTypes {
     | '/trainer/'
     | '/_public/articles/$id'
     | '/_public/packages/$id'
+    | '/_public/tools/fitness-calculator'
     | '/_public/trainers/$id'
     | '/_public/articles/'
     | '/_public/packages/'
@@ -530,6 +555,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/gym-info': {
+      id: '/_public/gym-info'
+      path: '/gym-info'
+      fullPath: '/gym-info'
+      preLoaderRoute: typeof PublicGymInfoRouteImport
       parentRoute: typeof PublicRoute
     }
     '/_public/reviews': {
@@ -714,6 +746,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PublicPackagesIdRouteImport
       parentRoute: typeof PublicRoute
     }
+    '/_public/tools/fitness-calculator': {
+      id: '/_public/tools/fitness-calculator'
+      path: '/tools/fitness-calculator'
+      fullPath: '/tools/fitness-calculator'
+      preLoaderRoute: typeof PublicToolsFitnessCalculatorRouteImport
+      parentRoute: typeof PublicRoute
+    }
     '/_public/trainers/': {
       id: '/_public/trainers/'
       path: '/trainers'
@@ -732,10 +771,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface PublicRouteChildren {
+  PublicGymInfoRoute: typeof PublicGymInfoRoute
   PublicReviewsRoute: typeof PublicReviewsRoute
   PublicIndexRoute: typeof PublicIndexRoute
   PublicArticlesIdRoute: typeof PublicArticlesIdRoute
   PublicPackagesIdRoute: typeof PublicPackagesIdRoute
+  PublicToolsFitnessCalculatorRoute: typeof PublicToolsFitnessCalculatorRoute
   PublicTrainersIdRoute: typeof PublicTrainersIdRoute
   PublicArticlesIndexRoute: typeof PublicArticlesIndexRoute
   PublicPackagesIndexRoute: typeof PublicPackagesIndexRoute
@@ -743,10 +784,12 @@ interface PublicRouteChildren {
 }
 
 const PublicRouteChildren: PublicRouteChildren = {
+  PublicGymInfoRoute: PublicGymInfoRoute,
   PublicReviewsRoute: PublicReviewsRoute,
   PublicIndexRoute: PublicIndexRoute,
   PublicArticlesIdRoute: PublicArticlesIdRoute,
   PublicPackagesIdRoute: PublicPackagesIdRoute,
+  PublicToolsFitnessCalculatorRoute: PublicToolsFitnessCalculatorRoute,
   PublicTrainersIdRoute: PublicTrainersIdRoute,
   PublicArticlesIndexRoute: PublicArticlesIndexRoute,
   PublicPackagesIndexRoute: PublicPackagesIndexRoute,
