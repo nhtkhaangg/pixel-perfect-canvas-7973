@@ -72,10 +72,16 @@ function ReviewModal({ open, onOpenChange }: { open: boolean; onOpenChange: (o: 
       onOpenChange={onOpenChange}
       title="Write a review"
       description="Only verified members can publish reviews. Log in after submitting to confirm."
-      onSubmit={() => {
-        toast.success("Thanks! Your review is pending moderation.");
-        onOpenChange(false);
-      }}
+      footer={
+        <Button
+          onClick={() => {
+            toast.success("Thanks! Your review is pending moderation.");
+            onOpenChange(false);
+          }}
+        >
+          Submit review
+        </Button>
+      }
     >
       <FormField label="Title" required>{(p) => <Input {...p} placeholder="Summarise your experience" />}</FormField>
       <FormField label="Review" required>{(p) => <Textarea {...p} rows={4} placeholder="What did you like?" />}</FormField>

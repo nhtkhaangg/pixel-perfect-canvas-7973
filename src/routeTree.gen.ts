@@ -18,6 +18,7 @@ import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as TrainerRouteImport } from './routes/trainer'
 import { Route as PublicIndexRouteImport } from './routes/_public.index'
+import { Route as PublicReviewsRouteImport } from './routes/_public.reviews'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBranchesRouteImport } from './routes/admin.branches'
 import { Route as AdminRolesRouteImport } from './routes/admin.roles'
@@ -39,6 +40,12 @@ import { Route as TrainerIndexRouteImport } from './routes/trainer.index'
 import { Route as TrainerClientsRouteImport } from './routes/trainer.clients'
 import { Route as TrainerProgramsRouteImport } from './routes/trainer.programs'
 import { Route as TrainerScheduleRouteImport } from './routes/trainer.schedule'
+import { Route as PublicArticlesIndexRouteImport } from './routes/_public.articles.index'
+import { Route as PublicArticlesIdRouteImport } from './routes/_public.articles.$id'
+import { Route as PublicPackagesIndexRouteImport } from './routes/_public.packages.index'
+import { Route as PublicPackagesIdRouteImport } from './routes/_public.packages.$id'
+import { Route as PublicTrainersIndexRouteImport } from './routes/_public.trainers.index'
+import { Route as PublicTrainersIdRouteImport } from './routes/_public.trainers.$id'
 
 const PublicRoute = PublicRouteImport.update({
   id: '/_public',
@@ -82,6 +89,11 @@ const TrainerRoute = TrainerRouteImport.update({
 const PublicIndexRoute = PublicIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicReviewsRoute = PublicReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
   getParentRoute: () => PublicRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
@@ -189,6 +201,36 @@ const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
   path: '/schedule',
   getParentRoute: () => TrainerRoute,
 } as any)
+const PublicArticlesIndexRoute = PublicArticlesIndexRouteImport.update({
+  id: '/articles/',
+  path: '/articles/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicArticlesIdRoute = PublicArticlesIdRouteImport.update({
+  id: '/articles/$id',
+  path: '/articles/$id',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicPackagesIndexRoute = PublicPackagesIndexRouteImport.update({
+  id: '/packages/',
+  path: '/packages/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicPackagesIdRoute = PublicPackagesIdRouteImport.update({
+  id: '/packages/$id',
+  path: '/packages/$id',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTrainersIndexRoute = PublicTrainersIndexRouteImport.update({
+  id: '/trainers/',
+  path: '/trainers/',
+  getParentRoute: () => PublicRoute,
+} as any)
+const PublicTrainersIdRoute = PublicTrainersIdRouteImport.update({
+  id: '/trainers/$id',
+  path: '/trainers/$id',
+  getParentRoute: () => PublicRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
@@ -199,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -220,10 +263,17 @@ export interface FileRoutesByFullPath {
   '/manager/': typeof ManagerIndexRoute
   '/staff/': typeof StaffIndexRoute
   '/trainer/': typeof TrainerIndexRoute
+  '/articles/$id': typeof PublicArticlesIdRoute
+  '/packages/$id': typeof PublicPackagesIdRoute
+  '/trainers/$id': typeof PublicTrainersIdRoute
+  '/articles/': typeof PublicArticlesIndexRoute
+  '/packages/': typeof PublicPackagesIndexRoute
+  '/trainers/': typeof PublicTrainersIndexRoute
 }
 export interface FileRoutesByTo {
   '/guest': typeof GuestRoute
   '/hub': typeof HubRoute
+  '/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -246,6 +296,12 @@ export interface FileRoutesByTo {
   '/manager': typeof ManagerIndexRoute
   '/staff': typeof StaffIndexRoute
   '/trainer': typeof TrainerIndexRoute
+  '/articles/$id': typeof PublicArticlesIdRoute
+  '/packages/$id': typeof PublicPackagesIdRoute
+  '/trainers/$id': typeof PublicTrainersIdRoute
+  '/articles': typeof PublicArticlesIndexRoute
+  '/packages': typeof PublicPackagesIndexRoute
+  '/trainers': typeof PublicTrainersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -257,6 +313,7 @@ export interface FileRoutesById {
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
+  '/_public/reviews': typeof PublicReviewsRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -279,6 +336,12 @@ export interface FileRoutesById {
   '/manager/': typeof ManagerIndexRoute
   '/staff/': typeof StaffIndexRoute
   '/trainer/': typeof TrainerIndexRoute
+  '/_public/articles/$id': typeof PublicArticlesIdRoute
+  '/_public/packages/$id': typeof PublicPackagesIdRoute
+  '/_public/trainers/$id': typeof PublicTrainersIdRoute
+  '/_public/articles/': typeof PublicArticlesIndexRoute
+  '/_public/packages/': typeof PublicPackagesIndexRoute
+  '/_public/trainers/': typeof PublicTrainersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -291,6 +354,7 @@ export interface FileRouteTypes {
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
     | '/admin/settings'
@@ -312,10 +376,17 @@ export interface FileRouteTypes {
     | '/manager/'
     | '/staff/'
     | '/trainer/'
+    | '/articles/$id'
+    | '/packages/$id'
+    | '/trainers/$id'
+    | '/articles/'
+    | '/packages/'
+    | '/trainers/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/guest'
     | '/hub'
+    | '/reviews'
     | '/admin/branches'
     | '/admin/roles'
     | '/admin/settings'
@@ -338,6 +409,12 @@ export interface FileRouteTypes {
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/articles/$id'
+    | '/packages/$id'
+    | '/trainers/$id'
+    | '/articles'
+    | '/packages'
+    | '/trainers'
   id:
     | '__root__'
     | '/_public'
@@ -348,6 +425,7 @@ export interface FileRouteTypes {
     | '/manager'
     | '/staff'
     | '/trainer'
+    | '/_public/reviews'
     | '/admin/branches'
     | '/admin/roles'
     | '/admin/settings'
@@ -370,6 +448,12 @@ export interface FileRouteTypes {
     | '/manager/'
     | '/staff/'
     | '/trainer/'
+    | '/_public/articles/$id'
+    | '/_public/packages/$id'
+    | '/_public/trainers/$id'
+    | '/_public/articles/'
+    | '/_public/packages/'
+    | '/_public/trainers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -446,6 +530,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/reviews': {
+      id: '/_public/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof PublicReviewsRouteImport
       parentRoute: typeof PublicRoute
     }
     '/admin/': {
@@ -595,15 +686,71 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainerScheduleRouteImport
       parentRoute: typeof TrainerRoute
     }
+    '/_public/articles/': {
+      id: '/_public/articles/'
+      path: '/articles'
+      fullPath: '/articles/'
+      preLoaderRoute: typeof PublicArticlesIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/articles/$id': {
+      id: '/_public/articles/$id'
+      path: '/articles/$id'
+      fullPath: '/articles/$id'
+      preLoaderRoute: typeof PublicArticlesIdRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/packages/': {
+      id: '/_public/packages/'
+      path: '/packages'
+      fullPath: '/packages/'
+      preLoaderRoute: typeof PublicPackagesIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/packages/$id': {
+      id: '/_public/packages/$id'
+      path: '/packages/$id'
+      fullPath: '/packages/$id'
+      preLoaderRoute: typeof PublicPackagesIdRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/trainers/': {
+      id: '/_public/trainers/'
+      path: '/trainers'
+      fullPath: '/trainers/'
+      preLoaderRoute: typeof PublicTrainersIndexRouteImport
+      parentRoute: typeof PublicRoute
+    }
+    '/_public/trainers/$id': {
+      id: '/_public/trainers/$id'
+      path: '/trainers/$id'
+      fullPath: '/trainers/$id'
+      preLoaderRoute: typeof PublicTrainersIdRouteImport
+      parentRoute: typeof PublicRoute
+    }
   }
 }
 
 interface PublicRouteChildren {
+  PublicReviewsRoute: typeof PublicReviewsRoute
   PublicIndexRoute: typeof PublicIndexRoute
+  PublicArticlesIdRoute: typeof PublicArticlesIdRoute
+  PublicPackagesIdRoute: typeof PublicPackagesIdRoute
+  PublicTrainersIdRoute: typeof PublicTrainersIdRoute
+  PublicArticlesIndexRoute: typeof PublicArticlesIndexRoute
+  PublicPackagesIndexRoute: typeof PublicPackagesIndexRoute
+  PublicTrainersIndexRoute: typeof PublicTrainersIndexRoute
 }
 
 const PublicRouteChildren: PublicRouteChildren = {
+  PublicReviewsRoute: PublicReviewsRoute,
   PublicIndexRoute: PublicIndexRoute,
+  PublicArticlesIdRoute: PublicArticlesIdRoute,
+  PublicPackagesIdRoute: PublicPackagesIdRoute,
+  PublicTrainersIdRoute: PublicTrainersIdRoute,
+  PublicArticlesIndexRoute: PublicArticlesIndexRoute,
+  PublicPackagesIndexRoute: PublicPackagesIndexRoute,
+  PublicTrainersIndexRoute: PublicTrainersIndexRoute,
 }
 
 const PublicRouteWithChildren =
