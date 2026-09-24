@@ -30,8 +30,6 @@ import { Route as AdminRolesRouteImport } from './routes/admin.roles'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as CustomerIndexRouteImport } from './routes/customer.index'
-import { Route as CustomerClassesRouteImport } from './routes/customer.classes'
-import { Route as CustomerMembershipRouteImport } from './routes/customer.membership'
 import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerMembershipsRouteImport } from './routes/manager.memberships'
@@ -157,16 +155,6 @@ const CustomerIndexRoute = CustomerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => CustomerRoute,
 } as any)
-const CustomerClassesRoute = CustomerClassesRouteImport.update({
-  id: '/classes',
-  path: '/classes',
-  getParentRoute: () => CustomerRoute,
-} as any)
-const CustomerMembershipRoute = CustomerMembershipRouteImport.update({
-  id: '/membership',
-  path: '/membership',
-  getParentRoute: () => CustomerRoute,
-} as any)
 const CustomerProfileRoute = CustomerProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
@@ -288,8 +276,6 @@ export interface FileRoutesByFullPath {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/customer/classes': typeof CustomerClassesRoute
-  '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
@@ -326,8 +312,6 @@ export interface FileRoutesByTo {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/customer/classes': typeof CustomerClassesRoute
-  '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
@@ -372,8 +356,6 @@ export interface FileRoutesById {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/customer/classes': typeof CustomerClassesRoute
-  '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
@@ -419,8 +401,6 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/customer/classes'
-    | '/customer/membership'
     | '/customer/profile'
     | '/manager/memberships'
     | '/manager/reports'
@@ -457,8 +437,6 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/customer/classes'
-    | '/customer/membership'
     | '/customer/profile'
     | '/manager/memberships'
     | '/manager/reports'
@@ -502,8 +480,6 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
-    | '/customer/classes'
-    | '/customer/membership'
     | '/customer/profile'
     | '/manager/memberships'
     | '/manager/reports'
@@ -687,20 +663,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/customer/'
       preLoaderRoute: typeof CustomerIndexRouteImport
-      parentRoute: typeof CustomerRoute
-    }
-    '/customer/classes': {
-      id: '/customer/classes'
-      path: '/classes'
-      fullPath: '/customer/classes'
-      preLoaderRoute: typeof CustomerClassesRouteImport
-      parentRoute: typeof CustomerRoute
-    }
-    '/customer/membership': {
-      id: '/customer/membership'
-      path: '/membership'
-      fullPath: '/customer/membership'
-      preLoaderRoute: typeof CustomerMembershipRouteImport
       parentRoute: typeof CustomerRoute
     }
     '/customer/profile': {
@@ -902,15 +864,11 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface CustomerRouteChildren {
-  CustomerClassesRoute: typeof CustomerClassesRoute
-  CustomerMembershipRoute: typeof CustomerMembershipRoute
   CustomerProfileRoute: typeof CustomerProfileRoute
   CustomerIndexRoute: typeof CustomerIndexRoute
 }
 
 const CustomerRouteChildren: CustomerRouteChildren = {
-  CustomerClassesRoute: CustomerClassesRoute,
-  CustomerMembershipRoute: CustomerMembershipRoute,
   CustomerProfileRoute: CustomerProfileRoute,
   CustomerIndexRoute: CustomerIndexRoute,
 }
