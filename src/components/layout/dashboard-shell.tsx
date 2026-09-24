@@ -118,7 +118,7 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
             <div className="flex items-center gap-2 border-l border-border pl-2">
               <Avatar className="size-8">
                 <AvatarFallback className="bg-muted text-xs font-semibold">
-                  {area.name.slice(0, 2).toUpperCase()}
+                  {role === "customer" ? "AM" : role === "trainer" ? "MN" : area.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
               <div className="hidden text-xs leading-tight sm:block">
