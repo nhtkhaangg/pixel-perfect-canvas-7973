@@ -19,9 +19,9 @@ export function FormField({
   children,
 }: {
   label: string;
-  hint?: string;
-  error?: string;
-  success?: string;
+  hint?: string | undefined;
+  error?: string | undefined;
+  success?: string | undefined;
   required?: boolean;
   state?: FieldState;
   children: (props: { id: string; className: string; "aria-invalid": boolean }) => ReactNode;

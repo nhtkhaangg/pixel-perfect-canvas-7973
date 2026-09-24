@@ -47,9 +47,9 @@ function CalculatorPage() {
     e.preventDefault();
     const a = Number(age), h = Number(height), w = Number(weight);
     const errs: Record<string, string> = {};
-    if (!(a >= 15 && a <= 90)) errs.age = "Enter an age between 15 and 90";
-    if (!(h >= 120 && h <= 230)) errs.height = "Enter height between 120 and 230 cm";
-    if (!(w >= 30 && w <= 250)) errs.weight = "Enter weight between 30 and 250 kg";
+    if (!(a >= 15 && a <= 90)) errs["age"] = "Enter an age between 15 and 90";
+    if (!(h >= 120 && h <= 230)) errs["height"] = "Enter height between 120 and 230 cm";
+    if (!(w >= 30 && w <= 250)) errs["weight"] = "Enter weight between 30 and 250 kg";
     setErrors(errs);
     if (Object.keys(errs).length) return setResult(null);
     const bmi = w / (h / 100) ** 2;
@@ -71,14 +71,14 @@ function CalculatorPage() {
               <label className="flex items-center gap-2 text-sm"><RadioGroupItem value="female" /> Female</label>
             </RadioGroup>
           </div>
-          <FormField label="Age" required error={errors.age}>
+          <FormField label="Age" required error={errors["age"]}>
             {(p) => <Input {...p} type="number" value={age} onChange={(e) => setAge(e.target.value)} />}
           </FormField>
           <div className="grid grid-cols-2 gap-3">
-            <FormField label="Height (cm)" required error={errors.height}>
+            <FormField label="Height (cm)" required error={errors["height"]}>
               {(p) => <Input {...p} type="number" value={height} onChange={(e) => setHeight(e.target.value)} />}
             </FormField>
-            <FormField label="Weight (kg)" required error={errors.weight}>
+            <FormField label="Weight (kg)" required error={errors["weight"]}>
               {(p) => <Input {...p} type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />}
             </FormField>
           </div>

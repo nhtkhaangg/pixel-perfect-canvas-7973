@@ -30,14 +30,14 @@ function RegisterTrainerPage() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const errs: Record<string, string> = {};
-    if (form.name.trim().length < 2) errs.name = "Enter your full name";
-    if (!isEmail(form.email)) errs.email = "Enter a valid email";
-    if (!/^[+\d\s()-]{7,}$/.test(form.phone)) errs.phone = "Enter a valid phone";
-    if (!spec) errs.spec = "Choose a specialization";
+    if (form.name.trim().length < 2) errs["name"] = "Enter your full name";
+    if (!isEmail(form.email)) errs["email"] = "Enter a valid email";
+    if (!/^[+\d\s()-]{7,}$/.test(form.phone)) errs["phone"] = "Enter a valid phone";
+    if (!spec) errs["spec"] = "Choose a specialization";
     const y = Number(form.experienceYears);
-    if (!(y >= 0 && y <= 50) || form.experienceYears === "") errs.experienceYears = "0–50 years";
-    if (!form.certificates.trim()) errs.certificates = "List at least one certificate";
-    if (form.bio.trim().length < 40) errs.bio = "Tell us a bit more (40+ characters)";
+    if (!(y >= 0 && y <= 50) || form.experienceYears === "") errs["experienceYears"] = "0–50 years";
+    if (!form.certificates.trim()) errs["certificates"] = "List at least one certificate";
+    if (form.bio.trim().length < 40) errs["bio"] = "Tell us a bit more (40+ characters)";
     setErrors(errs);
     if (!Object.keys(errs).length) setDone(true);
   }
@@ -75,21 +75,21 @@ function RegisterTrainerPage() {
       footer={<>Joining as a member? <Link to="/register" className="font-medium text-primary">Create a member account</Link></>}
     >
       <form onSubmit={submit} className="space-y-4" noValidate>
-        <FormField label="Full name" required error={errors.name}>{(p) => <Input {...p} value={form.name} onChange={set("name")} />}</FormField>
+        <FormField label="Full name" required error={errors["name"]}>{(p) => <Input {...p} value={form.name} onChange={set("name")} />}</FormField>
         <div className="grid gap-4 sm:grid-cols-2">
-          <FormField label="Email" required error={errors.email}>{(p) => <Input {...p} type="email" value={form.email} onChange={set("email")} />}</FormField>
-          <FormField label="Phone" required error={errors.phone}>{(p) => <Input {...p} type="tel" value={form.phone} onChange={set("phone")} />}</FormField>
+          <FormField label="Email" required error={errors["email"]}>{(p) => <Input {...p} type="email" value={form.email} onChange={set("email")} />}</FormField>
+          <FormField label="Phone" required error={errors["phone"]}>{(p) => <Input {...p} type="tel" value={form.phone} onChange={set("phone")} />}</FormField>
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
             <Label>Specialization<span className="text-destructive">*</span></Label>
             <Select value={spec} onValueChange={setSpec}>
-              <SelectTrigger aria-invalid={!!errors.spec}><SelectValue placeholder="Select…" /></SelectTrigger>
+              <SelectTrigger aria-invalid={!!errors["spec"]}><SelectValue placeholder="Select…" /></SelectTrigger>
               <SelectContent>{specs.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent>
             </Select>
-            {errors.spec ? <p className="text-xs text-destructive">{errors.spec}</p> : null}
+            {errors["spec"] ? <p className="text-xs text-destructive">{errors["spec"]}</p> : null}
           </div>
-          <FormField label="Years of experience" required error={errors.experienceYears}>
+          <FormField label="Years of experience" required error={errors["experienceYears"]}>
             {(p) => <Input {...p} type="number" min={0} value={form.experienceYears} onChange={set("experienceYears")} />}
           </FormField>
         </div>
@@ -100,10 +100,10 @@ function RegisterTrainerPage() {
             <SelectContent>{gymInfo.branches.map((b) => <SelectItem key={b.name} value={b.name}>{b.name}</SelectItem>)}</SelectContent>
           </Select>
         </div>
-        <FormField label="Certificates" required error={errors.certificates} hint="Comma-separated, e.g. NASM-CPT, CPR/AED">
+        <FormField label="Certificates" required error={errors["certificates"]} hint="Comma-separated, e.g. NASM-CPT, CPR/AED">
           {(p) => <Input {...p} value={form.certificates} onChange={set("certificates")} />}
         </FormField>
-        <FormField label="Short bio" required error={errors.bio}>
+        <FormField label="Short bio" required error={errors["bio"]}>
           {(p) => <Textarea {...p} rows={4} value={form.bio} onChange={set("bio")} placeholder="Your coaching style, who you work best with…" />}
         </FormField>
         <Button type="submit" className="w-full">Submit application</Button>

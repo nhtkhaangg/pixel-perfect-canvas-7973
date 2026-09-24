@@ -22,8 +22,8 @@ function LoginPage() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     const errs: Record<string, string> = {};
-    if (!isEmail(email)) errs.email = "Enter a valid email address";
-    if (password.length < 6) errs.password = "Password must be at least 6 characters";
+    if (!isEmail(email)) errs["email"] = "Enter a valid email address";
+    if (password.length < 6) errs["password"] = "Password must be at least 6 characters";
     setErrors(errs);
     if (Object.keys(errs).length) return;
     toast.success("Welcome back!");
@@ -39,10 +39,10 @@ function LoginPage() {
     >
       <OAuthButtons />
       <form onSubmit={submit} className="space-y-4" noValidate>
-        <FormField label="Email" required error={errors.email}>
+        <FormField label="Email" required error={errors["email"]}>
           {(p) => <Input {...p} type="email" autoComplete="email" placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />}
         </FormField>
-        <FormField label="Password" required error={errors.password}>
+        <FormField label="Password" required error={errors["password"]}>
           {(p) => <Input {...p} type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />}
         </FormField>
         <div className="flex items-center justify-between text-sm">
