@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/customer/schedule")({
-  head: () => seo("My schedule", "Calendar of your GymFit training sessions with reschedule requests."),
+  head: () => seo("Lịch tập của tôi", "Lịch các buổi tập của bạn tại GymFit kèm yêu cầu đổi lịch."),
   component: Schedule,
 });
 
@@ -35,26 +35,26 @@ function Schedule() {
 
   function submit() {
     const errs: Record<string, string> = {};
-    if (!f.date) errs["date"] = "Pick a new date";
-    if (!f.time) errs["time"] = "Pick a time";
-    if (f.reason.trim().length < 5) errs["reason"] = "Give a short reason";
+    if (!f.date) errs["date"] = "Chọn ngày mới";
+    if (!f.time) errs["time"] = "Chọn giờ";
+    if (f.reason.trim().length < 5) errs["reason"] = "Nhập lý do ngắn gọn";
     setErrors(errs);
     if (Object.keys(errs).length) return;
-    toast.success("Reschedule requested", { description: "Your coach will confirm shortly." });
+    toast.success("Đã gửi yêu cầu đổi lịch", { description: "Huấn luyện viên sẽ xác nhận sớm." });
     setResched(null);
   }
 
   return (
     <>
-      <PageHeader title="Schedule" description="Your PT sessions. Click a session for details or to request a new time." actions={<Button variant="outline" asChild><Link to="/customer/reschedule">Reschedule requests</Link></Button>} />
+      <PageHeader title="Lịch tập" description="Các buổi tập PT của bạn. Nhấn vào buổi tập để xem chi tiết hoặc yêu cầu đổi giờ." actions={<Button variant="outline" asChild><Link to="/customer/reschedule">Yêu cầu đổi lịch</Link></Button>} />
       <div className="rounded-lg border border-border bg-card">
         <div className="flex items-center justify-between border-b border-border px-4 py-3">
           <Button variant="ghost" size="icon" onClick={() => setMonth(new Date(y, m - 1, 1))}><ChevronLeft className="size-4" /></Button>
-          <p className="font-semibold">{month.toLocaleDateString("en-US", { month: "long", year: "numeric" })}</p>
+          <p className="font-semibold">{month.toLocaleDateString("vi-VN", { month: "long", year: "numeric" })}</p>
           <Button variant="ghost" size="icon" onClick={() => setMonth(new Date(y, m + 1, 1))}><ChevronRight className="size-4" /></Button>
         </div>
         <div className="grid grid-cols-7 border-b border-border text-center text-xs font-medium text-muted-foreground">
-          {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => <div key={d} className="py-2">{d}</div>)}
+          {["T2", "T3", "T4", "T5", "T6", "T7", "CN"].map((d) => <div key={d} className="py-2">{d}</div>)}
         </div>
         <div className="grid grid-cols-7">
           {cells.map((d, i) => {
@@ -87,26 +87,26 @@ function Schedule() {
         description={selected ? `${selected.date} · ${selected.start}–${selected.end} · ${selected.room}` : ""}
         footer={selected && (
           <>
-            {selected.status === "UPCOMING" ? <Button variant="outline" onClick={() => { setResched(selected); setSelected(null); setF({ date: "", time: "", reason: "" }); }}>Request reschedule</Button> : null}
-            <Button asChild><Link to="/customer/sessions/$id" params={{ id: selected.id }}>Open session</Link></Button>
+            {selected.status === "UPCOMING" ? <Button variant="outline" onClick={() => { setResched(selected); setSelected(null); setF({ date: "", time: "", reason: "" }); }}>Yêu cầu đổi lịch</Button> : null}
+            <Button asChild><Link to="/customer/sessions/$id" params={{ id: selected.id }}>Mở buổi tập</Link></Button>
           </>
         )}
       >
         {selected ? (
           <div className="space-y-3 text-sm">
             <StatusBadge status={toStatus(selected.status)} label={selected.status.replace("_", " ")} />
-            <p>Coach: <span className="font-medium">{selected.trainer}</span></p>
+            <p>Huấn luyện viên: <span className="font-medium">{selected.trainer}</span></p>
             <ul className="list-inside list-disc text-muted-foreground">{selected.exercises.map((e) => <li key={e.name}>{e.name} — {e.sets}×{e.reps}</li>)}</ul>
           </div>
         ) : null}
       </FormModal>
 
-      <FormModal open={!!resched} onOpenChange={(o) => !o && setResched(null)} title="Request reschedule" description={resched ? `Current: ${resched.date} ${resched.start}` : ""} footer={<Button onClick={submit}>Send request</Button>}>
+      <FormModal open={!!resched} onOpenChange={(o) => !o && setResched(null)} title="Yêu cầu đổi lịch" description={resched ? `Hiện tại: ${resched.date} ${resched.start}` : ""} footer={<Button onClick={submit}>Gửi yêu cầu</Button>}>
         <div className="grid grid-cols-2 gap-4">
-          <FormField label="New date" required error={errors["date"]}>{(p) => <Input {...p} type="date" value={f.date} onChange={(e) => setF({ ...f, date: e.target.value })} />}</FormField>
-          <FormField label="New time" required error={errors["time"]}>{(p) => <Input {...p} type="time" value={f.time} onChange={(e) => setF({ ...f, time: e.target.value })} />}</FormField>
+          <FormField label="Ngày mới" required error={errors["date"]}>{(p) => <Input {...p} type="date" value={f.date} onChange={(e) => setF({ ...f, date: e.target.value })} />}</FormField>
+          <FormField label="Giờ mới" required error={errors["time"]}>{(p) => <Input {...p} type="time" value={f.time} onChange={(e) => setF({ ...f, time: e.target.value })} />}</FormField>
         </div>
-        <FormField label="Reason" required error={errors["reason"]}>{(p) => <Textarea {...p} value={f.reason} onChange={(e) => setF({ ...f, reason: e.target.value })} />}</FormField>
+        <FormField label="Lý do" required error={errors["reason"]}>{(p) => <Textarea {...p} value={f.reason} onChange={(e) => setF({ ...f, reason: e.target.value })} />}</FormField>
       </FormModal>
     </>
   );
