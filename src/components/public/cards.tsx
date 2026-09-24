@@ -82,7 +82,7 @@ export function PackageCard({ pkg }: { pkg: GymPackage }) {
       />
       <div className="flex flex-1 flex-col p-6">
         <div className="flex items-center justify-between gap-2">
-          <Badge variant={pkg.type === "PT" ? "default" : "secondary"}>{pkg.type === "PT" ? "Personal training" : "Hội viên"}</Badge>
+          <Badge variant={pkg.type === "PT" ? "default" : "secondary"}>{pkg.type === "PT" ? "Huấn luyện cá nhân" : "Hội viên"}</Badge>
           {pkg.featured ? <span className="text-xs font-semibold text-primary">Phổ biến nhất</span> : null}
         </div>
         <h3 className="mt-4 text-lg font-semibold">{pkg.name}</h3>

@@ -31,7 +31,7 @@ export function AuthCard({
 }
 
 export function OAuthButtons() {
-  const notice = () => toast.info("Social login isn't connected yet", { description: "This is a UI prototype." });
+  const notice = () => toast.info("Đăng nhập mạng xã hội chưa được kết nối", { description: "Đây là bản mô phỏng giao diện." });
   return (
     <>
       <div className="grid gap-2">
@@ -39,14 +39,14 @@ export function OAuthButtons() {
           <svg viewBox="0 0 24 24" className="size-4" aria-hidden>
             <path fill="currentColor" d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.64 4.1-5.35 4.1-3.22 0-5.85-2.67-5.85-5.96S8.78 6.26 12 6.26c1.83 0 3.06.78 3.76 1.45l2.56-2.47C16.68 3.7 14.54 2.75 12 2.75 6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25c5.34 0 8.88-3.75 8.88-9.04 0-.6-.07-1.06-.15-1.51z" />
           </svg>
-          Continue with Google
+          Tiếp tục với Google
         </Button>
         <Button type="button" variant="outline" onClick={notice}>
-          Continue with SSO / OAuth
+          Tiếp tục với SSO / OAuth
         </Button>
       </div>
       <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
-        <span className="h-px flex-1 bg-border" /> or with email <span className="h-px flex-1 bg-border" />
+        <span className="h-px flex-1 bg-border" /> hoặc dùng email <span className="h-px flex-1 bg-border" />
       </div>
     </>
   );
