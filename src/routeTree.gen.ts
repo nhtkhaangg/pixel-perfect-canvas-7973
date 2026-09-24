@@ -77,6 +77,14 @@ import { Route as CustomerSessionsIndexRouteImport } from './routes/customer.ses
 import { Route as CustomerSessionsIdRouteImport } from './routes/customer.sessions.$id'
 import { Route as TrainerCertificatesIndexRouteImport } from './routes/trainer.certificates.index'
 import { Route as TrainerCertificatesIdRouteImport } from './routes/trainer.certificates.$id'
+import { Route as TrainerCustomersIndexRouteImport } from './routes/trainer.customers.index'
+import { Route as TrainerCustomersIdRouteImport } from './routes/trainer.customers.$id'
+import { Route as TrainerExercisesIndexRouteImport } from './routes/trainer.exercises.index'
+import { Route as TrainerExercisesIdRouteImport } from './routes/trainer.exercises.$id'
+import { Route as TrainerLessonsIndexRouteImport } from './routes/trainer.lessons.index'
+import { Route as TrainerLessonsIdRouteImport } from './routes/trainer.lessons.$id'
+import { Route as TrainerReviewsIndexRouteImport } from './routes/trainer.reviews.index'
+import { Route as TrainerReviewsIdRouteImport } from './routes/trainer.reviews.$id'
 
 const PublicRoute = PublicRouteImport.update({
   id: '/_public',
@@ -420,6 +428,46 @@ const TrainerCertificatesIdRoute = TrainerCertificatesIdRouteImport.update({
   path: '/certificates/$id',
   getParentRoute: () => TrainerRoute,
 } as any)
+const TrainerCustomersIndexRoute = TrainerCustomersIndexRouteImport.update({
+  id: '/customers/',
+  path: '/customers/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerCustomersIdRoute = TrainerCustomersIdRouteImport.update({
+  id: '/customers/$id',
+  path: '/customers/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerExercisesIndexRoute = TrainerExercisesIndexRouteImport.update({
+  id: '/exercises/',
+  path: '/exercises/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerExercisesIdRoute = TrainerExercisesIdRouteImport.update({
+  id: '/exercises/$id',
+  path: '/exercises/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerLessonsIndexRoute = TrainerLessonsIndexRouteImport.update({
+  id: '/lessons/',
+  path: '/lessons/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerLessonsIdRoute = TrainerLessonsIdRouteImport.update({
+  id: '/lessons/$id',
+  path: '/lessons/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerReviewsIndexRoute = TrainerReviewsIndexRouteImport.update({
+  id: '/reviews/',
+  path: '/reviews/',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerReviewsIdRoute = TrainerReviewsIdRouteImport.update({
+  id: '/reviews/$id',
+  path: '/reviews/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
@@ -483,12 +531,20 @@ export interface FileRoutesByFullPath {
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
   '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
+  '/trainer/customers/$id': typeof TrainerCustomersIdRoute
+  '/trainer/exercises/$id': typeof TrainerExercisesIdRoute
+  '/trainer/lessons/$id': typeof TrainerLessonsIdRoute
+  '/trainer/reviews/$id': typeof TrainerReviewsIdRoute
   '/articles/': typeof PublicArticlesIndexRoute
   '/packages/': typeof PublicPackagesIndexRoute
   '/trainers/': typeof PublicTrainersIndexRoute
   '/customer/notifications/': typeof CustomerNotificationsIndexRoute
   '/customer/sessions/': typeof CustomerSessionsIndexRoute
   '/trainer/certificates/': typeof TrainerCertificatesIndexRoute
+  '/trainer/customers/': typeof TrainerCustomersIndexRoute
+  '/trainer/exercises/': typeof TrainerExercisesIndexRoute
+  '/trainer/lessons/': typeof TrainerLessonsIndexRoute
+  '/trainer/reviews/': typeof TrainerReviewsIndexRoute
 }
 export interface FileRoutesByTo {
   '/guest': typeof GuestRoute
@@ -547,12 +603,20 @@ export interface FileRoutesByTo {
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
   '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
+  '/trainer/customers/$id': typeof TrainerCustomersIdRoute
+  '/trainer/exercises/$id': typeof TrainerExercisesIdRoute
+  '/trainer/lessons/$id': typeof TrainerLessonsIdRoute
+  '/trainer/reviews/$id': typeof TrainerReviewsIdRoute
   '/articles': typeof PublicArticlesIndexRoute
   '/packages': typeof PublicPackagesIndexRoute
   '/trainers': typeof PublicTrainersIndexRoute
   '/customer/notifications': typeof CustomerNotificationsIndexRoute
   '/customer/sessions': typeof CustomerSessionsIndexRoute
   '/trainer/certificates': typeof TrainerCertificatesIndexRoute
+  '/trainer/customers': typeof TrainerCustomersIndexRoute
+  '/trainer/exercises': typeof TrainerExercisesIndexRoute
+  '/trainer/lessons': typeof TrainerLessonsIndexRoute
+  '/trainer/reviews': typeof TrainerReviewsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -618,12 +682,20 @@ export interface FileRoutesById {
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
   '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
+  '/trainer/customers/$id': typeof TrainerCustomersIdRoute
+  '/trainer/exercises/$id': typeof TrainerExercisesIdRoute
+  '/trainer/lessons/$id': typeof TrainerLessonsIdRoute
+  '/trainer/reviews/$id': typeof TrainerReviewsIdRoute
   '/_public/articles/': typeof PublicArticlesIndexRoute
   '/_public/packages/': typeof PublicPackagesIndexRoute
   '/_public/trainers/': typeof PublicTrainersIndexRoute
   '/customer/notifications/': typeof CustomerNotificationsIndexRoute
   '/customer/sessions/': typeof CustomerSessionsIndexRoute
   '/trainer/certificates/': typeof TrainerCertificatesIndexRoute
+  '/trainer/customers/': typeof TrainerCustomersIndexRoute
+  '/trainer/exercises/': typeof TrainerExercisesIndexRoute
+  '/trainer/lessons/': typeof TrainerLessonsIndexRoute
+  '/trainer/reviews/': typeof TrainerReviewsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -689,12 +761,20 @@ export interface FileRouteTypes {
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
     | '/trainer/certificates/$id'
+    | '/trainer/customers/$id'
+    | '/trainer/exercises/$id'
+    | '/trainer/lessons/$id'
+    | '/trainer/reviews/$id'
     | '/articles/'
     | '/packages/'
     | '/trainers/'
     | '/customer/notifications/'
     | '/customer/sessions/'
     | '/trainer/certificates/'
+    | '/trainer/customers/'
+    | '/trainer/exercises/'
+    | '/trainer/lessons/'
+    | '/trainer/reviews/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/guest'
@@ -753,12 +833,20 @@ export interface FileRouteTypes {
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
     | '/trainer/certificates/$id'
+    | '/trainer/customers/$id'
+    | '/trainer/exercises/$id'
+    | '/trainer/lessons/$id'
+    | '/trainer/reviews/$id'
     | '/articles'
     | '/packages'
     | '/trainers'
     | '/customer/notifications'
     | '/customer/sessions'
     | '/trainer/certificates'
+    | '/trainer/customers'
+    | '/trainer/exercises'
+    | '/trainer/lessons'
+    | '/trainer/reviews'
   id:
     | '__root__'
     | '/_public'
@@ -823,12 +911,20 @@ export interface FileRouteTypes {
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
     | '/trainer/certificates/$id'
+    | '/trainer/customers/$id'
+    | '/trainer/exercises/$id'
+    | '/trainer/lessons/$id'
+    | '/trainer/reviews/$id'
     | '/_public/articles/'
     | '/_public/packages/'
     | '/_public/trainers/'
     | '/customer/notifications/'
     | '/customer/sessions/'
     | '/trainer/certificates/'
+    | '/trainer/customers/'
+    | '/trainer/exercises/'
+    | '/trainer/lessons/'
+    | '/trainer/reviews/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1320,6 +1416,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainerCertificatesIdRouteImport
       parentRoute: typeof TrainerRoute
     }
+    '/trainer/customers/': {
+      id: '/trainer/customers/'
+      path: '/customers'
+      fullPath: '/trainer/customers/'
+      preLoaderRoute: typeof TrainerCustomersIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/customers/$id': {
+      id: '/trainer/customers/$id'
+      path: '/customers/$id'
+      fullPath: '/trainer/customers/$id'
+      preLoaderRoute: typeof TrainerCustomersIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/exercises/': {
+      id: '/trainer/exercises/'
+      path: '/exercises'
+      fullPath: '/trainer/exercises/'
+      preLoaderRoute: typeof TrainerExercisesIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/exercises/$id': {
+      id: '/trainer/exercises/$id'
+      path: '/exercises/$id'
+      fullPath: '/trainer/exercises/$id'
+      preLoaderRoute: typeof TrainerExercisesIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/lessons/': {
+      id: '/trainer/lessons/'
+      path: '/lessons'
+      fullPath: '/trainer/lessons/'
+      preLoaderRoute: typeof TrainerLessonsIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/lessons/$id': {
+      id: '/trainer/lessons/$id'
+      path: '/lessons/$id'
+      fullPath: '/trainer/lessons/$id'
+      preLoaderRoute: typeof TrainerLessonsIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/reviews/': {
+      id: '/trainer/reviews/'
+      path: '/reviews'
+      fullPath: '/trainer/reviews/'
+      preLoaderRoute: typeof TrainerReviewsIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/reviews/$id': {
+      id: '/trainer/reviews/$id'
+      path: '/reviews/$id'
+      fullPath: '/trainer/reviews/$id'
+      preLoaderRoute: typeof TrainerReviewsIdRouteImport
+      parentRoute: typeof TrainerRoute
+    }
   }
 }
 
@@ -1479,7 +1631,15 @@ interface TrainerRouteChildren {
   TrainerVerifyRoute: typeof TrainerVerifyRoute
   TrainerIndexRoute: typeof TrainerIndexRoute
   TrainerCertificatesIdRoute: typeof TrainerCertificatesIdRoute
+  TrainerCustomersIdRoute: typeof TrainerCustomersIdRoute
+  TrainerExercisesIdRoute: typeof TrainerExercisesIdRoute
+  TrainerLessonsIdRoute: typeof TrainerLessonsIdRoute
+  TrainerReviewsIdRoute: typeof TrainerReviewsIdRoute
   TrainerCertificatesIndexRoute: typeof TrainerCertificatesIndexRoute
+  TrainerCustomersIndexRoute: typeof TrainerCustomersIndexRoute
+  TrainerExercisesIndexRoute: typeof TrainerExercisesIndexRoute
+  TrainerLessonsIndexRoute: typeof TrainerLessonsIndexRoute
+  TrainerReviewsIndexRoute: typeof TrainerReviewsIndexRoute
 }
 
 const TrainerRouteChildren: TrainerRouteChildren = {
@@ -1490,7 +1650,15 @@ const TrainerRouteChildren: TrainerRouteChildren = {
   TrainerVerifyRoute: TrainerVerifyRoute,
   TrainerIndexRoute: TrainerIndexRoute,
   TrainerCertificatesIdRoute: TrainerCertificatesIdRoute,
+  TrainerCustomersIdRoute: TrainerCustomersIdRoute,
+  TrainerExercisesIdRoute: TrainerExercisesIdRoute,
+  TrainerLessonsIdRoute: TrainerLessonsIdRoute,
+  TrainerReviewsIdRoute: TrainerReviewsIdRoute,
   TrainerCertificatesIndexRoute: TrainerCertificatesIndexRoute,
+  TrainerCustomersIndexRoute: TrainerCustomersIndexRoute,
+  TrainerExercisesIndexRoute: TrainerExercisesIndexRoute,
+  TrainerLessonsIndexRoute: TrainerLessonsIndexRoute,
+  TrainerReviewsIndexRoute: TrainerReviewsIndexRoute,
 }
 
 const TrainerRouteWithChildren =
