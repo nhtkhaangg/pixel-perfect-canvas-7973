@@ -17,10 +17,15 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const nav = (
-    <nav className="space-y-1">
-      {area.items.map((item) => (
+    <nav className="space-y-0.5">
+      {area.items.map((item, i) => (
+        <div key={item.to}>
+        {item.group && item.group !== area.items[i - 1]?.group ? (
+          <p className="px-3 pt-4 pb-1 text-[11px] font-semibold tracking-wider text-sidebar-foreground/45 uppercase">
+            {item.group}
+          </p>
+        ) : null}
         <Link
-          key={item.to}
           to={item.to}
           activeOptions={{ exact: item.to === area.home }}
           onClick={() => setMobileOpen(false)}
@@ -29,13 +34,14 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
           <item.icon className="size-4" />
           {item.label}
         </Link>
+        </div>
       ))}
     </nav>
   );
 
   return (
     <div className="flex min-h-screen bg-background">
-      <aside className="hidden w-60 shrink-0 flex-col border-r border-sidebar-border bg-sidebar lg:flex">
+      <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-sidebar-border bg-sidebar lg:flex">
         <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-4">
           <span className="flex size-7 items-center justify-center rounded-md bg-sidebar-primary text-sidebar-primary-foreground">
             <Dumbbell className="size-4" />
@@ -49,10 +55,10 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
             {area.name} area
           </p>
         </div>
-        <div className="flex-1 px-3 pb-4">{nav}</div>
+        <div className="flex-1 overflow-y-auto px-3 pb-4">{nav}</div>
         <div className="border-t border-sidebar-border p-3">
           <Link
-            to="/"
+            to="/hub"
             className="block rounded-md px-3 py-2 text-xs text-sidebar-foreground/60 transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
           >
             ← Back to role hub
@@ -74,7 +80,7 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
                 <X className="size-4 text-sidebar-foreground" />
               </Button>
             </div>
-            {nav}
+            <div className="overflow-y-auto">{nav}</div>
           </div>
         </div>
       ) : null}
@@ -97,9 +103,18 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
               <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
               <Input placeholder="Search" className="h-9 pl-9" />
             </div>
-            <Button variant="ghost" size="icon">
-              <Bell className="size-4" />
-            </Button>
+            {role === "customer" ? (
+              <Button variant="ghost" size="icon" asChild className="relative">
+                <Link to="/customer/notifications" aria-label="Notifications">
+                  <Bell className="size-4" />
+                  <span className="absolute top-2 right-2 size-2 rounded-full bg-primary" />
+                </Link>
+              </Button>
+            ) : (
+              <Button variant="ghost" size="icon">
+                <Bell className="size-4" />
+              </Button>
+            )}
             <div className="flex items-center gap-2 border-l border-border pl-2">
               <Avatar className="size-8">
                 <AvatarFallback className="bg-muted text-xs font-semibold">
@@ -107,7 +122,7 @@ export function DashboardShell({ role, children }: { role: RoleKey; children?: R
                 </AvatarFallback>
               </Avatar>
               <div className="hidden text-xs leading-tight sm:block">
-                <p className="font-medium text-foreground">Demo {area.name}</p>
+                <p className="font-medium text-foreground">{role === "customer" ? "Alex Morgan" : `Demo ${area.name}`}</p>
                 <p className="text-muted-foreground">{area.key}@gymfit.dev</p>
               </div>
             </div>
