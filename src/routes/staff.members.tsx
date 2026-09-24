@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ScaffoldPage } from "@/components/shared/scaffold-page";
+import { OpsPage } from "@/components/shared/ops-page";
+import { opsPages } from "@/lib/mock/operations";
 
 export const Route = createFileRoute("/staff/members")({
   head: () => ({
@@ -16,5 +17,5 @@ export const Route = createFileRoute("/staff/members")({
 });
 
 function StaffMembersPage() {
-  return <ScaffoldPage title="Hội viên" description="Tra cứu hồ sơ hội viên và tình trạng gói tập." />;
+  return <OpsPage config={opsPages.staffMembers} />;
 }

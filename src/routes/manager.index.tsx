@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ScaffoldPage } from "@/components/shared/scaffold-page";
+import { OpsPage } from "@/components/shared/ops-page";
+import { opsPages } from "@/lib/mock/operations";
 
 export const Route = createFileRoute("/manager/")({
   head: () => ({
@@ -16,5 +17,5 @@ export const Route = createFileRoute("/manager/")({
 });
 
 function ManagerIndexPage() {
-  return <ScaffoldPage title="Tổng quan" description="Hiệu suất phòng gym, nhân sự và xu hướng hội viên." />;
+  return <OpsPage config={opsPages.managerIndex} />;
 }
