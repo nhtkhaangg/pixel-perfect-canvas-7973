@@ -30,7 +30,12 @@ import { Route as AdminRolesRouteImport } from './routes/admin.roles'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as CustomerIndexRouteImport } from './routes/customer.index'
+import { Route as CustomerAssessmentRouteImport } from './routes/customer.assessment'
+import { Route as CustomerAvailabilityRouteImport } from './routes/customer.availability'
+import { Route as CustomerChangePasswordRouteImport } from './routes/customer.change-password'
+import { Route as CustomerMetricsRouteImport } from './routes/customer.metrics'
 import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
+import { Route as CustomerReviewRouteImport } from './routes/customer.review'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerMembershipsRouteImport } from './routes/manager.memberships'
 import { Route as ManagerReportsRouteImport } from './routes/manager.reports'
@@ -155,9 +160,34 @@ const CustomerIndexRoute = CustomerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => CustomerRoute,
 } as any)
+const CustomerAssessmentRoute = CustomerAssessmentRouteImport.update({
+  id: '/assessment',
+  path: '/assessment',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerAvailabilityRoute = CustomerAvailabilityRouteImport.update({
+  id: '/availability',
+  path: '/availability',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerChangePasswordRoute = CustomerChangePasswordRouteImport.update({
+  id: '/change-password',
+  path: '/change-password',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerMetricsRoute = CustomerMetricsRouteImport.update({
+  id: '/metrics',
+  path: '/metrics',
+  getParentRoute: () => CustomerRoute,
+} as any)
 const CustomerProfileRoute = CustomerProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerReviewRoute = CustomerReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
   getParentRoute: () => CustomerRoute,
 } as any)
 const ManagerIndexRoute = ManagerIndexRouteImport.update({
@@ -276,7 +306,12 @@ export interface FileRoutesByFullPath {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/customer/assessment': typeof CustomerAssessmentRoute
+  '/customer/availability': typeof CustomerAvailabilityRoute
+  '/customer/change-password': typeof CustomerChangePasswordRoute
+  '/customer/metrics': typeof CustomerMetricsRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/review': typeof CustomerReviewRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -312,7 +347,12 @@ export interface FileRoutesByTo {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/customer/assessment': typeof CustomerAssessmentRoute
+  '/customer/availability': typeof CustomerAvailabilityRoute
+  '/customer/change-password': typeof CustomerChangePasswordRoute
+  '/customer/metrics': typeof CustomerMetricsRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/review': typeof CustomerReviewRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -356,7 +396,12 @@ export interface FileRoutesById {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
+  '/customer/assessment': typeof CustomerAssessmentRoute
+  '/customer/availability': typeof CustomerAvailabilityRoute
+  '/customer/change-password': typeof CustomerChangePasswordRoute
+  '/customer/metrics': typeof CustomerMetricsRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/review': typeof CustomerReviewRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -401,7 +446,12 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
+    | '/customer/assessment'
+    | '/customer/availability'
+    | '/customer/change-password'
+    | '/customer/metrics'
     | '/customer/profile'
+    | '/customer/review'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -437,7 +487,12 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
+    | '/customer/assessment'
+    | '/customer/availability'
+    | '/customer/change-password'
+    | '/customer/metrics'
     | '/customer/profile'
+    | '/customer/review'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -480,7 +535,12 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/settings'
     | '/admin/users'
+    | '/customer/assessment'
+    | '/customer/availability'
+    | '/customer/change-password'
+    | '/customer/metrics'
     | '/customer/profile'
+    | '/customer/review'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -665,11 +725,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerIndexRouteImport
       parentRoute: typeof CustomerRoute
     }
+    '/customer/assessment': {
+      id: '/customer/assessment'
+      path: '/assessment'
+      fullPath: '/customer/assessment'
+      preLoaderRoute: typeof CustomerAssessmentRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/availability': {
+      id: '/customer/availability'
+      path: '/availability'
+      fullPath: '/customer/availability'
+      preLoaderRoute: typeof CustomerAvailabilityRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/change-password': {
+      id: '/customer/change-password'
+      path: '/change-password'
+      fullPath: '/customer/change-password'
+      preLoaderRoute: typeof CustomerChangePasswordRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/metrics': {
+      id: '/customer/metrics'
+      path: '/metrics'
+      fullPath: '/customer/metrics'
+      preLoaderRoute: typeof CustomerMetricsRouteImport
+      parentRoute: typeof CustomerRoute
+    }
     '/customer/profile': {
       id: '/customer/profile'
       path: '/profile'
       fullPath: '/customer/profile'
       preLoaderRoute: typeof CustomerProfileRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/review': {
+      id: '/customer/review'
+      path: '/review'
+      fullPath: '/customer/review'
+      preLoaderRoute: typeof CustomerReviewRouteImport
       parentRoute: typeof CustomerRoute
     }
     '/manager/': {
@@ -864,12 +959,22 @@ const AdminRouteChildren: AdminRouteChildren = {
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 interface CustomerRouteChildren {
+  CustomerAssessmentRoute: typeof CustomerAssessmentRoute
+  CustomerAvailabilityRoute: typeof CustomerAvailabilityRoute
+  CustomerChangePasswordRoute: typeof CustomerChangePasswordRoute
+  CustomerMetricsRoute: typeof CustomerMetricsRoute
   CustomerProfileRoute: typeof CustomerProfileRoute
+  CustomerReviewRoute: typeof CustomerReviewRoute
   CustomerIndexRoute: typeof CustomerIndexRoute
 }
 
 const CustomerRouteChildren: CustomerRouteChildren = {
+  CustomerAssessmentRoute: CustomerAssessmentRoute,
+  CustomerAvailabilityRoute: CustomerAvailabilityRoute,
+  CustomerChangePasswordRoute: CustomerChangePasswordRoute,
+  CustomerMetricsRoute: CustomerMetricsRoute,
   CustomerProfileRoute: CustomerProfileRoute,
+  CustomerReviewRoute: CustomerReviewRoute,
   CustomerIndexRoute: CustomerIndexRoute,
 }
 
