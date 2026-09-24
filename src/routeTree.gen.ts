@@ -32,9 +32,13 @@ import { Route as AdminUsersRouteImport } from './routes/admin.users'
 import { Route as CustomerIndexRouteImport } from './routes/customer.index'
 import { Route as CustomerAssessmentRouteImport } from './routes/customer.assessment'
 import { Route as CustomerAvailabilityRouteImport } from './routes/customer.availability'
+import { Route as CustomerBookPtRouteImport } from './routes/customer.book-pt'
 import { Route as CustomerChangePasswordRouteImport } from './routes/customer.change-password'
 import { Route as CustomerMetricsRouteImport } from './routes/customer.metrics'
+import { Route as CustomerPackagesRouteImport } from './routes/customer.packages'
 import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
+import { Route as CustomerPurchaseRouteImport } from './routes/customer.purchase'
+import { Route as CustomerRefundRouteImport } from './routes/customer.refund'
 import { Route as CustomerReviewRouteImport } from './routes/customer.review'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerMembershipsRouteImport } from './routes/manager.memberships'
@@ -170,6 +174,11 @@ const CustomerAvailabilityRoute = CustomerAvailabilityRouteImport.update({
   path: '/availability',
   getParentRoute: () => CustomerRoute,
 } as any)
+const CustomerBookPtRoute = CustomerBookPtRouteImport.update({
+  id: '/book-pt',
+  path: '/book-pt',
+  getParentRoute: () => CustomerRoute,
+} as any)
 const CustomerChangePasswordRoute = CustomerChangePasswordRouteImport.update({
   id: '/change-password',
   path: '/change-password',
@@ -180,9 +189,24 @@ const CustomerMetricsRoute = CustomerMetricsRouteImport.update({
   path: '/metrics',
   getParentRoute: () => CustomerRoute,
 } as any)
+const CustomerPackagesRoute = CustomerPackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
+  getParentRoute: () => CustomerRoute,
+} as any)
 const CustomerProfileRoute = CustomerProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerPurchaseRoute = CustomerPurchaseRouteImport.update({
+  id: '/purchase',
+  path: '/purchase',
+  getParentRoute: () => CustomerRoute,
+} as any)
+const CustomerRefundRoute = CustomerRefundRouteImport.update({
+  id: '/refund',
+  path: '/refund',
   getParentRoute: () => CustomerRoute,
 } as any)
 const CustomerReviewRoute = CustomerReviewRouteImport.update({
@@ -308,9 +332,13 @@ export interface FileRoutesByFullPath {
   '/admin/users': typeof AdminUsersRoute
   '/customer/assessment': typeof CustomerAssessmentRoute
   '/customer/availability': typeof CustomerAvailabilityRoute
+  '/customer/book-pt': typeof CustomerBookPtRoute
   '/customer/change-password': typeof CustomerChangePasswordRoute
   '/customer/metrics': typeof CustomerMetricsRoute
+  '/customer/packages': typeof CustomerPackagesRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/purchase': typeof CustomerPurchaseRoute
+  '/customer/refund': typeof CustomerRefundRoute
   '/customer/review': typeof CustomerReviewRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
@@ -349,9 +377,13 @@ export interface FileRoutesByTo {
   '/admin/users': typeof AdminUsersRoute
   '/customer/assessment': typeof CustomerAssessmentRoute
   '/customer/availability': typeof CustomerAvailabilityRoute
+  '/customer/book-pt': typeof CustomerBookPtRoute
   '/customer/change-password': typeof CustomerChangePasswordRoute
   '/customer/metrics': typeof CustomerMetricsRoute
+  '/customer/packages': typeof CustomerPackagesRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/purchase': typeof CustomerPurchaseRoute
+  '/customer/refund': typeof CustomerRefundRoute
   '/customer/review': typeof CustomerReviewRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
@@ -398,9 +430,13 @@ export interface FileRoutesById {
   '/admin/users': typeof AdminUsersRoute
   '/customer/assessment': typeof CustomerAssessmentRoute
   '/customer/availability': typeof CustomerAvailabilityRoute
+  '/customer/book-pt': typeof CustomerBookPtRoute
   '/customer/change-password': typeof CustomerChangePasswordRoute
   '/customer/metrics': typeof CustomerMetricsRoute
+  '/customer/packages': typeof CustomerPackagesRoute
   '/customer/profile': typeof CustomerProfileRoute
+  '/customer/purchase': typeof CustomerPurchaseRoute
+  '/customer/refund': typeof CustomerRefundRoute
   '/customer/review': typeof CustomerReviewRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
@@ -448,9 +484,13 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/customer/assessment'
     | '/customer/availability'
+    | '/customer/book-pt'
     | '/customer/change-password'
     | '/customer/metrics'
+    | '/customer/packages'
     | '/customer/profile'
+    | '/customer/purchase'
+    | '/customer/refund'
     | '/customer/review'
     | '/manager/memberships'
     | '/manager/reports'
@@ -489,9 +529,13 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/customer/assessment'
     | '/customer/availability'
+    | '/customer/book-pt'
     | '/customer/change-password'
     | '/customer/metrics'
+    | '/customer/packages'
     | '/customer/profile'
+    | '/customer/purchase'
+    | '/customer/refund'
     | '/customer/review'
     | '/manager/memberships'
     | '/manager/reports'
@@ -537,9 +581,13 @@ export interface FileRouteTypes {
     | '/admin/users'
     | '/customer/assessment'
     | '/customer/availability'
+    | '/customer/book-pt'
     | '/customer/change-password'
     | '/customer/metrics'
+    | '/customer/packages'
     | '/customer/profile'
+    | '/customer/purchase'
+    | '/customer/refund'
     | '/customer/review'
     | '/manager/memberships'
     | '/manager/reports'
@@ -739,6 +787,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerAvailabilityRouteImport
       parentRoute: typeof CustomerRoute
     }
+    '/customer/book-pt': {
+      id: '/customer/book-pt'
+      path: '/book-pt'
+      fullPath: '/customer/book-pt'
+      preLoaderRoute: typeof CustomerBookPtRouteImport
+      parentRoute: typeof CustomerRoute
+    }
     '/customer/change-password': {
       id: '/customer/change-password'
       path: '/change-password'
@@ -753,11 +808,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerMetricsRouteImport
       parentRoute: typeof CustomerRoute
     }
+    '/customer/packages': {
+      id: '/customer/packages'
+      path: '/packages'
+      fullPath: '/customer/packages'
+      preLoaderRoute: typeof CustomerPackagesRouteImport
+      parentRoute: typeof CustomerRoute
+    }
     '/customer/profile': {
       id: '/customer/profile'
       path: '/profile'
       fullPath: '/customer/profile'
       preLoaderRoute: typeof CustomerProfileRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/purchase': {
+      id: '/customer/purchase'
+      path: '/purchase'
+      fullPath: '/customer/purchase'
+      preLoaderRoute: typeof CustomerPurchaseRouteImport
+      parentRoute: typeof CustomerRoute
+    }
+    '/customer/refund': {
+      id: '/customer/refund'
+      path: '/refund'
+      fullPath: '/customer/refund'
+      preLoaderRoute: typeof CustomerRefundRouteImport
       parentRoute: typeof CustomerRoute
     }
     '/customer/review': {
@@ -961,9 +1037,13 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 interface CustomerRouteChildren {
   CustomerAssessmentRoute: typeof CustomerAssessmentRoute
   CustomerAvailabilityRoute: typeof CustomerAvailabilityRoute
+  CustomerBookPtRoute: typeof CustomerBookPtRoute
   CustomerChangePasswordRoute: typeof CustomerChangePasswordRoute
   CustomerMetricsRoute: typeof CustomerMetricsRoute
+  CustomerPackagesRoute: typeof CustomerPackagesRoute
   CustomerProfileRoute: typeof CustomerProfileRoute
+  CustomerPurchaseRoute: typeof CustomerPurchaseRoute
+  CustomerRefundRoute: typeof CustomerRefundRoute
   CustomerReviewRoute: typeof CustomerReviewRoute
   CustomerIndexRoute: typeof CustomerIndexRoute
 }
@@ -971,9 +1051,13 @@ interface CustomerRouteChildren {
 const CustomerRouteChildren: CustomerRouteChildren = {
   CustomerAssessmentRoute: CustomerAssessmentRoute,
   CustomerAvailabilityRoute: CustomerAvailabilityRoute,
+  CustomerBookPtRoute: CustomerBookPtRoute,
   CustomerChangePasswordRoute: CustomerChangePasswordRoute,
   CustomerMetricsRoute: CustomerMetricsRoute,
+  CustomerPackagesRoute: CustomerPackagesRoute,
   CustomerProfileRoute: CustomerProfileRoute,
+  CustomerPurchaseRoute: CustomerPurchaseRoute,
+  CustomerRefundRoute: CustomerRefundRoute,
   CustomerReviewRoute: CustomerReviewRoute,
   CustomerIndexRoute: CustomerIndexRoute,
 }
