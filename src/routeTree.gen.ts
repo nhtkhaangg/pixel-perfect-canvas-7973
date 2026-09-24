@@ -59,6 +59,11 @@ import { Route as StaffCheckInRouteImport } from './routes/staff.check-in'
 import { Route as StaffClassesRouteImport } from './routes/staff.classes'
 import { Route as StaffMembersRouteImport } from './routes/staff.members'
 import { Route as TrainerIndexRouteImport } from './routes/trainer.index'
+import { Route as TrainerDaysOffRouteImport } from './routes/trainer.days-off'
+import { Route as TrainerProfileRouteImport } from './routes/trainer.profile'
+import { Route as TrainerRescheduleRouteImport } from './routes/trainer.reschedule'
+import { Route as TrainerScheduleRouteImport } from './routes/trainer.schedule'
+import { Route as TrainerVerifyRouteImport } from './routes/trainer.verify'
 import { Route as PublicArticlesIndexRouteImport } from './routes/_public.articles.index'
 import { Route as PublicArticlesIdRouteImport } from './routes/_public.articles.$id'
 import { Route as PublicPackagesIndexRouteImport } from './routes/_public.packages.index'
@@ -70,6 +75,8 @@ import { Route as CustomerNotificationsIndexRouteImport } from './routes/custome
 import { Route as CustomerNotificationsIdRouteImport } from './routes/customer.notifications.$id'
 import { Route as CustomerSessionsIndexRouteImport } from './routes/customer.sessions.index'
 import { Route as CustomerSessionsIdRouteImport } from './routes/customer.sessions.$id'
+import { Route as TrainerCertificatesIndexRouteImport } from './routes/trainer.certificates.index'
+import { Route as TrainerCertificatesIdRouteImport } from './routes/trainer.certificates.$id'
 
 const PublicRoute = PublicRouteImport.update({
   id: '/_public',
@@ -320,6 +327,31 @@ const TrainerIndexRoute = TrainerIndexRouteImport.update({
   path: '/',
   getParentRoute: () => TrainerRoute,
 } as any)
+const TrainerDaysOffRoute = TrainerDaysOffRouteImport.update({
+  id: '/days-off',
+  path: '/days-off',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerProfileRoute = TrainerProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerRescheduleRoute = TrainerRescheduleRouteImport.update({
+  id: '/reschedule',
+  path: '/reschedule',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => TrainerRoute,
+} as any)
+const TrainerVerifyRoute = TrainerVerifyRouteImport.update({
+  id: '/verify',
+  path: '/verify',
+  getParentRoute: () => TrainerRoute,
+} as any)
 const PublicArticlesIndexRoute = PublicArticlesIndexRouteImport.update({
   id: '/articles/',
   path: '/articles/',
@@ -377,6 +409,17 @@ const CustomerSessionsIdRoute = CustomerSessionsIdRouteImport.update({
   path: '/sessions/$id',
   getParentRoute: () => CustomerRoute,
 } as any)
+const TrainerCertificatesIndexRoute =
+  TrainerCertificatesIndexRouteImport.update({
+    id: '/certificates/',
+    path: '/certificates/',
+    getParentRoute: () => TrainerRoute,
+  } as any)
+const TrainerCertificatesIdRoute = TrainerCertificatesIdRouteImport.update({
+  id: '/certificates/$id',
+  path: '/certificates/$id',
+  getParentRoute: () => TrainerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof PublicIndexRoute
@@ -423,6 +466,11 @@ export interface FileRoutesByFullPath {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
+  '/trainer/days-off': typeof TrainerDaysOffRoute
+  '/trainer/profile': typeof TrainerProfileRoute
+  '/trainer/reschedule': typeof TrainerRescheduleRoute
+  '/trainer/schedule': typeof TrainerScheduleRoute
+  '/trainer/verify': typeof TrainerVerifyRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
   '/manager/': typeof ManagerIndexRoute
@@ -434,11 +482,13 @@ export interface FileRoutesByFullPath {
   '/trainers/$id': typeof PublicTrainersIdRoute
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
+  '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
   '/articles/': typeof PublicArticlesIndexRoute
   '/packages/': typeof PublicPackagesIndexRoute
   '/trainers/': typeof PublicTrainersIndexRoute
   '/customer/notifications/': typeof CustomerNotificationsIndexRoute
   '/customer/sessions/': typeof CustomerSessionsIndexRoute
+  '/trainer/certificates/': typeof TrainerCertificatesIndexRoute
 }
 export interface FileRoutesByTo {
   '/guest': typeof GuestRoute
@@ -479,6 +529,11 @@ export interface FileRoutesByTo {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
+  '/trainer/days-off': typeof TrainerDaysOffRoute
+  '/trainer/profile': typeof TrainerProfileRoute
+  '/trainer/reschedule': typeof TrainerRescheduleRoute
+  '/trainer/schedule': typeof TrainerScheduleRoute
+  '/trainer/verify': typeof TrainerVerifyRoute
   '/': typeof PublicIndexRoute
   '/admin': typeof AdminIndexRoute
   '/customer': typeof CustomerIndexRoute
@@ -491,11 +546,13 @@ export interface FileRoutesByTo {
   '/trainers/$id': typeof PublicTrainersIdRoute
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
+  '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
   '/articles': typeof PublicArticlesIndexRoute
   '/packages': typeof PublicPackagesIndexRoute
   '/trainers': typeof PublicTrainersIndexRoute
   '/customer/notifications': typeof CustomerNotificationsIndexRoute
   '/customer/sessions': typeof CustomerSessionsIndexRoute
+  '/trainer/certificates': typeof TrainerCertificatesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -543,6 +600,11 @@ export interface FileRoutesById {
   '/staff/check-in': typeof StaffCheckInRoute
   '/staff/classes': typeof StaffClassesRoute
   '/staff/members': typeof StaffMembersRoute
+  '/trainer/days-off': typeof TrainerDaysOffRoute
+  '/trainer/profile': typeof TrainerProfileRoute
+  '/trainer/reschedule': typeof TrainerRescheduleRoute
+  '/trainer/schedule': typeof TrainerScheduleRoute
+  '/trainer/verify': typeof TrainerVerifyRoute
   '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
@@ -555,11 +617,13 @@ export interface FileRoutesById {
   '/_public/trainers/$id': typeof PublicTrainersIdRoute
   '/customer/notifications/$id': typeof CustomerNotificationsIdRoute
   '/customer/sessions/$id': typeof CustomerSessionsIdRoute
+  '/trainer/certificates/$id': typeof TrainerCertificatesIdRoute
   '/_public/articles/': typeof PublicArticlesIndexRoute
   '/_public/packages/': typeof PublicPackagesIndexRoute
   '/_public/trainers/': typeof PublicTrainersIndexRoute
   '/customer/notifications/': typeof CustomerNotificationsIndexRoute
   '/customer/sessions/': typeof CustomerSessionsIndexRoute
+  '/trainer/certificates/': typeof TrainerCertificatesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -608,6 +672,11 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
+    | '/trainer/days-off'
+    | '/trainer/profile'
+    | '/trainer/reschedule'
+    | '/trainer/schedule'
+    | '/trainer/verify'
     | '/admin/'
     | '/customer/'
     | '/manager/'
@@ -619,11 +688,13 @@ export interface FileRouteTypes {
     | '/trainers/$id'
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
+    | '/trainer/certificates/$id'
     | '/articles/'
     | '/packages/'
     | '/trainers/'
     | '/customer/notifications/'
     | '/customer/sessions/'
+    | '/trainer/certificates/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/guest'
@@ -664,6 +735,11 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
+    | '/trainer/days-off'
+    | '/trainer/profile'
+    | '/trainer/reschedule'
+    | '/trainer/schedule'
+    | '/trainer/verify'
     | '/'
     | '/admin'
     | '/customer'
@@ -676,11 +752,13 @@ export interface FileRouteTypes {
     | '/trainers/$id'
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
+    | '/trainer/certificates/$id'
     | '/articles'
     | '/packages'
     | '/trainers'
     | '/customer/notifications'
     | '/customer/sessions'
+    | '/trainer/certificates'
   id:
     | '__root__'
     | '/_public'
@@ -727,6 +805,11 @@ export interface FileRouteTypes {
     | '/staff/check-in'
     | '/staff/classes'
     | '/staff/members'
+    | '/trainer/days-off'
+    | '/trainer/profile'
+    | '/trainer/reschedule'
+    | '/trainer/schedule'
+    | '/trainer/verify'
     | '/_public/'
     | '/admin/'
     | '/customer/'
@@ -739,11 +822,13 @@ export interface FileRouteTypes {
     | '/_public/trainers/$id'
     | '/customer/notifications/$id'
     | '/customer/sessions/$id'
+    | '/trainer/certificates/$id'
     | '/_public/articles/'
     | '/_public/packages/'
     | '/_public/trainers/'
     | '/customer/notifications/'
     | '/customer/sessions/'
+    | '/trainer/certificates/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1109,6 +1194,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrainerIndexRouteImport
       parentRoute: typeof TrainerRoute
     }
+    '/trainer/days-off': {
+      id: '/trainer/days-off'
+      path: '/days-off'
+      fullPath: '/trainer/days-off'
+      preLoaderRoute: typeof TrainerDaysOffRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/profile': {
+      id: '/trainer/profile'
+      path: '/profile'
+      fullPath: '/trainer/profile'
+      preLoaderRoute: typeof TrainerProfileRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/reschedule': {
+      id: '/trainer/reschedule'
+      path: '/reschedule'
+      fullPath: '/trainer/reschedule'
+      preLoaderRoute: typeof TrainerRescheduleRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/schedule': {
+      id: '/trainer/schedule'
+      path: '/schedule'
+      fullPath: '/trainer/schedule'
+      preLoaderRoute: typeof TrainerScheduleRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/verify': {
+      id: '/trainer/verify'
+      path: '/verify'
+      fullPath: '/trainer/verify'
+      preLoaderRoute: typeof TrainerVerifyRouteImport
+      parentRoute: typeof TrainerRoute
+    }
     '/_public/articles/': {
       id: '/_public/articles/'
       path: '/articles'
@@ -1185,6 +1305,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/customer/sessions/$id'
       preLoaderRoute: typeof CustomerSessionsIdRouteImport
       parentRoute: typeof CustomerRoute
+    }
+    '/trainer/certificates/': {
+      id: '/trainer/certificates/'
+      path: '/certificates'
+      fullPath: '/trainer/certificates/'
+      preLoaderRoute: typeof TrainerCertificatesIndexRouteImport
+      parentRoute: typeof TrainerRoute
+    }
+    '/trainer/certificates/$id': {
+      id: '/trainer/certificates/$id'
+      path: '/certificates/$id'
+      fullPath: '/trainer/certificates/$id'
+      preLoaderRoute: typeof TrainerCertificatesIdRouteImport
+      parentRoute: typeof TrainerRoute
     }
   }
 }
@@ -1338,11 +1472,25 @@ const StaffRouteChildren: StaffRouteChildren = {
 const StaffRouteWithChildren = StaffRoute._addFileChildren(StaffRouteChildren)
 
 interface TrainerRouteChildren {
+  TrainerDaysOffRoute: typeof TrainerDaysOffRoute
+  TrainerProfileRoute: typeof TrainerProfileRoute
+  TrainerRescheduleRoute: typeof TrainerRescheduleRoute
+  TrainerScheduleRoute: typeof TrainerScheduleRoute
+  TrainerVerifyRoute: typeof TrainerVerifyRoute
   TrainerIndexRoute: typeof TrainerIndexRoute
+  TrainerCertificatesIdRoute: typeof TrainerCertificatesIdRoute
+  TrainerCertificatesIndexRoute: typeof TrainerCertificatesIndexRoute
 }
 
 const TrainerRouteChildren: TrainerRouteChildren = {
+  TrainerDaysOffRoute: TrainerDaysOffRoute,
+  TrainerProfileRoute: TrainerProfileRoute,
+  TrainerRescheduleRoute: TrainerRescheduleRoute,
+  TrainerScheduleRoute: TrainerScheduleRoute,
+  TrainerVerifyRoute: TrainerVerifyRoute,
   TrainerIndexRoute: TrainerIndexRoute,
+  TrainerCertificatesIdRoute: TrainerCertificatesIdRoute,
+  TrainerCertificatesIndexRoute: TrainerCertificatesIndexRoute,
 }
 
 const TrainerRouteWithChildren =
