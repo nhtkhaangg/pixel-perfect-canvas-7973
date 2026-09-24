@@ -9,10 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as PublicRouteImport } from './routes/_public'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as CustomerRouteImport } from './routes/customer'
 import { Route as GuestRouteImport } from './routes/guest'
+import { Route as HubRouteImport } from './routes/hub'
 import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as TrainerRouteImport } from './routes/trainer'
@@ -25,9 +26,6 @@ import { Route as CustomerIndexRouteImport } from './routes/customer.index'
 import { Route as CustomerClassesRouteImport } from './routes/customer.classes'
 import { Route as CustomerMembershipRouteImport } from './routes/customer.membership'
 import { Route as CustomerProfileRouteImport } from './routes/customer.profile'
-import { Route as GuestIndexRouteImport } from './routes/guest.index'
-import { Route as GuestClassesRouteImport } from './routes/guest.classes'
-import { Route as GuestPricingRouteImport } from './routes/guest.pricing'
 import { Route as ManagerIndexRouteImport } from './routes/manager.index'
 import { Route as ManagerMembershipsRouteImport } from './routes/manager.memberships'
 import { Route as ManagerReportsRouteImport } from './routes/manager.reports'
@@ -41,9 +39,8 @@ import { Route as TrainerClientsRouteImport } from './routes/trainer.clients'
 import { Route as TrainerProgramsRouteImport } from './routes/trainer.programs'
 import { Route as TrainerScheduleRouteImport } from './routes/trainer.schedule'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const PublicRoute = PublicRouteImport.update({
+  id: '/_public',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -59,6 +56,11 @@ const CustomerRoute = CustomerRouteImport.update({
 const GuestRoute = GuestRouteImport.update({
   id: '/guest',
   path: '/guest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HubRoute = HubRouteImport.update({
+  id: '/hub',
+  path: '/hub',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ManagerRoute = ManagerRouteImport.update({
@@ -120,21 +122,6 @@ const CustomerProfileRoute = CustomerProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => CustomerRoute,
-} as any)
-const GuestIndexRoute = GuestIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestClassesRoute = GuestClassesRouteImport.update({
-  id: '/classes',
-  path: '/classes',
-  getParentRoute: () => GuestRoute,
-} as any)
-const GuestPricingRoute = GuestPricingRouteImport.update({
-  id: '/pricing',
-  path: '/pricing',
-  getParentRoute: () => GuestRoute,
 } as any)
 const ManagerIndexRoute = ManagerIndexRouteImport.update({
   id: '/',
@@ -198,10 +185,11 @@ const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
+  '/': typeof PublicRoute
   '/admin': typeof AdminRouteWithChildren
   '/customer': typeof CustomerRouteWithChildren
-  '/guest': typeof GuestRouteWithChildren
+  '/guest': typeof GuestRoute
+  '/hub': typeof HubRoute
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
@@ -212,8 +200,6 @@ export interface FileRoutesByFullPath {
   '/customer/classes': typeof CustomerClassesRoute
   '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
-  '/guest/classes': typeof GuestClassesRoute
-  '/guest/pricing': typeof GuestPricingRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -225,13 +211,14 @@ export interface FileRoutesByFullPath {
   '/trainer/schedule': typeof TrainerScheduleRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
-  '/guest/': typeof GuestIndexRoute
   '/manager/': typeof ManagerIndexRoute
   '/staff/': typeof StaffIndexRoute
   '/trainer/': typeof TrainerIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
+  '/': typeof PublicRoute
+  '/guest': typeof GuestRoute
+  '/hub': typeof HubRoute
   '/admin/branches': typeof AdminBranchesRoute
   '/admin/roles': typeof AdminRolesRoute
   '/admin/settings': typeof AdminSettingsRoute
@@ -239,8 +226,6 @@ export interface FileRoutesByTo {
   '/customer/classes': typeof CustomerClassesRoute
   '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
-  '/guest/classes': typeof GuestClassesRoute
-  '/guest/pricing': typeof GuestPricingRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -252,17 +237,17 @@ export interface FileRoutesByTo {
   '/trainer/schedule': typeof TrainerScheduleRoute
   '/admin': typeof AdminIndexRoute
   '/customer': typeof CustomerIndexRoute
-  '/guest': typeof GuestIndexRoute
   '/manager': typeof ManagerIndexRoute
   '/staff': typeof StaffIndexRoute
   '/trainer': typeof TrainerIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
+  '/_public': typeof PublicRoute
   '/admin': typeof AdminRouteWithChildren
   '/customer': typeof CustomerRouteWithChildren
-  '/guest': typeof GuestRouteWithChildren
+  '/guest': typeof GuestRoute
+  '/hub': typeof HubRoute
   '/manager': typeof ManagerRouteWithChildren
   '/staff': typeof StaffRouteWithChildren
   '/trainer': typeof TrainerRouteWithChildren
@@ -273,8 +258,6 @@ export interface FileRoutesById {
   '/customer/classes': typeof CustomerClassesRoute
   '/customer/membership': typeof CustomerMembershipRoute
   '/customer/profile': typeof CustomerProfileRoute
-  '/guest/classes': typeof GuestClassesRoute
-  '/guest/pricing': typeof GuestPricingRoute
   '/manager/memberships': typeof ManagerMembershipsRoute
   '/manager/reports': typeof ManagerReportsRoute
   '/manager/staff': typeof ManagerStaffRoute
@@ -286,7 +269,6 @@ export interface FileRoutesById {
   '/trainer/schedule': typeof TrainerScheduleRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
-  '/guest/': typeof GuestIndexRoute
   '/manager/': typeof ManagerIndexRoute
   '/staff/': typeof StaffIndexRoute
   '/trainer/': typeof TrainerIndexRoute
@@ -298,6 +280,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/customer'
     | '/guest'
+    | '/hub'
     | '/manager'
     | '/staff'
     | '/trainer'
@@ -308,8 +291,6 @@ export interface FileRouteTypes {
     | '/customer/classes'
     | '/customer/membership'
     | '/customer/profile'
-    | '/guest/classes'
-    | '/guest/pricing'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -321,13 +302,14 @@ export interface FileRouteTypes {
     | '/trainer/schedule'
     | '/admin/'
     | '/customer/'
-    | '/guest/'
     | '/manager/'
     | '/staff/'
     | '/trainer/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/guest'
+    | '/hub'
     | '/admin/branches'
     | '/admin/roles'
     | '/admin/settings'
@@ -335,8 +317,6 @@ export interface FileRouteTypes {
     | '/customer/classes'
     | '/customer/membership'
     | '/customer/profile'
-    | '/guest/classes'
-    | '/guest/pricing'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -348,16 +328,16 @@ export interface FileRouteTypes {
     | '/trainer/schedule'
     | '/admin'
     | '/customer'
-    | '/guest'
     | '/manager'
     | '/staff'
     | '/trainer'
   id:
     | '__root__'
-    | '/'
+    | '/_public'
     | '/admin'
     | '/customer'
     | '/guest'
+    | '/hub'
     | '/manager'
     | '/staff'
     | '/trainer'
@@ -368,8 +348,6 @@ export interface FileRouteTypes {
     | '/customer/classes'
     | '/customer/membership'
     | '/customer/profile'
-    | '/guest/classes'
-    | '/guest/pricing'
     | '/manager/memberships'
     | '/manager/reports'
     | '/manager/staff'
@@ -381,17 +359,17 @@ export interface FileRouteTypes {
     | '/trainer/schedule'
     | '/admin/'
     | '/customer/'
-    | '/guest/'
     | '/manager/'
     | '/staff/'
     | '/trainer/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
+  PublicRoute: typeof PublicRoute
   AdminRoute: typeof AdminRouteWithChildren
   CustomerRoute: typeof CustomerRouteWithChildren
-  GuestRoute: typeof GuestRouteWithChildren
+  GuestRoute: typeof GuestRoute
+  HubRoute: typeof HubRoute
   ManagerRoute: typeof ManagerRouteWithChildren
   StaffRoute: typeof StaffRouteWithChildren
   TrainerRoute: typeof TrainerRouteWithChildren
@@ -399,11 +377,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
+    '/_public': {
+      id: '/_public'
+      path: ''
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+      preLoaderRoute: typeof PublicRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -425,6 +403,13 @@ declare module '@tanstack/react-router' {
       path: '/guest'
       fullPath: '/guest'
       preLoaderRoute: typeof GuestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hub': {
+      id: '/hub'
+      path: '/hub'
+      fullPath: '/hub'
+      preLoaderRoute: typeof HubRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/manager': {
@@ -510,27 +495,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/customer/profile'
       preLoaderRoute: typeof CustomerProfileRouteImport
       parentRoute: typeof CustomerRoute
-    }
-    '/guest/': {
-      id: '/guest/'
-      path: '/'
-      fullPath: '/guest/'
-      preLoaderRoute: typeof GuestIndexRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/guest/classes': {
-      id: '/guest/classes'
-      path: '/classes'
-      fullPath: '/guest/classes'
-      preLoaderRoute: typeof GuestClassesRouteImport
-      parentRoute: typeof GuestRoute
-    }
-    '/guest/pricing': {
-      id: '/guest/pricing'
-      path: '/pricing'
-      fullPath: '/guest/pricing'
-      preLoaderRoute: typeof GuestPricingRouteImport
-      parentRoute: typeof GuestRoute
     }
     '/manager/': {
       id: '/manager/'
@@ -655,20 +619,6 @@ const CustomerRouteWithChildren = CustomerRoute._addFileChildren(
   CustomerRouteChildren,
 )
 
-interface GuestRouteChildren {
-  GuestClassesRoute: typeof GuestClassesRoute
-  GuestPricingRoute: typeof GuestPricingRoute
-  GuestIndexRoute: typeof GuestIndexRoute
-}
-
-const GuestRouteChildren: GuestRouteChildren = {
-  GuestClassesRoute: GuestClassesRoute,
-  GuestPricingRoute: GuestPricingRoute,
-  GuestIndexRoute: GuestIndexRoute,
-}
-
-const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
-
 interface ManagerRouteChildren {
   ManagerMembershipsRoute: typeof ManagerMembershipsRoute
   ManagerReportsRoute: typeof ManagerReportsRoute
@@ -720,10 +670,11 @@ const TrainerRouteWithChildren =
   TrainerRoute._addFileChildren(TrainerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
+  PublicRoute: PublicRoute,
   AdminRoute: AdminRouteWithChildren,
   CustomerRoute: CustomerRouteWithChildren,
-  GuestRoute: GuestRouteWithChildren,
+  GuestRoute: GuestRoute,
+  HubRoute: HubRoute,
   ManagerRoute: ManagerRouteWithChildren,
   StaffRoute: StaffRouteWithChildren,
   TrainerRoute: TrainerRouteWithChildren,
