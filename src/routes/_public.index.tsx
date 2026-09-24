@@ -3,7 +3,6 @@ import { Clock, MapPin, Phone } from "lucide-react";
 import { articles, gymInfo, packages, reviews, trainers } from "@/lib/mock/public";
 import { seo } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
-import { StatCard } from "@/components/shared/stat-card";
 import {
   ArticleCard,
   MoreLink,
@@ -161,9 +160,6 @@ function HomePage() {
           </Button>
         </div>
       </section>
-      <div className="hidden">
-        <StatCard label="" value="" />
-      </div>
     </>
   );
 }

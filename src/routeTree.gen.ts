@@ -17,6 +17,7 @@ import { Route as HubRouteImport } from './routes/hub'
 import { Route as ManagerRouteImport } from './routes/manager'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as TrainerRouteImport } from './routes/trainer'
+import { Route as PublicIndexRouteImport } from './routes/_public.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminBranchesRouteImport } from './routes/admin.branches'
 import { Route as AdminRolesRouteImport } from './routes/admin.roles'
@@ -77,6 +78,11 @@ const TrainerRoute = TrainerRouteImport.update({
   id: '/trainer',
   path: '/trainer',
   getParentRoute: () => rootRouteImport,
+} as any)
+const PublicIndexRoute = PublicIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PublicRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
@@ -185,7 +191,7 @@ const TrainerScheduleRoute = TrainerScheduleRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof PublicRoute
+  '/': typeof PublicIndexRoute
   '/admin': typeof AdminRouteWithChildren
   '/customer': typeof CustomerRouteWithChildren
   '/guest': typeof GuestRoute
@@ -216,7 +222,6 @@ export interface FileRoutesByFullPath {
   '/trainer/': typeof TrainerIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof PublicRoute
   '/guest': typeof GuestRoute
   '/hub': typeof HubRoute
   '/admin/branches': typeof AdminBranchesRoute
@@ -235,6 +240,7 @@ export interface FileRoutesByTo {
   '/trainer/clients': typeof TrainerClientsRoute
   '/trainer/programs': typeof TrainerProgramsRoute
   '/trainer/schedule': typeof TrainerScheduleRoute
+  '/': typeof PublicIndexRoute
   '/admin': typeof AdminIndexRoute
   '/customer': typeof CustomerIndexRoute
   '/manager': typeof ManagerIndexRoute
@@ -243,7 +249,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/_public': typeof PublicRoute
+  '/_public': typeof PublicRouteWithChildren
   '/admin': typeof AdminRouteWithChildren
   '/customer': typeof CustomerRouteWithChildren
   '/guest': typeof GuestRoute
@@ -267,6 +273,7 @@ export interface FileRoutesById {
   '/trainer/clients': typeof TrainerClientsRoute
   '/trainer/programs': typeof TrainerProgramsRoute
   '/trainer/schedule': typeof TrainerScheduleRoute
+  '/_public/': typeof PublicIndexRoute
   '/admin/': typeof AdminIndexRoute
   '/customer/': typeof CustomerIndexRoute
   '/manager/': typeof ManagerIndexRoute
@@ -307,7 +314,6 @@ export interface FileRouteTypes {
     | '/trainer/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/guest'
     | '/hub'
     | '/admin/branches'
@@ -326,6 +332,7 @@ export interface FileRouteTypes {
     | '/trainer/clients'
     | '/trainer/programs'
     | '/trainer/schedule'
+    | '/'
     | '/admin'
     | '/customer'
     | '/manager'
@@ -357,6 +364,7 @@ export interface FileRouteTypes {
     | '/trainer/clients'
     | '/trainer/programs'
     | '/trainer/schedule'
+    | '/_public/'
     | '/admin/'
     | '/customer/'
     | '/manager/'
@@ -365,7 +373,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  PublicRoute: typeof PublicRoute
+  PublicRoute: typeof PublicRouteWithChildren
   AdminRoute: typeof AdminRouteWithChildren
   CustomerRoute: typeof CustomerRouteWithChildren
   GuestRoute: typeof GuestRoute
@@ -432,6 +440,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/trainer'
       preLoaderRoute: typeof TrainerRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_public/': {
+      id: '/_public/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof PublicIndexRouteImport
+      parentRoute: typeof PublicRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -583,6 +598,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface PublicRouteChildren {
+  PublicIndexRoute: typeof PublicIndexRoute
+}
+
+const PublicRouteChildren: PublicRouteChildren = {
+  PublicIndexRoute: PublicIndexRoute,
+}
+
+const PublicRouteWithChildren =
+  PublicRoute._addFileChildren(PublicRouteChildren)
+
 interface AdminRouteChildren {
   AdminBranchesRoute: typeof AdminBranchesRoute
   AdminRolesRoute: typeof AdminRolesRoute
@@ -670,7 +696,7 @@ const TrainerRouteWithChildren =
   TrainerRoute._addFileChildren(TrainerRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  PublicRoute: PublicRoute,
+  PublicRoute: PublicRouteWithChildren,
   AdminRoute: AdminRouteWithChildren,
   CustomerRoute: CustomerRouteWithChildren,
   GuestRoute: GuestRoute,
