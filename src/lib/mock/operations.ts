@@ -12,7 +12,7 @@ const statusOpts = (pairs: [string, string][]) => pairs.map(([value, label]) => 
 
 const zones = ["Khu tạ tự do", "Khu cardio", "Phòng group X", "Khu functional", "Phòng yoga", "Khu máy"];
 
-export const opsPages: Record<string, OpsConfig> = {
+export const opsPages = {
   adminIndex: {
     title: "Tổng quan quản trị",
     description: "Tình trạng hệ thống, mức sử dụng và hoạt động quản trị gần đây.",
@@ -317,4 +317,4 @@ export const opsPages: Record<string, OpsConfig> = {
       actions: ["Xem danh sách", "Đổi giờ", "Hủy lớp"],
     },
   },
-};
+} satisfies Record<string, OpsConfig>;
