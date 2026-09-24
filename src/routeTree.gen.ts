@@ -10,33 +10,75 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GuestRouteImport } from './routes/guest'
+import { Route as GuestIndexRouteImport } from './routes/guest.index'
+import { Route as GuestClassesRouteImport } from './routes/guest.classes'
+import { Route as GuestPricingRouteImport } from './routes/guest.pricing'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuestRoute = GuestRouteImport.update({
+  id: '/guest',
+  path: '/guest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuestIndexRoute = GuestIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestClassesRoute = GuestClassesRouteImport.update({
+  id: '/classes',
+  path: '/classes',
+  getParentRoute: () => GuestRoute,
+} as any)
+const GuestPricingRoute = GuestPricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => GuestRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/guest': typeof GuestRouteWithChildren
+  '/guest/classes': typeof GuestClassesRoute
+  '/guest/pricing': typeof GuestPricingRoute
+  '/guest/': typeof GuestIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/guest/classes': typeof GuestClassesRoute
+  '/guest/pricing': typeof GuestPricingRoute
+  '/guest': typeof GuestIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/guest': typeof GuestRouteWithChildren
+  '/guest/classes': typeof GuestClassesRoute
+  '/guest/pricing': typeof GuestPricingRoute
+  '/guest/': typeof GuestIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/guest' | '/guest/classes' | '/guest/pricing' | '/guest/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/guest/classes' | '/guest/pricing' | '/guest'
+  id:
+    | '__root__'
+    | '/'
+    | '/guest'
+    | '/guest/classes'
+    | '/guest/pricing'
+    | '/guest/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GuestRoute: typeof GuestRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +90,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guest': {
+      id: '/guest'
+      path: '/guest'
+      fullPath: '/guest'
+      preLoaderRoute: typeof GuestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guest/': {
+      id: '/guest/'
+      path: '/'
+      fullPath: '/guest/'
+      preLoaderRoute: typeof GuestIndexRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/guest/classes': {
+      id: '/guest/classes'
+      path: '/classes'
+      fullPath: '/guest/classes'
+      preLoaderRoute: typeof GuestClassesRouteImport
+      parentRoute: typeof GuestRoute
+    }
+    '/guest/pricing': {
+      id: '/guest/pricing'
+      path: '/pricing'
+      fullPath: '/guest/pricing'
+      preLoaderRoute: typeof GuestPricingRouteImport
+      parentRoute: typeof GuestRoute
+    }
   }
 }
 
+interface GuestRouteChildren {
+  GuestClassesRoute: typeof GuestClassesRoute
+  GuestPricingRoute: typeof GuestPricingRoute
+  GuestIndexRoute: typeof GuestIndexRoute
+}
+
+const GuestRouteChildren: GuestRouteChildren = {
+  GuestClassesRoute: GuestClassesRoute,
+  GuestPricingRoute: GuestPricingRoute,
+  GuestIndexRoute: GuestIndexRoute,
+}
+
+const GuestRouteWithChildren = GuestRoute._addFileChildren(GuestRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GuestRoute: GuestRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
