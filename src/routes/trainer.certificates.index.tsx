@@ -19,7 +19,7 @@ export const Route = createFileRoute("/trainer/certificates/")({
   component: Certs,
 });
 
-export function UploadCertModal({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) {
+function UploadCertModal({ open, onOpenChange }: { open: boolean; onOpenChange: (o: boolean) => void }) {
   const [f, setF] = useState({ name: "", issuer: "", issuedAt: "", expiresAt: "" });
   const [file, setFile] = useState<File | null>(null);
   const [err, setErr] = useState<Record<string, string>>({});

@@ -16,7 +16,7 @@ export const Route = createFileRoute("/customer/notifications/")({
   component: NotificationsPage,
 });
 
-export const typeIcon = { package: Package, session: CalendarClock, payment: CreditCard, system: Bell, chat: MessageSquare };
+const typeIcon = { package: Package, session: CalendarClock, payment: CreditCard, system: Bell, chat: MessageSquare };
 
 function NotificationsPage() {
   const all = useNotifications();
