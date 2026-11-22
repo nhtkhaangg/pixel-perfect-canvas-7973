@@ -6,12 +6,14 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "@/components/ui/sonner";
+import { DemoSessionProvider } from "@/components/omnigym/demo-session";
 import { DevPanel } from "@/components/dev/dev-panel";
 
 function NotFoundComponent() {
@@ -36,7 +38,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -79,15 +81,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GymFit — Quản lý phòng gym" },
+      { title: "OmniGym — Quản lý phòng gym" },
       {
         name: "description",
-        content: "GymFit: giao diện quản lý phòng gym hiện đại dành cho hội viên, huấn luyện viên và nhân viên.",
+        content:
+          "OmniGym: giao diện quản lý phòng gym hiện đại dành cho hội viên, huấn luyện viên và nhân viên.",
       },
-      { property: "og:title", content: "GymFit — Quản lý phòng gym" },
+      { property: "og:title", content: "OmniGym — Quản lý phòng gym" },
       {
         property: "og:description",
-        content: "Giao diện quản lý phòng gym hiện đại dành cho hội viên, huấn luyện viên và nhân viên.",
+        content:
+          "Giao diện quản lý phòng gym hiện đại dành cho hội viên, huấn luyện viên và nhân viên.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -102,7 +106,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap",
       },
     ],
   }),
@@ -114,7 +118,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="vi">
+    <html lang="vi" className="dark">
       <head>
         <HeadContent />
       </head>
@@ -131,10 +135,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-      <DevPanel />
-      <Toaster position="top-right" />
+      <DemoSessionProvider>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+        <DevPanel />
+        <Toaster position="top-right" />
+      </DemoSessionProvider>
     </QueryClientProvider>
   );
 }

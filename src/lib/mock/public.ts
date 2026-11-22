@@ -207,7 +207,7 @@ export const articles: Article[] = [
       "Bắt đầu một chương trình sức mạnh không phải là tìm ra giáo án hoàn hảo, mà là duy trì đều đặn. Huấn luyện viên khuyên nên tập toàn thân 3 buổi/tuần với squat, hinge và đẩy vai.",
       "Áp dụng nguyên tắc tăng tải tuyến tính: thêm 2,5 kg cho bài thân trên và 5 kg cho bài thân dưới mỗi buổi khi kỹ thuật vẫn ổn định. Khi chững lại hai lần liên tiếp, giảm 10% tạ rồi tăng dần trở lại.",
       "Các bài bổ trợ vẫn quan trọng, nhưng nên giữ ngắn gọn. Hai hoặc ba bài cho lưng, cơ trung tâm và sức mạnh một chân là đủ trong 12 tuần đầu.",
-      "Cuối cùng, hãy ghi lại mọi thứ. Ứng dụng hội viên tự động lưu số hiệp khi bạn tập theo giáo án GymFit, để bạn thấy rõ mình đã tiến bộ ra sao.",
+      "Cuối cùng, hãy ghi lại mọi thứ. Ứng dụng hội viên tự động lưu số hiệp khi bạn tập theo giáo án OmniGym, để bạn thấy rõ mình đã tiến bộ ra sao.",
     ],
   },
   {
@@ -243,7 +243,7 @@ export const articles: Article[] = [
     title: "Khu tạ tự do vừa nâng cấp: điều gì mới trong mùa thu này",
     excerpt: "Thêm một làn kéo lê tạ mới, hai giá squat và câu lạc bộ chạy bộ thứ Bảy. Cùng tham gia tuần lễ kỷ niệm.",
     category: "Community",
-    author: "Đội ngũ GymFit",
+    author: "Đội ngũ OmniGym",
     date: "2026-08-20",
     readMinutes: 3,
     body: [
@@ -306,10 +306,10 @@ export const reviews: Review[] = [
 ];
 
 export const gymInfo = {
-  name: "GymFit",
+  name: "OmniGym",
   tagline: "Tập luyện có mục tiêu, theo dõi từng buổi",
   phone: "0903 123 456",
-  email: "hello@gymfit.vn",
+  email: "hello@omnigym.vn",
   address: "45 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
   hours: "Thứ 2–Thứ 6: 5:00–23:00 · Thứ 7–Chủ nhật: 7:00–21:00",
   sizeSqm: 1800,

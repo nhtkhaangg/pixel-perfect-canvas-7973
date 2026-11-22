@@ -5,7 +5,7 @@ import gymClass from "@/assets/gym-class.jpg";
 import gymWorkout from "@/assets/gym-workout.jpg";
 import gymCardio from "@/assets/gym-cardio.jpg";
 
-/** Shared gym imagery for the single GymFit gym. */
+/** Shared gym imagery for the single OmniGym gym. */
 export const gymImages = {
   hero: gymHero,
   pt: gymPt,

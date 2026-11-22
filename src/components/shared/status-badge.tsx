@@ -2,12 +2,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const statusBadgeVariants = cva(
-  "inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-xs font-medium whitespace-nowrap",
+  "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-xs font-medium whitespace-nowrap",
   {
     variants: {
       tone: {
         success: "border-success/25 bg-success/10 text-success",
-        warning: "border-warning/30 bg-warning/12 text-warning-foreground",
+        warning: "border-warning/30 bg-warning/12 text-warning",
         danger: "border-destructive/25 bg-destructive/10 text-destructive",
         neutral: "border-border bg-muted text-muted-foreground",
       },
@@ -17,6 +17,14 @@ const statusBadgeVariants = cva(
 );
 
 const statusTone: Record<string, "success" | "warning" | "danger" | "neutral"> = {
+  available: "success",
+  success: "success",
+  maint: "warning",
+  decomissioned: "neutral",
+  decommissioned: "neutral",
+  rescheduled: "warning",
+  pending_review: "warning",
+  unsubmitted: "neutral",
   active: "success",
   approved: "success",
   completed: "success",
@@ -43,6 +51,13 @@ const statusTone: Record<string, "success" | "warning" | "danger" | "neutral"> =
 };
 
 const statusLabel: Record<string, string> = {
+  available: "Sẵn sàng",
+  maint: "Đang bảo trì",
+  decommissioned: "Ngừng sử dụng",
+  success: "Thành công",
+  rescheduled: "Đã đổi lịch",
+  pending_review: "Chờ duyệt",
+  unsubmitted: "Chưa nộp hồ sơ",
   active: "Đang hoạt động",
   approved: "Đã phê duyệt",
   completed: "Đã hoàn thành",

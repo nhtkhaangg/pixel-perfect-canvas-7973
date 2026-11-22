@@ -54,7 +54,7 @@ export const opsPages = {
       title: "Danh sách tài khoản",
       columns: [{ key: "name", header: "Họ tên" }, { key: "email", header: "Email" }, { key: "role", header: "Vai trò" }, { key: "joined", header: "Ngày tạo" }, { key: "status", header: "Trạng thái", kind: "status" }],
       rows: Array.from({ length: 24 }, (_, i) => ({
-        id: `u${i}`, name: pick(names, i), email: `user${i + 1}@gymfit.vn`,
+        id: `u${i}`, name: pick(names, i), email: `user${i + 1}@omnigym.vn`,
         role: pick(["Hội viên", "Hội viên", "Huấn luyện viên", "Nhân viên", "Quản lý"], i),
         joined: date(i * 3), status: pick(["active", "active", "active", "locked", "pending"], i),
       })),

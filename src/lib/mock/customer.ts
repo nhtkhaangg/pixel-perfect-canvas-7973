@@ -1,10 +1,10 @@
 export const me = {
-  id: "hv_1042",
+  id: "CUS-0001",
   name: "Nguyễn Minh Anh",
-  email: "minhanh.nguyen@example.com",
+  email: "anh@example.com",
   phone: "0903 123 456",
   dob: "1994-03-12",
-  gender: "Nam",
+  gender: "Nữ",
   address: "22 Đường Nguyễn Huệ, Quận 1, TP.HCM",
   homeZone: "Khu tạ tự do",
   memberSince: "2025-02-10",

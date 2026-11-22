@@ -1,5 +1,5 @@
 export function seo(title: string, description: string) {
-  const full = `${title} — GymFit`;
+  const full = `${title} — OmniGym`;
   return {
     meta: [
       { title: full },

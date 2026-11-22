@@ -33,7 +33,7 @@ export function AppBreadcrumbs() {
   return (
     <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm">
       <Link to="/" className="text-muted-foreground transition-colors hover:text-foreground">
-        GymFit
+        OmniGym
       </Link>
       {segments.map((segment, index) => (
         <span key={`${segment}-${index}`} className="flex items-center gap-1.5">

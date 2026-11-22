@@ -10,16 +10,16 @@ import { vnd } from "@/lib/utils";
 export const Route = createFileRoute("/hub")({
   head: () => ({
     meta: [
-      { title: "GymFit — Điều hướng kiểm thử" },
+      { title: "OmniGym — Điều hướng kiểm thử" },
       {
         name: "description",
         content:
-          "Trang điều hướng kiểm thử của giao diện quản lý phòng gym GymFit: truy cập nhanh các khu vực Khách, Hội viên, Huấn luyện viên, Nhân viên, Quản lý và Quản trị viên.",
+          "Trang điều hướng kiểm thử của giao diện quản lý phòng gym OmniGym: truy cập nhanh các khu vực Khách, Hội viên, Huấn luyện viên, Nhân viên, Quản lý và Quản trị viên.",
       },
-      { property: "og:title", content: "GymFit — Điều hướng kiểm thử" },
+      { property: "og:title", content: "OmniGym — Điều hướng kiểm thử" },
       {
         property: "og:description",
-        content: "Điều hướng nhanh tới mọi khu vực trong bản mẫu quản lý phòng gym GymFit.",
+        content: "Điều hướng nhanh tới mọi khu vực trong bản mẫu quản lý phòng gym OmniGym.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -46,11 +46,11 @@ function RoleHub() {
             <span className="flex size-8 items-center justify-center rounded-md bg-primary text-primary-foreground">
               <Dumbbell className="size-4" />
             </span>
-            <span className="font-semibold tracking-tight text-surface-foreground">GymFit</span>
+            <span className="font-semibold tracking-tight text-surface-foreground">OmniGym</span>
             <StatusBadge status="draft" label="điều hướng kiểm thử" className="ml-2" />
           </div>
           <h1 className="mt-6 max-w-2xl text-3xl font-semibold tracking-tight text-surface-foreground lg:text-4xl">
-            Giao diện quản lý phòng gym GymFit
+            Giao diện quản lý phòng gym OmniGym
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-surface-foreground/70 lg:text-base">
             Bản mẫu giao diện với dữ liệu minh hoạ. Chọn một khu vực bên dưới, hoặc dùng thanh điều
